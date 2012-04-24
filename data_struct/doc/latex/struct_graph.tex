@@ -1,0 +1,48 @@
+\hypertarget{struct_graph}{\section{Graph Struct Reference}
+\label{struct_graph}\index{Graph@{Graph}}
+}
+
+
+General graph structure.  
+
+
+
+
+{\ttfamily \#include $<$graph.\-h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_mat_graph}{Mat\-Graph} $\ast$ \hyperlink{struct_graph_a51971f3ef499f66e11de0883ac4634d4}{\-\_\-mg}
+\item 
+\hyperlink{struct_list_graph}{List\-Graph} $\ast$ \hyperlink{struct_graph_a6e87444e20688d2c6b29018a1e19545a}{\-\_\-lg}
+\item 
+int $\ast$ \hyperlink{struct_graph_a3d4aadf6e58d62691fef211a1d405507}{\-\_\-lab}
+\item 
+int $\ast$ \hyperlink{struct_graph_a723723021a032fc4140eec215ab3cdde}{\-\_\-exc}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+General graph structure. 
+
+The goal of this declaration is to manipulate a single data structure no matter which representation of the graph is used. To do that, we use a data structure with only two pointers on a different kind of graph. Depending on the non null pointer, the graph which will be contained by this structure will be a matrix-\/represented or a list-\/represented graph. 
+
+\subsection{Field Documentation}
+\hypertarget{struct_graph_a723723021a032fc4140eec215ab3cdde}{\index{Graph@{Graph}!\-\_\-exc@{\-\_\-exc}}
+\index{\-\_\-exc@{\-\_\-exc}!Graph@{Graph}}
+\subsubsection[{\-\_\-exc}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf \-\_\-exc}}}\label{struct_graph_a723723021a032fc4140eec215ab3cdde}
+\hypertarget{struct_graph_a3d4aadf6e58d62691fef211a1d405507}{\index{Graph@{Graph}!\-\_\-lab@{\-\_\-lab}}
+\index{\-\_\-lab@{\-\_\-lab}!Graph@{Graph}}
+\subsubsection[{\-\_\-lab}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf \-\_\-lab}}}\label{struct_graph_a3d4aadf6e58d62691fef211a1d405507}
+\hypertarget{struct_graph_a6e87444e20688d2c6b29018a1e19545a}{\index{Graph@{Graph}!\-\_\-lg@{\-\_\-lg}}
+\index{\-\_\-lg@{\-\_\-lg}!Graph@{Graph}}
+\subsubsection[{\-\_\-lg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\-Graph}$\ast$ {\bf \-\_\-lg}}}\label{struct_graph_a6e87444e20688d2c6b29018a1e19545a}
+pointer on a list-\/represented graph \hypertarget{struct_graph_a51971f3ef499f66e11de0883ac4634d4}{\index{Graph@{Graph}!\-\_\-mg@{\-\_\-mg}}
+\index{\-\_\-mg@{\-\_\-mg}!Graph@{Graph}}
+\subsubsection[{\-\_\-mg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mat\-Graph}$\ast$ {\bf \-\_\-mg}}}\label{struct_graph_a51971f3ef499f66e11de0883ac4634d4}
+pointer on a matrix-\/represented graph 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{graph_8h}{graph.\-h}\end{DoxyCompactItemize}

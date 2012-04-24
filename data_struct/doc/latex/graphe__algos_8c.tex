@@ -1,0 +1,52 @@
+\hypertarget{graphe__algos_8c}{
+\section{src/graphe\_\-algos.c File Reference}
+\label{graphe__algos_8c}\index{src/graphe\_\-algos.c@{src/graphe\_\-algos.c}}
+}
+{\ttfamily \#include \char`\"{}graphe\_\-algos.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Graphe $\ast$ \hyperlink{graphe__algos_8c_afcc84b2ae9de2eb6795cd8d558bb0f76}{grapheEcart} (Graphe $\ast$gCapa, Graphe $\ast$gFlot)
+\item 
+Chemin $\ast$ \hyperlink{graphe__algos_8c_a777bc69cd0d3c0962857ad5d584a82b7}{plusCourtCheminRec} (Graphe $\ast$g, int s, int p, int $\ast$d, Chemin $\ast$c, int $\ast$v)
+\item 
+Chemin $\ast$ \hyperlink{graphe__algos_8c_aa763b16bd7c10109eb01a4560764fced}{plusCourtChemin} (Graphe $\ast$g, int s, int p)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{graphe__algos_8c_afcc84b2ae9de2eb6795cd8d558bb0f76}{
+\index{graphe\_\-algos.c@{graphe\_\-algos.c}!grapheEcart@{grapheEcart}}
+\index{grapheEcart@{grapheEcart}!graphe_algos.c@{graphe\_\-algos.c}}
+\subsubsection[{grapheEcart}]{\setlength{\rightskip}{0pt plus 5cm}Graphe$\ast$ grapheEcart (
+\begin{DoxyParamCaption}
+\item[{Graphe $\ast$}]{gCapa, }
+\item[{Graphe $\ast$}]{gFlot}
+\end{DoxyParamCaption}
+)}}
+\label{graphe__algos_8c_afcc84b2ae9de2eb6795cd8d558bb0f76}
+gCapa : graphe des capacités gFlot : graphe du flot actuel Return : graphe d'écart \hypertarget{graphe__algos_8c_aa763b16bd7c10109eb01a4560764fced}{
+\index{graphe\_\-algos.c@{graphe\_\-algos.c}!plusCourtChemin@{plusCourtChemin}}
+\index{plusCourtChemin@{plusCourtChemin}!graphe_algos.c@{graphe\_\-algos.c}}
+\subsubsection[{plusCourtChemin}]{\setlength{\rightskip}{0pt plus 5cm}Chemin$\ast$ plusCourtChemin (
+\begin{DoxyParamCaption}
+\item[{Graphe $\ast$}]{g, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}
+\label{graphe__algos_8c_aa763b16bd7c10109eb01a4560764fced}
+g : graphe orienté s : premier sommet p : dernier sommet Return : Plus court chemin en nombre d'arc de s à p Ou NULL si pas de chemin. \hypertarget{graphe__algos_8c_a777bc69cd0d3c0962857ad5d584a82b7}{
+\index{graphe\_\-algos.c@{graphe\_\-algos.c}!plusCourtCheminRec@{plusCourtCheminRec}}
+\index{plusCourtCheminRec@{plusCourtCheminRec}!graphe_algos.c@{graphe\_\-algos.c}}
+\subsubsection[{plusCourtCheminRec}]{\setlength{\rightskip}{0pt plus 5cm}Chemin$\ast$ plusCourtCheminRec (
+\begin{DoxyParamCaption}
+\item[{Graphe $\ast$}]{g, }
+\item[{int}]{s, }
+\item[{int}]{p, }
+\item[{int $\ast$}]{d, }
+\item[{Chemin $\ast$}]{c, }
+\item[{int $\ast$}]{v}
+\end{DoxyParamCaption}
+)}}
+\label{graphe__algos_8c_a777bc69cd0d3c0962857ad5d584a82b7}

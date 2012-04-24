@@ -1,0 +1,432 @@
+\hypertarget{algo_8c}{\section{src/algo.c File Reference}
+\label{algo_8c}\index{src/algo.\-c@{src/algo.\-c}}
+}
+{\ttfamily \#include \char`\"{}algo.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_graph}{Graph} $\ast$ \hyperlink{algo_8c_ae403c05ffe3a208f5c4e4cb639c926f4}{diff\-Graph} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$flow)
+\begin{DoxyCompactList}\small\item\em Generates the difference graph from the flow graph and capacity graph. \end{DoxyCompactList}\item 
+\hyperlink{struct_graph}{Graph} $\ast$ \hyperlink{algo_8c_a1e517c2e1446f443b1b6e1e6f0f07e6d}{update\-Lay\-Graph} (\hyperlink{struct_graph}{Graph} $\ast$diff, int s)
+\begin{DoxyCompactList}\small\item\em Creation of the layer graph from the differencial graph. \end{DoxyCompactList}\item 
+void \hyperlink{algo_8c_a10d4fa9572cdeebd751e50ede1a1e9f0}{add\-Path\-To\-Layer} (\hyperlink{struct_graph}{Graph} $\ast$layer, \hyperlink{struct_list}{List} $\ast$path)
+\begin{DoxyCompactList}\small\item\em Implements the update of the layer graph after the saturation of the edge with the lowest residual capacity. \end{DoxyCompactList}\item 
+int \hyperlink{algo_8c_a939d93e11f6a622e01ad96232d6433a8}{layer\-Graph\-Flow} (\hyperlink{struct_graph}{Graph} $\ast$layer, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
+\begin{DoxyCompactList}\small\item\em Implements the research of the maximal flow in a layer graph and updates the associated flowgraph. \end{DoxyCompactList}\item 
+\hyperlink{struct_list}{List} $\ast$ \hyperlink{algo_8c_a4129be3eacbd386fff6d9e62f372e402}{short\-Path} (\hyperlink{struct_graph}{Graph} $\ast$g, int s, int p)
+\begin{DoxyCompactList}\small\item\em Returns a shortest path from s to p if exists one or N\-U\-L\-L. \end{DoxyCompactList}\item 
+\hyperlink{struct_graph}{Graph} $\ast$ \hyperlink{algo_8c_a565c1fb4fe27530c7bb57277d3475843}{set\-Short\-Path} (\hyperlink{struct_graph}{Graph} $\ast$g, int s, int p)
+\item 
+int \hyperlink{algo_8c_a200dc30985cc5f2b50cc30d116890361}{algo\-Dinic} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
+\begin{DoxyCompactList}\small\item\em Implementation of the Dinic (Dinitz) algorithm which uses layer graph to accelerate the determination of flow. \end{DoxyCompactList}\item 
+void \hyperlink{algo_8c_ad4666caa2142774f7ed3e6bf584a0678}{add\-Seg} (\hyperlink{struct_graph}{Graph} $\ast$g, int i, int j, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val}, int diff)
+\item 
+void \hyperlink{algo_8c_a3c612c92ccce6d6ad58c93100d229936}{add\-Seg\-To\-Flow} (\hyperlink{struct_graph}{Graph} $\ast$g, int i, int j, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val})
+\item 
+void \hyperlink{algo_8c_aeed667e662025d1bed2c579a1540631d}{add\-Seg\-To\-Diff} (\hyperlink{struct_graph}{Graph} $\ast$g, int i, int j, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val})
+\item 
+void \hyperlink{algo_8c_a29eb69125ee65d4096ec60d209e1c290}{add\-Path} (\hyperlink{struct_graph}{Graph} $\ast$g, \hyperlink{struct_list}{List} $\ast$path, int diff)
+\item 
+void \hyperlink{algo_8c_ae0234ec995e6fb8684dc5169be34ffd6}{add\-Path\-To\-Flow} (\hyperlink{struct_graph}{Graph} $\ast$flow, \hyperlink{struct_list}{List} $\ast$path)
+\begin{DoxyCompactList}\small\item\em Add a path in a flow graph. \end{DoxyCompactList}\item 
+void \hyperlink{algo_8c_ab0307bf70d5822c06a43ae4926112291}{add\-Path\-To\-Diff} (\hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_list}{List} $\ast$path)
+\begin{DoxyCompactList}\small\item\em Add a path to a difference graph. \end{DoxyCompactList}\item 
+int \hyperlink{algo_8c_ab489b06c87846ce09210cd438c08ab09}{algo\-Edmond\-Karp} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
+\begin{DoxyCompactList}\small\item\em Implements the Edmonds-\/\-Karps alogrithm. \end{DoxyCompactList}\item 
+void \hyperlink{algo_8c_ac112bd6c4339a6134b91d43f7ca254a5}{comp\-Label} (\hyperlink{struct_graph}{Graph} $\ast$g, int p)
+\begin{DoxyCompactList}\small\item\em Compute the distance of each node to the sink. \end{DoxyCompactList}\item 
+int \hyperlink{algo_8c_ac57052c962a0d3a4e4b872e8245cb71b}{push} (\hyperlink{struct_graph}{Graph} $\ast$flow, \hyperlink{struct_graph}{Graph} $\ast$diff, int i, int j, int s, int p)
+\begin{DoxyCompactList}\small\item\em Push preflow on the edge (i,j) \end{DoxyCompactList}\item 
+void \hyperlink{algo_8c_a4da153ca131825c58c8ed8cec06add0e}{relabel} (\hyperlink{struct_graph}{Graph} $\ast$diff, int k)
+\begin{DoxyCompactList}\small\item\em Relabel an active node. \end{DoxyCompactList}\item 
+int \hyperlink{algo_8c_aad346e1d9d35e607e37d594f3d2068ab}{algo\-F\-I\-F\-O} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
+\begin{DoxyCompactList}\small\item\em Implements the F\-I\-F\-O variant of preflow-\/push algorithm. \end{DoxyCompactList}\item 
+int \hyperlink{algo_8c_a939bfbfe2cd309b7e7188d6691d3e89a}{algo\-Label} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
+\begin{DoxyCompactList}\small\item\em Implements the High-\/\-Label variant of preflow-\/push algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{algo_8c_a29eb69125ee65d4096ec60d209e1c290}{\index{algo.\-c@{algo.\-c}!add\-Path@{add\-Path}}
+\index{add\-Path@{add\-Path}!algo.c@{algo.\-c}}
+\subsubsection[{add\-Path}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf add\-Path} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{{\bf List} $\ast$}]{path, }
+\item[{int}]{diff}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_a29eb69125ee65d4096ec60d209e1c290}
+\hypertarget{algo_8c_ab0307bf70d5822c06a43ae4926112291}{\index{algo.\-c@{algo.\-c}!add\-Path\-To\-Diff@{add\-Path\-To\-Diff}}
+\index{add\-Path\-To\-Diff@{add\-Path\-To\-Diff}!algo.c@{algo.\-c}}
+\subsubsection[{add\-Path\-To\-Diff}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf add\-Path\-To\-Diff} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{{\bf List} $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_ab0307bf70d5822c06a43ae4926112291}
+
+
+Add a path to a difference graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em diff} & Pointer on a difference graph. \\
+\hline
+{\em path} & Pointer on a path. \\
+\hline
+\end{DoxyParams}
+\hypertarget{algo_8c_ae0234ec995e6fb8684dc5169be34ffd6}{\index{algo.\-c@{algo.\-c}!add\-Path\-To\-Flow@{add\-Path\-To\-Flow}}
+\index{add\-Path\-To\-Flow@{add\-Path\-To\-Flow}!algo.c@{algo.\-c}}
+\subsubsection[{add\-Path\-To\-Flow}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf add\-Path\-To\-Flow} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{flow, }
+\item[{{\bf List} $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_ae0234ec995e6fb8684dc5169be34ffd6}
+
+
+Add a path in a flow graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flow} & Pointer on a flow graph. \\
+\hline
+{\em path} & Path to add. \\
+\hline
+\end{DoxyParams}
+\hypertarget{algo_8c_a10d4fa9572cdeebd751e50ede1a1e9f0}{\index{algo.\-c@{algo.\-c}!add\-Path\-To\-Layer@{add\-Path\-To\-Layer}}
+\index{add\-Path\-To\-Layer@{add\-Path\-To\-Layer}!algo.c@{algo.\-c}}
+\subsubsection[{add\-Path\-To\-Layer}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf add\-Path\-To\-Layer} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{layer, }
+\item[{{\bf List} $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_a10d4fa9572cdeebd751e50ede1a1e9f0}
+
+
+Implements the update of the layer graph after the saturation of the edge with the lowest residual capacity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer} & pointer on the layer graph \\
+\hline
+{\em path} & pointer on the way which has lead to the update \\
+\hline
+\end{DoxyParams}
+\hypertarget{algo_8c_ad4666caa2142774f7ed3e6bf584a0678}{\index{algo.\-c@{algo.\-c}!add\-Seg@{add\-Seg}}
+\index{add\-Seg@{add\-Seg}!algo.c@{algo.\-c}}
+\subsubsection[{add\-Seg}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf add\-Seg} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{val, }
+\item[{int}]{diff}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_ad4666caa2142774f7ed3e6bf584a0678}
+\hypertarget{algo_8c_aeed667e662025d1bed2c579a1540631d}{\index{algo.\-c@{algo.\-c}!add\-Seg\-To\-Diff@{add\-Seg\-To\-Diff}}
+\index{add\-Seg\-To\-Diff@{add\-Seg\-To\-Diff}!algo.c@{algo.\-c}}
+\subsubsection[{add\-Seg\-To\-Diff}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf add\-Seg\-To\-Diff} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{algo_8c_aeed667e662025d1bed2c579a1540631d}
+\hypertarget{algo_8c_a3c612c92ccce6d6ad58c93100d229936}{\index{algo.\-c@{algo.\-c}!add\-Seg\-To\-Flow@{add\-Seg\-To\-Flow}}
+\index{add\-Seg\-To\-Flow@{add\-Seg\-To\-Flow}!algo.c@{algo.\-c}}
+\subsubsection[{add\-Seg\-To\-Flow}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf add\-Seg\-To\-Flow} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{algo_8c_a3c612c92ccce6d6ad58c93100d229936}
+\hypertarget{algo_8c_a200dc30985cc5f2b50cc30d116890361}{\index{algo.\-c@{algo.\-c}!algo\-Dinic@{algo\-Dinic}}
+\index{algo\-Dinic@{algo\-Dinic}!algo.c@{algo.\-c}}
+\subsubsection[{algo\-Dinic}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf algo\-Dinic} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{capa, }
+\item[{{\bf Graph} $\ast$}]{flow, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_a200dc30985cc5f2b50cc30d116890361}
+
+
+Implementation of the Dinic (Dinitz) algorithm which uses layer graph to accelerate the determination of flow. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em capa} & pointer on the graph on which we're searching flow \\
+\hline
+{\em flow} & pointer on the network flow \\
+\hline
+{\em s} & source vertex \\
+\hline
+{\em p} & well vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+maximal flow 
+\end{DoxyReturn}
+\hypertarget{algo_8c_ab489b06c87846ce09210cd438c08ab09}{\index{algo.\-c@{algo.\-c}!algo\-Edmond\-Karp@{algo\-Edmond\-Karp}}
+\index{algo\-Edmond\-Karp@{algo\-Edmond\-Karp}!algo.c@{algo.\-c}}
+\subsubsection[{algo\-Edmond\-Karp}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf algo\-Edmond\-Karp} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{capa, }
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{{\bf Graph} $\ast$}]{flow, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_ab489b06c87846ce09210cd438c08ab09}
+
+
+Implements the Edmonds-\/\-Karps alogrithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em capa} & A capacity graph (assumed to be coherent). \\
+\hline
+{\em diff} & A difference graph (assumed to be initialized with capacity graph). \\
+\hline
+{\em flow} & A flow graph (assumed to be empty). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maxmum flow. 
+\end{DoxyReturn}
+\hypertarget{algo_8c_aad346e1d9d35e607e37d594f3d2068ab}{\index{algo.\-c@{algo.\-c}!algo\-F\-I\-F\-O@{algo\-F\-I\-F\-O}}
+\index{algo\-F\-I\-F\-O@{algo\-F\-I\-F\-O}!algo.c@{algo.\-c}}
+\subsubsection[{algo\-F\-I\-F\-O}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf algo\-F\-I\-F\-O} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{capa, }
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{{\bf Graph} $\ast$}]{flow, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_aad346e1d9d35e607e37d594f3d2068ab}
+
+
+Implements the F\-I\-F\-O variant of preflow-\/push algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em capa} & A capacity graph \\
+\hline
+{\em diff} & A difference graph (assumed to be initialized with capacity graph \\
+\hline
+{\em flow} & A preflow graph (assumed to be empty) \\
+\hline
+{\em s} & The source node \\
+\hline
+{\em p} & The sink node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Maximum flow value 
+\end{DoxyReturn}
+\hypertarget{algo_8c_a939bfbfe2cd309b7e7188d6691d3e89a}{\index{algo.\-c@{algo.\-c}!algo\-Label@{algo\-Label}}
+\index{algo\-Label@{algo\-Label}!algo.c@{algo.\-c}}
+\subsubsection[{algo\-Label}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf algo\-Label} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{capa, }
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{{\bf Graph} $\ast$}]{flow, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_a939bfbfe2cd309b7e7188d6691d3e89a}
+
+
+Implements the High-\/\-Label variant of preflow-\/push algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em capa} & A capacity graph \\
+\hline
+{\em diff} & A difference graph (assumed to be initialized with capacity graph \\
+\hline
+{\em flow} & A preflow graph (assumed to be empty) \\
+\hline
+{\em s} & The source node \\
+\hline
+{\em p} & The sink node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Maximum flow value 
+\end{DoxyReturn}
+\hypertarget{algo_8c_ac112bd6c4339a6134b91d43f7ca254a5}{\index{algo.\-c@{algo.\-c}!comp\-Label@{comp\-Label}}
+\index{comp\-Label@{comp\-Label}!algo.c@{algo.\-c}}
+\subsubsection[{comp\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf comp\-Label} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_ac112bd6c4339a6134b91d43f7ca254a5}
+
+
+Compute the distance of each node to the sink. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & \hyperlink{struct_graph}{Graph} on which the computation will be done \\
+\hline
+{\em p} & Sink node of the graph \\
+\hline
+\end{DoxyParams}
+\hypertarget{algo_8c_ae403c05ffe3a208f5c4e4cb639c926f4}{\index{algo.\-c@{algo.\-c}!diff\-Graph@{diff\-Graph}}
+\index{diff\-Graph@{diff\-Graph}!algo.c@{algo.\-c}}
+\subsubsection[{diff\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph}$\ast$ {\bf diff\-Graph} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{capa, }
+\item[{{\bf Graph} $\ast$}]{flow}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_ae403c05ffe3a208f5c4e4cb639c926f4}
+
+
+Generates the difference graph from the flow graph and capacity graph. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]documentation \end{DoxyRefDesc}
+\hypertarget{algo_8c_a939d93e11f6a622e01ad96232d6433a8}{\index{algo.\-c@{algo.\-c}!layer\-Graph\-Flow@{layer\-Graph\-Flow}}
+\index{layer\-Graph\-Flow@{layer\-Graph\-Flow}!algo.c@{algo.\-c}}
+\subsubsection[{layer\-Graph\-Flow}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf layer\-Graph\-Flow} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{layer, }
+\item[{{\bf Graph} $\ast$}]{flow, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_a939d93e11f6a622e01ad96232d6433a8}
+
+
+Implements the research of the maximal flow in a layer graph and updates the associated flowgraph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer} & pointer on the layer graph \\
+\hline
+{\em flow} & point on the flowgraph \\
+\hline
+{\em s} & source vertex \\
+\hline
+{\em p} & well vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+flow increase 
+\end{DoxyReturn}
+\hypertarget{algo_8c_ac57052c962a0d3a4e4b872e8245cb71b}{\index{algo.\-c@{algo.\-c}!push@{push}}
+\index{push@{push}!algo.c@{algo.\-c}}
+\subsubsection[{push}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf push} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{flow, }
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_ac57052c962a0d3a4e4b872e8245cb71b}
+
+
+Push preflow on the edge (i,j) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flow} & Preflow graph \\
+\hline
+{\em diff} & Residual Network \\
+\hline
+{\em i} & node \\
+\hline
+{\em j} & node \\
+\hline
+{\em s} & source node \\
+\hline
+{\em p} & sink node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The amount of pushed preflow 
+\end{DoxyReturn}
+\hypertarget{algo_8c_a4da153ca131825c58c8ed8cec06add0e}{\index{algo.\-c@{algo.\-c}!relabel@{relabel}}
+\index{relabel@{relabel}!algo.c@{algo.\-c}}
+\subsubsection[{relabel}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf relabel} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_a4da153ca131825c58c8ed8cec06add0e}
+
+
+Relabel an active node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em diff} & A difference graph \\
+\hline
+{\em k} & Node to relabel \\
+\hline
+\end{DoxyParams}
+\hypertarget{algo_8c_a565c1fb4fe27530c7bb57277d3475843}{\index{algo.\-c@{algo.\-c}!set\-Short\-Path@{set\-Short\-Path}}
+\index{set\-Short\-Path@{set\-Short\-Path}!algo.c@{algo.\-c}}
+\subsubsection[{set\-Short\-Path}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph}$\ast$ {\bf set\-Short\-Path} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_a565c1fb4fe27530c7bb57277d3475843}
+\hypertarget{algo_8c_a4129be3eacbd386fff6d9e62f372e402}{\index{algo.\-c@{algo.\-c}!short\-Path@{short\-Path}}
+\index{short\-Path@{short\-Path}!algo.c@{algo.\-c}}
+\subsubsection[{short\-Path}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List}$\ast$ {\bf short\-Path} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_a4129be3eacbd386fff6d9e62f372e402}
+
+
+Returns a shortest path from s to p if exists one or N\-U\-L\-L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer on a \hyperlink{struct_graph}{Graph}. \\
+\hline
+{\em s} & The source vertex of the graph. \\
+\hline
+{\em p} & The sink vertex of the graph. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A shortest path from s to p. The first value does N\-O\-T reprensent an edge, and is set to the min flow of the path. 
+\end{DoxyReturn}
+\hypertarget{algo_8c_a1e517c2e1446f443b1b6e1e6f0f07e6d}{\index{algo.\-c@{algo.\-c}!update\-Lay\-Graph@{update\-Lay\-Graph}}
+\index{update\-Lay\-Graph@{update\-Lay\-Graph}!algo.c@{algo.\-c}}
+\subsubsection[{update\-Lay\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph}$\ast$ {\bf update\-Lay\-Graph} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{int}]{s}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_a1e517c2e1446f443b1b6e1e6f0f07e6d}
+
+
+Creation of the layer graph from the differencial graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em diff} & differential graph \\
+\hline
+{\em s} & vertex that represents first layer of the layer graph (for d=0) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the layer graph 
+\end{DoxyReturn}

@@ -1,0 +1,37 @@
+\hypertarget{graphe__algos_8h}{
+\section{src/graphe\_\-algos.h File Reference}
+\label{graphe__algos_8h}\index{src/graphe\_\-algos.h@{src/graphe\_\-algos.h}}
+}
+{\ttfamily \#include \char`\"{}graphe.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Graphe $\ast$ \hyperlink{graphe__algos_8h_afcc84b2ae9de2eb6795cd8d558bb0f76}{grapheEcart} (Graphe $\ast$gCapa, Graphe $\ast$gFlot)
+\item 
+Chemin $\ast$ \hyperlink{graphe__algos_8h_aa763b16bd7c10109eb01a4560764fced}{plusCourtChemin} (Graphe $\ast$g, int s, int p)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{graphe__algos_8h_afcc84b2ae9de2eb6795cd8d558bb0f76}{
+\index{graphe\_\-algos.h@{graphe\_\-algos.h}!grapheEcart@{grapheEcart}}
+\index{grapheEcart@{grapheEcart}!graphe_algos.h@{graphe\_\-algos.h}}
+\subsubsection[{grapheEcart}]{\setlength{\rightskip}{0pt plus 5cm}Graphe$\ast$ grapheEcart (
+\begin{DoxyParamCaption}
+\item[{Graphe $\ast$}]{gCapa, }
+\item[{Graphe $\ast$}]{gFlot}
+\end{DoxyParamCaption}
+)}}
+\label{graphe__algos_8h_afcc84b2ae9de2eb6795cd8d558bb0f76}
+gCapa : graphe des capacités gFlot : graphe du flot actuel Return : graphe d'écart \hypertarget{graphe__algos_8h_aa763b16bd7c10109eb01a4560764fced}{
+\index{graphe\_\-algos.h@{graphe\_\-algos.h}!plusCourtChemin@{plusCourtChemin}}
+\index{plusCourtChemin@{plusCourtChemin}!graphe_algos.h@{graphe\_\-algos.h}}
+\subsubsection[{plusCourtChemin}]{\setlength{\rightskip}{0pt plus 5cm}Chemin$\ast$ plusCourtChemin (
+\begin{DoxyParamCaption}
+\item[{Graphe $\ast$}]{g, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}
+\label{graphe__algos_8h_aa763b16bd7c10109eb01a4560764fced}
+g : graphe orienté s : premier sommet p : dernier sommet Return : Plus court chemin en nombre d'arc de s à p Ou NULL si pas de chemin. 

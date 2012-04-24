@@ -1,0 +1,387 @@
+\hypertarget{graph_8h}{\section{src/graph.h File Reference}
+\label{graph_8h}\index{src/graph.\-h@{src/graph.\-h}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}mat\-\_\-graph.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}list\-\_\-graph.\-h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_graph}{Graph}
+\begin{DoxyCompactList}\small\item\em General graph structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{graph_8h_a9b9b096de8889ed1843bfb1c3c9ca8ab}{mg}(g)~g-\/$>$\-\_\-mg
+\item 
+\#define \hyperlink{graph_8h_a099f03356b69be04d37a942611b2d504}{lg}(g)~g-\/$>$\-\_\-lg
+\item 
+\#define \hyperlink{graph_8h_a531d011d07615ada6ae26d0511de701e}{glab}(g)~g-\/$>$\-\_\-lab
+\item 
+\#define \hyperlink{graph_8h_a6e262d5d89ec3244231b2d6a86fc64bb}{lab}(g, i)~g-\/$>$\-\_\-lab\mbox{[}i\mbox{]}
+\item 
+\#define \hyperlink{graph_8h_a523445dafd0cfb75979abba987f6a358}{gexc}(g)~g-\/$>$\-\_\-exc
+\item 
+\#define \hyperlink{graph_8h_aa7dc1570d2c79dd07c30f9d46ff3d513}{exc}(g, i)~g-\/$>$\-\_\-exc\mbox{[}i\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_graph}{Graph} $\ast$ \hyperlink{graph_8h_a81db6261196cc953e489407a8132f30e}{alloc\-Mat\-Graph} (int n)
+\begin{DoxyCompactList}\small\item\em Implements the memory allocation for a graph structure containing a matrix represented graph. \end{DoxyCompactList}\item 
+\hyperlink{struct_graph}{Graph} $\ast$ \hyperlink{graph_8h_a9b3120e86b4f3b1bd873ceffa79a2f5b}{alloc\-List\-Graph} (int n)
+\begin{DoxyCompactList}\small\item\em Implements the memory allocation for a graph structure containing a list represented graph. \end{DoxyCompactList}\item 
+\hyperlink{struct_graph}{Graph} $\ast$ \hyperlink{graph_8h_a70a3e6ca5cc9b6a4b616e5dd879e2293}{alloc\-Graph} (\hyperlink{struct_graph}{Graph} $\ast$g)
+\begin{DoxyCompactList}\small\item\em Allows user to copy an empty graph, its usefull to create a new graph which have the same representation as the given one. \end{DoxyCompactList}\item 
+\hyperlink{struct_graph}{Graph} $\ast$ \hyperlink{graph_8h_ac336179280d2afd9099015e2857581b3}{create\-Graph\-File} (const char $\ast$file)
+\begin{DoxyCompactList}\small\item\em Create graph from a file. \end{DoxyCompactList}\item 
+void \hyperlink{graph_8h_a427a2a8378ba7abbeb161fe6d5624047}{free\-Graph} (\hyperlink{struct_graph}{Graph} $\ast$g)
+\begin{DoxyCompactList}\small\item\em Implements memory release for a graph structure. \end{DoxyCompactList}\item 
+\hyperlink{struct_graph}{Graph} $\ast$ \hyperlink{graph_8h_a3de2e251e0134737d18f6331b4161a18}{copy\-Graph} (\hyperlink{struct_graph}{Graph} $\ast$g)
+\begin{DoxyCompactList}\small\item\em Allows user to simply copy a graph. \end{DoxyCompactList}\item 
+void \hyperlink{graph_8h_a1cc08f29f362a2cb01209e3c643b5b7e}{rand\-Fill} (\hyperlink{struct_graph}{Graph} $\ast$g, int m, int c\-Max, int c\-Min, \hyperlink{struct_graph}{Graph} $\ast$g2)
+\item 
+void \hyperlink{graph_8h_aa194021ccff2c5ea2798aae18fc085dd}{test\-Fill} (\hyperlink{struct_graph}{Graph} $\ast$g)
+\item 
+int \hyperlink{graph_8h_a8acf29c60993e46a8b66541186a874ad}{edge\-Val} (\hyperlink{struct_graph}{Graph} $\ast$g, int i, int j)
+\begin{DoxyCompactList}\small\item\em Allows users to easily get the value of the edge between i and j. \end{DoxyCompactList}\item 
+void \hyperlink{graph_8h_aeafd2e09cff235e65b6335eacc6f1ced}{set\-Edge} (\hyperlink{struct_graph}{Graph} $\ast$g, int i, int j, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val})
+\begin{DoxyCompactList}\small\item\em Allows user to modify the value of the edge (i,j) \end{DoxyCompactList}\item 
+int \hyperlink{graph_8h_a9c56e490488393686ff945595bf01761}{nb\-Vert} (\hyperlink{struct_graph}{Graph} $\ast$g)
+\item 
+int \hyperlink{graph_8h_a8eebd68ca36dc39827e35b040ad6d731}{nb\-Edge} (\hyperlink{struct_graph}{Graph} $\ast$g)
+\item 
+\hyperlink{struct_list}{List} $\ast$ \hyperlink{graph_8h_a7d06fd459376054b3faa2f4ab9343f0a}{in\-Neighb} (\hyperlink{struct_graph}{Graph} $\ast$g, int k)
+\begin{DoxyCompactList}\small\item\em allows user to get the incoming neighbourhood of node k \end{DoxyCompactList}\item 
+\hyperlink{struct_list}{List} $\ast$ \hyperlink{graph_8h_a27ba55ee0863f19328f504cda635f18a}{out\-Neighb} (\hyperlink{struct_graph}{Graph} $\ast$g, int k)
+\begin{DoxyCompactList}\small\item\em allows user to get the outcoming neighbourhood of node k \end{DoxyCompactList}\item 
+void \hyperlink{graph_8h_aee0e23c986174d631ed5291649070edb}{print\-Graph} (F\-I\-L\-E $\ast$f, \hyperlink{struct_graph}{Graph} $\ast$g, int graphviz, int $\ast$pref)
+\item 
+void \hyperlink{graph_8h_a6d01ac7a6b2d5853a32e33428f1b065e}{print\-Graph\-List} (F\-I\-L\-E $\ast$f, \hyperlink{struct_graph}{Graph} $\ast$g, int graphviz, int $\ast$pref)
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{graph_8h_aa7dc1570d2c79dd07c30f9d46ff3d513}{\index{graph.\-h@{graph.\-h}!exc@{exc}}
+\index{exc@{exc}!graph.h@{graph.\-h}}
+\subsubsection[{exc}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf exc}(
+\begin{DoxyParamCaption}
+\item[{}]{g, }
+\item[{}]{i}
+\end{DoxyParamCaption}
+)~g-\/$>$\-\_\-exc\mbox{[}i\mbox{]}}}\label{graph_8h_aa7dc1570d2c79dd07c30f9d46ff3d513}
+\hypertarget{graph_8h_a523445dafd0cfb75979abba987f6a358}{\index{graph.\-h@{graph.\-h}!gexc@{gexc}}
+\index{gexc@{gexc}!graph.h@{graph.\-h}}
+\subsubsection[{gexc}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf gexc}(
+\begin{DoxyParamCaption}
+\item[{}]{g}
+\end{DoxyParamCaption}
+)~g-\/$>$\-\_\-exc}}\label{graph_8h_a523445dafd0cfb75979abba987f6a358}
+\hypertarget{graph_8h_a531d011d07615ada6ae26d0511de701e}{\index{graph.\-h@{graph.\-h}!glab@{glab}}
+\index{glab@{glab}!graph.h@{graph.\-h}}
+\subsubsection[{glab}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf glab}(
+\begin{DoxyParamCaption}
+\item[{}]{g}
+\end{DoxyParamCaption}
+)~g-\/$>$\-\_\-lab}}\label{graph_8h_a531d011d07615ada6ae26d0511de701e}
+\hypertarget{graph_8h_a6e262d5d89ec3244231b2d6a86fc64bb}{\index{graph.\-h@{graph.\-h}!lab@{lab}}
+\index{lab@{lab}!graph.h@{graph.\-h}}
+\subsubsection[{lab}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf lab}(
+\begin{DoxyParamCaption}
+\item[{}]{g, }
+\item[{}]{i}
+\end{DoxyParamCaption}
+)~g-\/$>$\-\_\-lab\mbox{[}i\mbox{]}}}\label{graph_8h_a6e262d5d89ec3244231b2d6a86fc64bb}
+\hypertarget{graph_8h_a099f03356b69be04d37a942611b2d504}{\index{graph.\-h@{graph.\-h}!lg@{lg}}
+\index{lg@{lg}!graph.h@{graph.\-h}}
+\subsubsection[{lg}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf lg}(
+\begin{DoxyParamCaption}
+\item[{}]{g}
+\end{DoxyParamCaption}
+)~g-\/$>$\-\_\-lg}}\label{graph_8h_a099f03356b69be04d37a942611b2d504}
+\hypertarget{graph_8h_a9b9b096de8889ed1843bfb1c3c9ca8ab}{\index{graph.\-h@{graph.\-h}!mg@{mg}}
+\index{mg@{mg}!graph.h@{graph.\-h}}
+\subsubsection[{mg}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf mg}(
+\begin{DoxyParamCaption}
+\item[{}]{g}
+\end{DoxyParamCaption}
+)~g-\/$>$\-\_\-mg}}\label{graph_8h_a9b9b096de8889ed1843bfb1c3c9ca8ab}
+
+
+\subsection{Function Documentation}
+\hypertarget{graph_8h_a70a3e6ca5cc9b6a4b616e5dd879e2293}{\index{graph.\-h@{graph.\-h}!alloc\-Graph@{alloc\-Graph}}
+\index{alloc\-Graph@{alloc\-Graph}!graph.h@{graph.\-h}}
+\subsubsection[{alloc\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph}$\ast$ {\bf alloc\-Graph} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a70a3e6ca5cc9b6a4b616e5dd879e2293}
+
+
+Allows user to copy an empty graph, its usefull to create a new graph which have the same representation as the given one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph which representation will be copy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on an empty graph 
+\end{DoxyReturn}
+\hypertarget{graph_8h_a9b3120e86b4f3b1bd873ceffa79a2f5b}{\index{graph.\-h@{graph.\-h}!alloc\-List\-Graph@{alloc\-List\-Graph}}
+\index{alloc\-List\-Graph@{alloc\-List\-Graph}!graph.h@{graph.\-h}}
+\subsubsection[{alloc\-List\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph}$\ast$ {\bf alloc\-List\-Graph} (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a9b3120e86b4f3b1bd873ceffa79a2f5b}
+
+
+Implements the memory allocation for a graph structure containing a list represented graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & number of nodes in the created list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the created graph 
+\end{DoxyReturn}
+\hypertarget{graph_8h_a81db6261196cc953e489407a8132f30e}{\index{graph.\-h@{graph.\-h}!alloc\-Mat\-Graph@{alloc\-Mat\-Graph}}
+\index{alloc\-Mat\-Graph@{alloc\-Mat\-Graph}!graph.h@{graph.\-h}}
+\subsubsection[{alloc\-Mat\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph}$\ast$ {\bf alloc\-Mat\-Graph} (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a81db6261196cc953e489407a8132f30e}
+
+
+Implements the memory allocation for a graph structure containing a matrix represented graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & number of nodes in the created matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the created graph 
+\end{DoxyReturn}
+\hypertarget{graph_8h_a3de2e251e0134737d18f6331b4161a18}{\index{graph.\-h@{graph.\-h}!copy\-Graph@{copy\-Graph}}
+\index{copy\-Graph@{copy\-Graph}!graph.h@{graph.\-h}}
+\subsubsection[{copy\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph}$\ast$ {\bf copy\-Graph} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a3de2e251e0134737d18f6331b4161a18}
+
+
+Allows user to simply copy a graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph to copy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the created graph 
+\end{DoxyReturn}
+\hypertarget{graph_8h_ac336179280d2afd9099015e2857581b3}{\index{graph.\-h@{graph.\-h}!create\-Graph\-File@{create\-Graph\-File}}
+\index{create\-Graph\-File@{create\-Graph\-File}!graph.h@{graph.\-h}}
+\subsubsection[{create\-Graph\-File}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph}$\ast$ {\bf create\-Graph\-File} (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_ac336179280d2afd9099015e2857581b3}
+
+
+Create graph from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & File containing the graph description \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the desired graph 
+\end{DoxyReturn}
+\hypertarget{graph_8h_a8acf29c60993e46a8b66541186a874ad}{\index{graph.\-h@{graph.\-h}!edge\-Val@{edge\-Val}}
+\index{edge\-Val@{edge\-Val}!graph.h@{graph.\-h}}
+\subsubsection[{edge\-Val}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf edge\-Val} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a8acf29c60993e46a8b66541186a874ad}
+
+
+Allows users to easily get the value of the edge between i and j. 
+
+\begin{DoxyVerb}                         *
+\end{DoxyVerb}
+ Interface of \hyperlink{struct_graph}{Graph} structure $\ast$ 
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph which contains the edge \\
+\hline
+{\em i} & first extremity of the edge \\
+\hline
+{\em j} & second extremity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value of the edge (i,j) 
+\end{DoxyReturn}
+\hypertarget{graph_8h_a427a2a8378ba7abbeb161fe6d5624047}{\index{graph.\-h@{graph.\-h}!free\-Graph@{free\-Graph}}
+\index{free\-Graph@{free\-Graph}!graph.h@{graph.\-h}}
+\subsubsection[{free\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf free\-Graph} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a427a2a8378ba7abbeb161fe6d5624047}
+
+
+Implements memory release for a graph structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph to destroy \\
+\hline
+\end{DoxyParams}
+\hypertarget{graph_8h_a7d06fd459376054b3faa2f4ab9343f0a}{\index{graph.\-h@{graph.\-h}!in\-Neighb@{in\-Neighb}}
+\index{in\-Neighb@{in\-Neighb}!graph.h@{graph.\-h}}
+\subsubsection[{in\-Neighb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List}$\ast$ {\bf in\-Neighb} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{k}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a7d06fd459376054b3faa2f4ab9343f0a}
+
+
+allows user to get the incoming neighbourhood of node k 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph containing k \\
+\hline
+{\em k} & node for which the neighbourhood is desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the requested neighbourhood 
+\end{DoxyReturn}
+\hypertarget{graph_8h_a8eebd68ca36dc39827e35b040ad6d731}{\index{graph.\-h@{graph.\-h}!nb\-Edge@{nb\-Edge}}
+\index{nb\-Edge@{nb\-Edge}!graph.h@{graph.\-h}}
+\subsubsection[{nb\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf nb\-Edge} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a8eebd68ca36dc39827e35b040ad6d731}
+Returns the number of edges of a \hyperlink{struct_graph}{Graph}. \hypertarget{graph_8h_a9c56e490488393686ff945595bf01761}{\index{graph.\-h@{graph.\-h}!nb\-Vert@{nb\-Vert}}
+\index{nb\-Vert@{nb\-Vert}!graph.h@{graph.\-h}}
+\subsubsection[{nb\-Vert}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf nb\-Vert} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a9c56e490488393686ff945595bf01761}
+Returns the number of vertices of a \hyperlink{struct_graph}{Graph} \hypertarget{graph_8h_a27ba55ee0863f19328f504cda635f18a}{\index{graph.\-h@{graph.\-h}!out\-Neighb@{out\-Neighb}}
+\index{out\-Neighb@{out\-Neighb}!graph.h@{graph.\-h}}
+\subsubsection[{out\-Neighb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List}$\ast$ {\bf out\-Neighb} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{k}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a27ba55ee0863f19328f504cda635f18a}
+
+
+allows user to get the outcoming neighbourhood of node k 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph containing k \\
+\hline
+{\em k} & node for which the neighbourhood is desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the requested neighbourhood 
+\end{DoxyReturn}
+\hypertarget{graph_8h_aee0e23c986174d631ed5291649070edb}{\index{graph.\-h@{graph.\-h}!print\-Graph@{print\-Graph}}
+\index{print\-Graph@{print\-Graph}!graph.h@{graph.\-h}}
+\subsubsection[{print\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf print\-Graph} (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{f, }
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{graphviz, }
+\item[{int $\ast$}]{pref}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_aee0e23c986174d631ed5291649070edb}
+Print a \hyperlink{struct_graph}{Graph} in as a matrix. This will produce the same result with a matrix or list \hyperlink{struct_graph}{Graph} \hypertarget{graph_8h_a6d01ac7a6b2d5853a32e33428f1b065e}{\index{graph.\-h@{graph.\-h}!print\-Graph\-List@{print\-Graph\-List}}
+\index{print\-Graph\-List@{print\-Graph\-List}!graph.h@{graph.\-h}}
+\subsubsection[{print\-Graph\-List}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf print\-Graph\-List} (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{f, }
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{graphviz, }
+\item[{int $\ast$}]{pref}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a6d01ac7a6b2d5853a32e33428f1b065e}
+Print a \hyperlink{struct_graph}{Graph} in as an adjacency list. This will produce the same result with a matrix or list \hyperlink{struct_graph}{Graph} \hypertarget{graph_8h_a1cc08f29f362a2cb01209e3c643b5b7e}{\index{graph.\-h@{graph.\-h}!rand\-Fill@{rand\-Fill}}
+\index{rand\-Fill@{rand\-Fill}!graph.h@{graph.\-h}}
+\subsubsection[{rand\-Fill}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf rand\-Fill} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{m, }
+\item[{int}]{c\-Max, }
+\item[{int}]{c\-Min, }
+\item[{{\bf Graph} $\ast$}]{g2}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_a1cc08f29f362a2cb01209e3c643b5b7e}
+Fill an empty graph randomly. 
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer to the graph to fill. \\
+\hline
+{\em m} & Number of desired edges. \\
+\hline
+{\em c\-Max} & Maximum capacity on edges. \\
+\hline
+{\em c\-Min} & Minimum capacity on edges. \\
+\hline
+{\em g2} & (optional) If non-\/\-N\-U\-L\-L the second graph will be filled exactely the same way as the first. \\
+\hline
+\end{DoxyParams}
+\hypertarget{graph_8h_aeafd2e09cff235e65b6335eacc6f1ced}{\index{graph.\-h@{graph.\-h}!set\-Edge@{set\-Edge}}
+\index{set\-Edge@{set\-Edge}!graph.h@{graph.\-h}}
+\subsubsection[{set\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf set\-Edge} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_aeafd2e09cff235e65b6335eacc6f1ced}
+
+
+Allows user to modify the value of the edge (i,j) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph containing (i,j) \\
+\hline
+{\em i} & first extremity of (i,j) \\
+\hline
+{\em j} & second extremity of (i,j) \\
+\hline
+{\em val} & new capacity of (i,j) \\
+\hline
+\end{DoxyParams}
+\hypertarget{graph_8h_aa194021ccff2c5ea2798aae18fc085dd}{\index{graph.\-h@{graph.\-h}!test\-Fill@{test\-Fill}}
+\index{test\-Fill@{test\-Fill}!graph.h@{graph.\-h}}
+\subsubsection[{test\-Fill}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf test\-Fill} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g}
+\end{DoxyParamCaption}
+)}}\label{graph_8h_aa194021ccff2c5ea2798aae18fc085dd}
+Just a fixed graph for testing algo. 

@@ -1,0 +1,209 @@
+\hypertarget{list_8c}{\section{src/list.c File Reference}
+\label{list_8c}\index{src/list.\-c@{src/list.\-c}}
+}
+{\ttfamily \#include \char`\"{}list.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_list}{List} $\ast$ \hyperlink{list_8c_abdfc2e0569637660d24a911cbd835671}{alloc\-List} ()
+\item 
+void \hyperlink{list_8c_acda97d83933a75537163b99af7166bc5}{free\-List} (\hyperlink{struct_list}{List} $\ast$l)
+\item 
+\hyperlink{struct_list}{List} $\ast$ \hyperlink{list_8c_a287d10de79d7590854b46a51d4360f12}{copy\-List} (\hyperlink{struct_list}{List} $\ast$l)
+\item 
+void \hyperlink{list_8c_ac462e88ab811a9830b4b0472b2826771}{print\-List} (F\-I\-L\-E $\ast$f, \hyperlink{struct_list}{List} $\ast$l)
+\item 
+void \hyperlink{list_8c_a3d705256df984f986c41c893fa120687}{print\-List\-Reverse} (F\-I\-L\-E $\ast$f, \hyperlink{struct_list}{List} $\ast$l)
+\item 
+void \hyperlink{list_8c_a8f537d90ff58721cb65d2754e016c86c}{push\-Head} (\hyperlink{struct_list}{List} $\ast$l, int \hyperlink{list_8h_aeb826bfdd0ff406624418ceb2fab7673}{num}, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val})
+\item 
+void \hyperlink{list_8c_a07a97cc00f1113469ab83a3d6180223f}{push\-Tail} (\hyperlink{struct_list}{List} $\ast$l, int \hyperlink{list_8h_aeb826bfdd0ff406624418ceb2fab7673}{num}, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val})
+\item 
+void \hyperlink{list_8c_abb511773ad4a5dcceb2bd64483d6de9b}{insert\-Num} (\hyperlink{struct_list}{List} $\ast$l, int \hyperlink{list_8h_aeb826bfdd0ff406624418ceb2fab7673}{num}, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val})
+\item 
+void \hyperlink{list_8c_ae7132794b08821d84ff52125af7e49dc}{pop\-Head} (\hyperlink{struct_list}{List} $\ast$l)
+\item 
+void \hyperlink{list_8c_ac316ac40587de2a97519964477b0ada4}{pop\-Tail} (\hyperlink{struct_list}{List} $\ast$l)
+\item 
+void \hyperlink{list_8c_a66584367f008ef38d06e33ee7049eeab}{pop\-Num} (\hyperlink{struct_list}{List} $\ast$l, int \hyperlink{list_8h_aeb826bfdd0ff406624418ceb2fab7673}{num})
+\item 
+int \hyperlink{list_8c_aecf3a85faaaa18d71ae86fb946fbb5b1}{val\-Of\-Num} (\hyperlink{struct_list}{List} $\ast$l, int \hyperlink{list_8h_aeb826bfdd0ff406624418ceb2fab7673}{num})
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{list_8c_abdfc2e0569637660d24a911cbd835671}{\index{list.\-c@{list.\-c}!alloc\-List@{alloc\-List}}
+\index{alloc\-List@{alloc\-List}!list.c@{list.\-c}}
+\subsubsection[{alloc\-List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List}$\ast$ {\bf alloc\-List} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{list_8c_abdfc2e0569637660d24a911cbd835671}
+Allocates the memory and returns an empty \hyperlink{struct_list}{List}. \begin{DoxyReturn}{Returns}
+A pointer to a new empty \hyperlink{struct_list}{List}. 
+\end{DoxyReturn}
+\hypertarget{list_8c_a287d10de79d7590854b46a51d4360f12}{\index{list.\-c@{list.\-c}!copy\-List@{copy\-List}}
+\index{copy\-List@{copy\-List}!list.c@{list.\-c}}
+\subsubsection[{copy\-List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List}$\ast$ {\bf copy\-List} (
+\begin{DoxyParamCaption}
+\item[{{\bf List} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{list_8c_a287d10de79d7590854b46a51d4360f12}
+Return a copy of a list. Allocate a new list and copy each item. 
+\begin{DoxyParams}{Parameters}
+{\em l} & A pointer to the list that will be copied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the copied \hyperlink{struct_list}{List}. 
+\end{DoxyReturn}
+\hypertarget{list_8c_acda97d83933a75537163b99af7166bc5}{\index{list.\-c@{list.\-c}!free\-List@{free\-List}}
+\index{free\-List@{free\-List}!list.c@{list.\-c}}
+\subsubsection[{free\-List}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf free\-List} (
+\begin{DoxyParamCaption}
+\item[{{\bf List} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{list_8c_acda97d83933a75537163b99af7166bc5}
+Free the memory. 
+\begin{DoxyParams}{Parameters}
+{\em l} & A pointer to the list that will be freed. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8c_abb511773ad4a5dcceb2bd64483d6de9b}{\index{list.\-c@{list.\-c}!insert\-Num@{insert\-Num}}
+\index{insert\-Num@{insert\-Num}!list.c@{list.\-c}}
+\subsubsection[{insert\-Num}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf insert\-Num} (
+\begin{DoxyParamCaption}
+\item[{{\bf List} $\ast$}]{l, }
+\item[{int}]{num, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}}\label{list_8c_abb511773ad4a5dcceb2bd64483d6de9b}
+Insert an element in an ordered \hyperlink{struct_list}{List}. 
+\begin{DoxyParams}{Parameters}
+{\em l} & Pointer to a \hyperlink{struct_list}{List} assumed to be number-\/ordered. \\
+\hline
+{\em num} & Number field of the new item. \\
+\hline
+{\em val} & Value field of the new item. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8c_ae7132794b08821d84ff52125af7e49dc}{\index{list.\-c@{list.\-c}!pop\-Head@{pop\-Head}}
+\index{pop\-Head@{pop\-Head}!list.c@{list.\-c}}
+\subsubsection[{pop\-Head}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf pop\-Head} (
+\begin{DoxyParamCaption}
+\item[{{\bf List} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{list_8c_ae7132794b08821d84ff52125af7e49dc}
+Pop the first element of a \hyperlink{struct_list}{List}. 
+\begin{DoxyParams}{Parameters}
+{\em l} & Pointer to the \hyperlink{struct_list}{List} to be head-\/popped. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8c_a66584367f008ef38d06e33ee7049eeab}{\index{list.\-c@{list.\-c}!pop\-Num@{pop\-Num}}
+\index{pop\-Num@{pop\-Num}!list.c@{list.\-c}}
+\subsubsection[{pop\-Num}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf pop\-Num} (
+\begin{DoxyParamCaption}
+\item[{{\bf List} $\ast$}]{l, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}}\label{list_8c_a66584367f008ef38d06e33ee7049eeab}
+Pop the item with specific number field. 
+\begin{DoxyParams}{Parameters}
+{\em l} & Pointer to a \hyperlink{struct_list}{List} which is assumed to be number-\/ordered. \\
+\hline
+{\em num} & The number field of the item to pop. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8c_ac316ac40587de2a97519964477b0ada4}{\index{list.\-c@{list.\-c}!pop\-Tail@{pop\-Tail}}
+\index{pop\-Tail@{pop\-Tail}!list.c@{list.\-c}}
+\subsubsection[{pop\-Tail}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf pop\-Tail} (
+\begin{DoxyParamCaption}
+\item[{{\bf List} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{list_8c_ac316ac40587de2a97519964477b0ada4}
+Pop the last element of a \hyperlink{struct_list}{List}. 
+\begin{DoxyParams}{Parameters}
+{\em l} & Pointer to the \hyperlink{struct_list}{List} to be tail-\/popped. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8c_ac462e88ab811a9830b4b0472b2826771}{\index{list.\-c@{list.\-c}!print\-List@{print\-List}}
+\index{print\-List@{print\-List}!list.c@{list.\-c}}
+\subsubsection[{print\-List}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf print\-List} (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{f, }
+\item[{{\bf List} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{list_8c_ac462e88ab811a9830b4b0472b2826771}
+Print a \hyperlink{struct_list}{List}. 
+\begin{DoxyParams}{Parameters}
+{\em f} & File descriptor the \hyperlink{struct_list}{List} will be printed on. \\
+\hline
+{\em l} & Pointer to the \hyperlink{struct_list}{List} that will be printed. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8c_a3d705256df984f986c41c893fa120687}{\index{list.\-c@{list.\-c}!print\-List\-Reverse@{print\-List\-Reverse}}
+\index{print\-List\-Reverse@{print\-List\-Reverse}!list.c@{list.\-c}}
+\subsubsection[{print\-List\-Reverse}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf print\-List\-Reverse} (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{f, }
+\item[{{\bf List} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{list_8c_a3d705256df984f986c41c893fa120687}
+Print a list in the reverse order. 
+\begin{DoxyParams}{Parameters}
+{\em f} & File descriptor the list will be printed on. \\
+\hline
+{\em l} & Pointer to the list that will be printed. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8c_a8f537d90ff58721cb65d2754e016c86c}{\index{list.\-c@{list.\-c}!push\-Head@{push\-Head}}
+\index{push\-Head@{push\-Head}!list.c@{list.\-c}}
+\subsubsection[{push\-Head}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf push\-Head} (
+\begin{DoxyParamCaption}
+\item[{{\bf List} $\ast$}]{l, }
+\item[{int}]{num, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}}\label{list_8c_a8f537d90ff58721cb65d2754e016c86c}
+Push an element at the head of a \hyperlink{struct_list}{List}. 
+\begin{DoxyParams}{Parameters}
+{\em l} & Pointer to the list. \\
+\hline
+{\em num} & Number field of the new item. \\
+\hline
+{\em val} & Value field of the new item. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8c_a07a97cc00f1113469ab83a3d6180223f}{\index{list.\-c@{list.\-c}!push\-Tail@{push\-Tail}}
+\index{push\-Tail@{push\-Tail}!list.c@{list.\-c}}
+\subsubsection[{push\-Tail}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf push\-Tail} (
+\begin{DoxyParamCaption}
+\item[{{\bf List} $\ast$}]{l, }
+\item[{int}]{num, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}}\label{list_8c_a07a97cc00f1113469ab83a3d6180223f}
+Push an element at the tail of a \hyperlink{struct_list}{List}. 
+\begin{DoxyParams}{Parameters}
+{\em l} & Pointer to the list. \\
+\hline
+{\em num} & Number field of the new item. \\
+\hline
+{\em val} & Value field of the new item. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8c_aecf3a85faaaa18d71ae86fb946fbb5b1}{\index{list.\-c@{list.\-c}!val\-Of\-Num@{val\-Of\-Num}}
+\index{val\-Of\-Num@{val\-Of\-Num}!list.c@{list.\-c}}
+\subsubsection[{val\-Of\-Num}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf val\-Of\-Num} (
+\begin{DoxyParamCaption}
+\item[{{\bf List} $\ast$}]{l, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}}\label{list_8c_aecf3a85faaaa18d71ae86fb946fbb5b1}
+Returns the value field of the item with a specific number field or 0 if not found. 
+\begin{DoxyParams}{Parameters}
+{\em l} & Pointer to a \hyperlink{struct_list}{List}. \\
+\hline
+{\em num} & The number field to find. \\
+\hline
+\end{DoxyParams}

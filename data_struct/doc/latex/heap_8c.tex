@@ -1,0 +1,90 @@
+\hypertarget{heap_8c}{\section{src/heap.c File Reference}
+\label{heap_8c}\index{src/heap.\-c@{src/heap.\-c}}
+}
+{\ttfamily \#include \char`\"{}heap.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$ \hyperlink{heap_8c_ae988d69a4461f3ffb32c883365e973c7}{alloc\-Heap} (int n, int $\ast$\hyperlink{graph_8h_a6e262d5d89ec3244231b2d6a86fc64bb}{lab})
+\item 
+void \hyperlink{heap_8c_a90aa0bf83076f0a7c0a4f72bdcf9ae12}{free\-Heap} (\hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$p)
+\item 
+int \hyperlink{heap_8c_aad855b3e344ba2633348700bae93ee98}{h\-\_\-insert\-Node} (\hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$p, int \hyperlink{heap_8h_a13a7b60e795247b2e55ad830556368be}{node})
+\item 
+int \hyperlink{heap_8c_a39238433ff5b04fe1b60594e699c3682}{h\-\_\-rem\-Node} (\hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$p)
+\item 
+void \hyperlink{heap_8c_aa936e79285ffec3dc6f5a813ec8b1e91}{h\-\_\-print} (\hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$p)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{heap_8c_ae988d69a4461f3ffb32c883365e973c7}{\index{heap.\-c@{heap.\-c}!alloc\-Heap@{alloc\-Heap}}
+\index{alloc\-Heap@{alloc\-Heap}!heap.c@{heap.\-c}}
+\subsubsection[{alloc\-Heap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Heap}$\ast$ {\bf alloc\-Heap} (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{int $\ast$}]{lab}
+\end{DoxyParamCaption}
+)}}\label{heap_8c_ae988d69a4461f3ffb32c883365e973c7}
+Allocate memory useful for a n heap 
+\begin{DoxyParams}{Parameters}
+{\em n} & Max size of the heap \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the allocated memory 
+\end{DoxyReturn}
+\hypertarget{heap_8c_a90aa0bf83076f0a7c0a4f72bdcf9ae12}{\index{heap.\-c@{heap.\-c}!free\-Heap@{free\-Heap}}
+\index{free\-Heap@{free\-Heap}!heap.c@{heap.\-c}}
+\subsubsection[{free\-Heap}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf free\-Heap} (
+\begin{DoxyParamCaption}
+\item[{{\bf Heap} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{heap_8c_a90aa0bf83076f0a7c0a4f72bdcf9ae12}
+Free memory used by a Heap 
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to the heap to destroy \\
+\hline
+\end{DoxyParams}
+\hypertarget{heap_8c_aad855b3e344ba2633348700bae93ee98}{\index{heap.\-c@{heap.\-c}!h\-\_\-insert\-Node@{h\-\_\-insert\-Node}}
+\index{h\-\_\-insert\-Node@{h\-\_\-insert\-Node}!heap.c@{heap.\-c}}
+\subsubsection[{h\-\_\-insert\-Node}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf h\-\_\-insert\-Node} (
+\begin{DoxyParamCaption}
+\item[{{\bf Heap} $\ast$}]{p, }
+\item[{int}]{node}
+\end{DoxyParamCaption}
+)}}\label{heap_8c_aad855b3e344ba2633348700bae93ee98}
+Insert an item in the heap 
+\begin{DoxyParams}{Parameters}
+{\em p} & pointer to the heap \\
+\hline
+{\em node} & Item to insert \\
+\hline
+{\em lab} & label of inserted node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+index of inserted node in the array 
+\end{DoxyReturn}
+\hypertarget{heap_8c_aa936e79285ffec3dc6f5a813ec8b1e91}{\index{heap.\-c@{heap.\-c}!h\-\_\-print@{h\-\_\-print}}
+\index{h\-\_\-print@{h\-\_\-print}!heap.c@{heap.\-c}}
+\subsubsection[{h\-\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf h\-\_\-print} (
+\begin{DoxyParamCaption}
+\item[{{\bf Heap} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{heap_8c_aa936e79285ffec3dc6f5a813ec8b1e91}
+\hypertarget{heap_8c_a39238433ff5b04fe1b60594e699c3682}{\index{heap.\-c@{heap.\-c}!h\-\_\-rem\-Node@{h\-\_\-rem\-Node}}
+\index{h\-\_\-rem\-Node@{h\-\_\-rem\-Node}!heap.c@{heap.\-c}}
+\subsubsection[{h\-\_\-rem\-Node}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf h\-\_\-rem\-Node} (
+\begin{DoxyParamCaption}
+\item[{{\bf Heap} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{heap_8c_a39238433ff5b04fe1b60594e699c3682}
+Remove the heap head 
+\begin{DoxyParams}{Parameters}
+{\em p} & pointer to the heap \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+head of the heap 
+\end{DoxyReturn}

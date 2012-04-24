@@ -1,0 +1,236 @@
+\hypertarget{list__graph_8c}{\section{src/list\-\_\-graph.c File Reference}
+\label{list__graph_8c}\index{src/list\-\_\-graph.\-c@{src/list\-\_\-graph.\-c}}
+}
+{\ttfamily \#include \char`\"{}list\-\_\-graph.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{list__graph_8c_a98ad983368fdf7349e673fcc96c56618}{in}(lm)~lm-\/$>$\-\_\-in\-Neighb
+\item 
+\#define \hyperlink{list__graph_8c_a5d4647fb7c54dc7b887c7aef462bd85a}{out}(lm)~lm-\/$>$\-\_\-out\-Neighb
+\item 
+\#define \hyperlink{list__graph_8c_a29bf19dc1c1dcb7f6505882b86b44c31}{nb\-Vert}(lm)~lm-\/$>$\-\_\-nb\-Vert
+\item 
+\#define \hyperlink{list__graph_8c_ad971a0e6873b1d753c6a583e6aaf1c67}{nb\-Edge}(lm)~lm-\/$>$\-\_\-nb\-Edge
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{list__graph_8c_a1d9ce5eafcc754df120357d92fd41a43}{l\-\_\-edge\-Val} (\hyperlink{struct_list_graph}{List\-Graph} $\ast$\hyperlink{graph_8h_a099f03356b69be04d37a942611b2d504}{lg}, int i, int j)
+\begin{DoxyCompactList}\small\item\em Allows users to know value of the edge between i and j. \end{DoxyCompactList}\item 
+void \hyperlink{list__graph_8c_a1c694d0c3acb3eaf3723897bd82bc320}{l\-\_\-set\-Edge} (\hyperlink{struct_list_graph}{List\-Graph} $\ast$\hyperlink{graph_8h_a099f03356b69be04d37a942611b2d504}{lg}, int i, int j, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val})
+\begin{DoxyCompactList}\small\item\em Allows user to change the value of the edge between i and j. \end{DoxyCompactList}\item 
+\hyperlink{struct_list}{List} $\ast$ \hyperlink{list__graph_8c_adeb29a3d20be64bd4449be9d44075533}{l\-\_\-in\-Neighb} (\hyperlink{struct_list_graph}{List\-Graph} $\ast$\hyperlink{graph_8h_a099f03356b69be04d37a942611b2d504}{lg}, int k)
+\begin{DoxyCompactList}\small\item\em Allows user to get incoming neighbourhood of the selected node. \end{DoxyCompactList}\item 
+\hyperlink{struct_list}{List} $\ast$ \hyperlink{list__graph_8c_aa455a493d3d51327bc5e85411ebb725f}{l\-\_\-out\-Neighb} (\hyperlink{struct_list_graph}{List\-Graph} $\ast$\hyperlink{graph_8h_a099f03356b69be04d37a942611b2d504}{lg}, int k)
+\begin{DoxyCompactList}\small\item\em Allows user to get outgoing neighbourhood of the selected node. \end{DoxyCompactList}\item 
+\hyperlink{struct_list_graph}{List\-Graph} $\ast$ \hyperlink{list__graph_8c_a7dabcc697a584f41756c60b92af5d737}{l\-\_\-copy\-Graph} (\hyperlink{struct_list_graph}{List\-Graph} $\ast$\hyperlink{graph_8h_a099f03356b69be04d37a942611b2d504}{lg})
+\begin{DoxyCompactList}\small\item\em Allows the user to copy a list-\/represented graph. \end{DoxyCompactList}\item 
+\hyperlink{struct_list_graph}{List\-Graph} $\ast$ \hyperlink{list__graph_8c_a6f100f4b52b0133a7d47bea8eb250ef7}{l\-\_\-alloc\-Graph} (int n)
+\begin{DoxyCompactList}\small\item\em Implements memory allocation for a list represented graph with n nodes. \end{DoxyCompactList}\item 
+void \hyperlink{list__graph_8c_a67111cd9a733b9fc63a2abfedf5736db}{l\-\_\-free\-Graph} (\hyperlink{struct_list_graph}{List\-Graph} $\ast$\hyperlink{graph_8h_a099f03356b69be04d37a942611b2d504}{lg})
+\begin{DoxyCompactList}\small\item\em Implements the memory release of a list represented graph structure. \end{DoxyCompactList}\item 
+void \hyperlink{list__graph_8c_a72b0a66a1d4fe60ff46d8e0b047f121f}{l\-\_\-print\-List\-Graph} (F\-I\-L\-E $\ast$f, \hyperlink{struct_list_graph}{List\-Graph} $\ast$\hyperlink{graph_8h_a099f03356b69be04d37a942611b2d504}{lg}, int graphviz, int pref)
+\begin{DoxyCompactList}\small\item\em Allows users to print on given stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{list__graph_8c_a98ad983368fdf7349e673fcc96c56618}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!in@{in}}
+\index{in@{in}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{in}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf in}(
+\begin{DoxyParamCaption}
+\item[{}]{lm}
+\end{DoxyParamCaption}
+)~lm-\/$>$\-\_\-in\-Neighb}}\label{list__graph_8c_a98ad983368fdf7349e673fcc96c56618}
+\hypertarget{list__graph_8c_ad971a0e6873b1d753c6a583e6aaf1c67}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!nb\-Edge@{nb\-Edge}}
+\index{nb\-Edge@{nb\-Edge}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{nb\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf nb\-Edge}(
+\begin{DoxyParamCaption}
+\item[{}]{lm}
+\end{DoxyParamCaption}
+)~lm-\/$>$\-\_\-nb\-Edge}}\label{list__graph_8c_ad971a0e6873b1d753c6a583e6aaf1c67}
+\hypertarget{list__graph_8c_a29bf19dc1c1dcb7f6505882b86b44c31}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!nb\-Vert@{nb\-Vert}}
+\index{nb\-Vert@{nb\-Vert}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{nb\-Vert}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf nb\-Vert}(
+\begin{DoxyParamCaption}
+\item[{}]{lm}
+\end{DoxyParamCaption}
+)~lm-\/$>$\-\_\-nb\-Vert}}\label{list__graph_8c_a29bf19dc1c1dcb7f6505882b86b44c31}
+\hypertarget{list__graph_8c_a5d4647fb7c54dc7b887c7aef462bd85a}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!out@{out}}
+\index{out@{out}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{out}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf out}(
+\begin{DoxyParamCaption}
+\item[{}]{lm}
+\end{DoxyParamCaption}
+)~lm-\/$>$\-\_\-out\-Neighb}}\label{list__graph_8c_a5d4647fb7c54dc7b887c7aef462bd85a}
+
+
+\subsection{Function Documentation}
+\hypertarget{list__graph_8c_a6f100f4b52b0133a7d47bea8eb250ef7}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!l\-\_\-alloc\-Graph@{l\-\_\-alloc\-Graph}}
+\index{l\-\_\-alloc\-Graph@{l\-\_\-alloc\-Graph}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{l\-\_\-alloc\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\-Graph}$\ast$ {\bf l\-\_\-alloc\-Graph} (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{list__graph_8c_a6f100f4b52b0133a7d47bea8eb250ef7}
+
+
+Implements memory allocation for a list represented graph with n nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & number of nodes in the graph \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer on allocated memory space 
+\end{DoxyReturn}
+\hypertarget{list__graph_8c_a7dabcc697a584f41756c60b92af5d737}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!l\-\_\-copy\-Graph@{l\-\_\-copy\-Graph}}
+\index{l\-\_\-copy\-Graph@{l\-\_\-copy\-Graph}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{l\-\_\-copy\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\-Graph}$\ast$ {\bf l\-\_\-copy\-Graph} (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Graph} $\ast$}]{lg}
+\end{DoxyParamCaption}
+)}}\label{list__graph_8c_a7dabcc697a584f41756c60b92af5d737}
+
+
+Allows the user to copy a list-\/represented graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph which will be copied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the created graph 
+\end{DoxyReturn}
+\hypertarget{list__graph_8c_a1d9ce5eafcc754df120357d92fd41a43}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!l\-\_\-edge\-Val@{l\-\_\-edge\-Val}}
+\index{l\-\_\-edge\-Val@{l\-\_\-edge\-Val}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{l\-\_\-edge\-Val}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf l\-\_\-edge\-Val} (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Graph} $\ast$}]{lg, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{list__graph_8c_a1d9ce5eafcc754df120357d92fd41a43}
+
+
+Allows users to know value of the edge between i and j. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph which is supposed to contain the edge \\
+\hline
+{\em i} & a node \\
+\hline
+{\em j} & another node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value of the edge, 0 if it doesn't exist 
+\end{DoxyReturn}
+\hypertarget{list__graph_8c_a67111cd9a733b9fc63a2abfedf5736db}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!l\-\_\-free\-Graph@{l\-\_\-free\-Graph}}
+\index{l\-\_\-free\-Graph@{l\-\_\-free\-Graph}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{l\-\_\-free\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-free\-Graph} (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Graph} $\ast$}]{lg}
+\end{DoxyParamCaption}
+)}}\label{list__graph_8c_a67111cd9a733b9fc63a2abfedf5736db}
+
+
+Implements the memory release of a list represented graph structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph to destroy \\
+\hline
+\end{DoxyParams}
+\hypertarget{list__graph_8c_adeb29a3d20be64bd4449be9d44075533}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!l\-\_\-in\-Neighb@{l\-\_\-in\-Neighb}}
+\index{l\-\_\-in\-Neighb@{l\-\_\-in\-Neighb}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{l\-\_\-in\-Neighb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List}$\ast$ {\bf l\-\_\-in\-Neighb} (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Graph} $\ast$}]{lg, }
+\item[{int}]{k}
+\end{DoxyParamCaption}
+)}}\label{list__graph_8c_adeb29a3d20be64bd4449be9d44075533}
+
+
+Allows user to get incoming neighbourhood of the selected node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph which is supposed to contain the edge \\
+\hline
+{\em k} & node for which the incoming neighbourhood is desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the desired Neghibourhood if exists, N\-U\-L\-L else 
+\end{DoxyReturn}
+\hypertarget{list__graph_8c_aa455a493d3d51327bc5e85411ebb725f}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!l\-\_\-out\-Neighb@{l\-\_\-out\-Neighb}}
+\index{l\-\_\-out\-Neighb@{l\-\_\-out\-Neighb}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{l\-\_\-out\-Neighb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List}$\ast$ {\bf l\-\_\-out\-Neighb} (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Graph} $\ast$}]{lg, }
+\item[{int}]{k}
+\end{DoxyParamCaption}
+)}}\label{list__graph_8c_aa455a493d3d51327bc5e85411ebb725f}
+
+
+Allows user to get outgoing neighbourhood of the selected node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph which is supposed to contain the edge \\
+\hline
+{\em k} & node for which the outgoing neighbourhood is desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the desired Neghibourhood if exists, N\-U\-L\-L else 
+\end{DoxyReturn}
+\hypertarget{list__graph_8c_a72b0a66a1d4fe60ff46d8e0b047f121f}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!l\-\_\-print\-List\-Graph@{l\-\_\-print\-List\-Graph}}
+\index{l\-\_\-print\-List\-Graph@{l\-\_\-print\-List\-Graph}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{l\-\_\-print\-List\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-print\-List\-Graph} (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{f, }
+\item[{{\bf List\-Graph} $\ast$}]{lg, }
+\item[{int}]{graphviz, }
+\item[{int}]{pref}
+\end{DoxyParamCaption}
+)}}\label{list__graph_8c_a72b0a66a1d4fe60ff46d8e0b047f121f}
+
+
+Allows users to print on given stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & the graph to print \\
+\hline
+\end{DoxyParams}
+\hypertarget{list__graph_8c_a1c694d0c3acb3eaf3723897bd82bc320}{\index{list\-\_\-graph.\-c@{list\-\_\-graph.\-c}!l\-\_\-set\-Edge@{l\-\_\-set\-Edge}}
+\index{l\-\_\-set\-Edge@{l\-\_\-set\-Edge}!list_graph.c@{list\-\_\-graph.\-c}}
+\subsubsection[{l\-\_\-set\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf l\-\_\-set\-Edge} (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Graph} $\ast$}]{lg, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}}\label{list__graph_8c_a1c694d0c3acb3eaf3723897bd82bc320}
+
+
+Allows user to change the value of the edge between i and j. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph which is supposed to contain the edge \\
+\hline
+{\em i} & a node \\
+\hline
+{\em j} & another node \\
+\hline
+{\em val} & new value of the edge \\
+\hline
+\end{DoxyParams}

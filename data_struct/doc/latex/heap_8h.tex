@@ -1,0 +1,208 @@
+\hypertarget{heap_8h}{\section{src/heap.h File Reference}
+\label{heap_8h}\index{src/heap.\-h@{src/heap.\-h}}
+}
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structh}{h}
+\begin{DoxyCompactList}\small\item\em Basic implementation of a heap (max) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{heap_8h_a6b4130e4b65cd7d3dbc1e50b6f591d97}{S\-I\-Z\-E\-\_\-\-H\-E\-A\-P}~(2$\ast$sizeof(int) + 2$\ast$sizeof(int $\ast$))
+\item 
+\#define \hyperlink{heap_8h_a9a4bdfa2f9d79f2632cd32c49244b369}{max}(\hyperlink{structh}{h})~\hyperlink{structh}{h}-\/$>$\-\_\-max\-\_\-size
+\item 
+\#define \hyperlink{heap_8h_a1f8109a6478613895a089a4a5e642fc1}{cur}(\hyperlink{structh}{h})~\hyperlink{structh}{h}-\/$>$\-\_\-current\-\_\-size
+\item 
+\#define \hyperlink{heap_8h_a58378a64c5620756cfca52e25ca6c360}{lchild}(\hyperlink{structh}{h}, e)~(\hyperlink{structh}{h}-\/$>$\-\_\-nodes)\mbox{[}((e+1)$<$$<$1)-\/1\mbox{]}
+\item 
+\#define \hyperlink{heap_8h_a899f6533cc868c40760fb6d686b1a460}{rchild}(\hyperlink{structh}{h}, e)~(\hyperlink{structh}{h}-\/$>$\-\_\-nodes)\mbox{[}((e+1)$<$$<$1)\mbox{]}
+\item 
+\#define \hyperlink{heap_8h_a63895a6652835dc53ed873487596bcf5}{fath}(\hyperlink{structh}{h}, e)~(\hyperlink{structh}{h}-\/$>$\-\_\-nodes\mbox{[}e$>$$>$1\mbox{]})
+\item 
+\#define \hyperlink{heap_8h_a960adea48c7d270f7a1eeb11fffe5d36}{nodes}(\hyperlink{structh}{h})~\hyperlink{structh}{h}-\/$>$\-\_\-nodes
+\item 
+\#define \hyperlink{heap_8h_a13a7b60e795247b2e55ad830556368be}{node}(\hyperlink{structh}{h}, e)~\hyperlink{structh}{h}-\/$>$\-\_\-nodes\mbox{[}e\mbox{]}
+\item 
+\#define \hyperlink{heap_8h_a0fe40558fd7623ae1ad9a75df2b97aee}{hlab}(\hyperlink{structh}{h}, e)~\hyperlink{structh}{h}-\/$>$\-\_\-lab\mbox{[}e\mbox{]}
+\item 
+\#define \hyperlink{heap_8h_ad45dbd538fa3b9165a81043205d7721e}{htlab}(\hyperlink{structh}{h})~\hyperlink{structh}{h}-\/$>$\-\_\-lab
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structh}{h} \hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap}
+\begin{DoxyCompactList}\small\item\em Basic implementation of a heap (max) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$ \hyperlink{heap_8h_ae988d69a4461f3ffb32c883365e973c7}{alloc\-Heap} (int n, int $\ast$\hyperlink{graph_8h_a6e262d5d89ec3244231b2d6a86fc64bb}{lab})
+\item 
+void \hyperlink{heap_8h_a90aa0bf83076f0a7c0a4f72bdcf9ae12}{free\-Heap} (\hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$p)
+\item 
+int \hyperlink{heap_8h_aad855b3e344ba2633348700bae93ee98}{h\-\_\-insert\-Node} (\hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$p, int \hyperlink{heap_8h_a13a7b60e795247b2e55ad830556368be}{node})
+\item 
+int \hyperlink{heap_8h_a39238433ff5b04fe1b60594e699c3682}{h\-\_\-rem\-Node} (\hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$p)
+\item 
+void \hyperlink{heap_8h_aa936e79285ffec3dc6f5a813ec8b1e91}{h\-\_\-print} (\hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$p)
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{heap_8h_a1f8109a6478613895a089a4a5e642fc1}{\index{heap.\-h@{heap.\-h}!cur@{cur}}
+\index{cur@{cur}!heap.h@{heap.\-h}}
+\subsubsection[{cur}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf cur}(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf h}}
+\end{DoxyParamCaption}
+)~{\bf h}-\/$>$\-\_\-current\-\_\-size}}\label{heap_8h_a1f8109a6478613895a089a4a5e642fc1}
+Macro which returns the number of items in the heap \hypertarget{heap_8h_a63895a6652835dc53ed873487596bcf5}{\index{heap.\-h@{heap.\-h}!fath@{fath}}
+\index{fath@{fath}!heap.h@{heap.\-h}}
+\subsubsection[{fath}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf fath}(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf h}, }
+\item[{}]{e}
+\end{DoxyParamCaption}
+)~({\bf h}-\/$>$\-\_\-nodes\mbox{[}e$>$$>$1\mbox{]})}}\label{heap_8h_a63895a6652835dc53ed873487596bcf5}
+Macro which returns father of given item \hypertarget{heap_8h_a0fe40558fd7623ae1ad9a75df2b97aee}{\index{heap.\-h@{heap.\-h}!hlab@{hlab}}
+\index{hlab@{hlab}!heap.h@{heap.\-h}}
+\subsubsection[{hlab}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf hlab}(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf h}, }
+\item[{}]{e}
+\end{DoxyParamCaption}
+)~{\bf h}-\/$>$\-\_\-lab\mbox{[}e\mbox{]}}}\label{heap_8h_a0fe40558fd7623ae1ad9a75df2b97aee}
+\hypertarget{heap_8h_ad45dbd538fa3b9165a81043205d7721e}{\index{heap.\-h@{heap.\-h}!htlab@{htlab}}
+\index{htlab@{htlab}!heap.h@{heap.\-h}}
+\subsubsection[{htlab}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf htlab}(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf h}}
+\end{DoxyParamCaption}
+)~{\bf h}-\/$>$\-\_\-lab}}\label{heap_8h_ad45dbd538fa3b9165a81043205d7721e}
+\hypertarget{heap_8h_a58378a64c5620756cfca52e25ca6c360}{\index{heap.\-h@{heap.\-h}!lchild@{lchild}}
+\index{lchild@{lchild}!heap.h@{heap.\-h}}
+\subsubsection[{lchild}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf lchild}(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf h}, }
+\item[{}]{e}
+\end{DoxyParamCaption}
+)~({\bf h}-\/$>$\-\_\-nodes)\mbox{[}((e+1)$<$$<$1)-\/1\mbox{]}}}\label{heap_8h_a58378a64c5620756cfca52e25ca6c360}
+Macro which returns left child of given item \hypertarget{heap_8h_a9a4bdfa2f9d79f2632cd32c49244b369}{\index{heap.\-h@{heap.\-h}!max@{max}}
+\index{max@{max}!heap.h@{heap.\-h}}
+\subsubsection[{max}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf max}(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf h}}
+\end{DoxyParamCaption}
+)~{\bf h}-\/$>$\-\_\-max\-\_\-size}}\label{heap_8h_a9a4bdfa2f9d79f2632cd32c49244b369}
+Macro which returns the size of the array representing the heap \hypertarget{heap_8h_a13a7b60e795247b2e55ad830556368be}{\index{heap.\-h@{heap.\-h}!node@{node}}
+\index{node@{node}!heap.h@{heap.\-h}}
+\subsubsection[{node}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf node}(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf h}, }
+\item[{}]{e}
+\end{DoxyParamCaption}
+)~{\bf h}-\/$>$\-\_\-nodes\mbox{[}e\mbox{]}}}\label{heap_8h_a13a7b60e795247b2e55ad830556368be}
+Macro which returns node of given heap at the given index \hypertarget{heap_8h_a960adea48c7d270f7a1eeb11fffe5d36}{\index{heap.\-h@{heap.\-h}!nodes@{nodes}}
+\index{nodes@{nodes}!heap.h@{heap.\-h}}
+\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf nodes}(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf h}}
+\end{DoxyParamCaption}
+)~{\bf h}-\/$>$\-\_\-nodes}}\label{heap_8h_a960adea48c7d270f7a1eeb11fffe5d36}
+Macro which returns nodes of given heap \hypertarget{heap_8h_a899f6533cc868c40760fb6d686b1a460}{\index{heap.\-h@{heap.\-h}!rchild@{rchild}}
+\index{rchild@{rchild}!heap.h@{heap.\-h}}
+\subsubsection[{rchild}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf rchild}(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf h}, }
+\item[{}]{e}
+\end{DoxyParamCaption}
+)~({\bf h}-\/$>$\-\_\-nodes)\mbox{[}((e+1)$<$$<$1)\mbox{]}}}\label{heap_8h_a899f6533cc868c40760fb6d686b1a460}
+Macro which returns right child of given item \hypertarget{heap_8h_a6b4130e4b65cd7d3dbc1e50b6f591d97}{\index{heap.\-h@{heap.\-h}!S\-I\-Z\-E\-\_\-\-H\-E\-A\-P@{S\-I\-Z\-E\-\_\-\-H\-E\-A\-P}}
+\index{S\-I\-Z\-E\-\_\-\-H\-E\-A\-P@{S\-I\-Z\-E\-\_\-\-H\-E\-A\-P}!heap.h@{heap.\-h}}
+\subsubsection[{S\-I\-Z\-E\-\_\-\-H\-E\-A\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf S\-I\-Z\-E\-\_\-\-H\-E\-A\-P}~(2$\ast$sizeof(int) + 2$\ast$sizeof(int $\ast$))}}\label{heap_8h_a6b4130e4b65cd7d3dbc1e50b6f591d97}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{heap_8h_a02307effd51ee225e9740db0f9eff01f}{\index{heap.\-h@{heap.\-h}!Heap@{Heap}}
+\index{Heap@{Heap}!heap.h@{heap.\-h}}
+\subsubsection[{Heap}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf h}  {\bf Heap}}}\label{heap_8h_a02307effd51ee225e9740db0f9eff01f}
+
+
+Basic implementation of a heap (max) 
+
+This heap implementation uses a dinamically allocated array, but its size is fixed to the number of node, so that we won't need to manage it during using it 
+
+\subsection{Function Documentation}
+\hypertarget{heap_8h_ae988d69a4461f3ffb32c883365e973c7}{\index{heap.\-h@{heap.\-h}!alloc\-Heap@{alloc\-Heap}}
+\index{alloc\-Heap@{alloc\-Heap}!heap.h@{heap.\-h}}
+\subsubsection[{alloc\-Heap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Heap}$\ast$ {\bf alloc\-Heap} (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{int $\ast$}]{lab}
+\end{DoxyParamCaption}
+)}}\label{heap_8h_ae988d69a4461f3ffb32c883365e973c7}
+Allocate memory useful for a n heap 
+\begin{DoxyParams}{Parameters}
+{\em n} & Max size of the heap \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the allocated memory 
+\end{DoxyReturn}
+\hypertarget{heap_8h_a90aa0bf83076f0a7c0a4f72bdcf9ae12}{\index{heap.\-h@{heap.\-h}!free\-Heap@{free\-Heap}}
+\index{free\-Heap@{free\-Heap}!heap.h@{heap.\-h}}
+\subsubsection[{free\-Heap}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf free\-Heap} (
+\begin{DoxyParamCaption}
+\item[{{\bf Heap} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{heap_8h_a90aa0bf83076f0a7c0a4f72bdcf9ae12}
+Free memory used by a Heap 
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to the heap to destroy \\
+\hline
+\end{DoxyParams}
+\hypertarget{heap_8h_aad855b3e344ba2633348700bae93ee98}{\index{heap.\-h@{heap.\-h}!h\-\_\-insert\-Node@{h\-\_\-insert\-Node}}
+\index{h\-\_\-insert\-Node@{h\-\_\-insert\-Node}!heap.h@{heap.\-h}}
+\subsubsection[{h\-\_\-insert\-Node}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf h\-\_\-insert\-Node} (
+\begin{DoxyParamCaption}
+\item[{{\bf Heap} $\ast$}]{p, }
+\item[{int}]{node}
+\end{DoxyParamCaption}
+)}}\label{heap_8h_aad855b3e344ba2633348700bae93ee98}
+Insert an item in the heap 
+\begin{DoxyParams}{Parameters}
+{\em p} & pointer to the heap \\
+\hline
+{\em node} & Item to insert \\
+\hline
+{\em lab} & label of inserted node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+index of inserted node in the array 
+\end{DoxyReturn}
+\hypertarget{heap_8h_aa936e79285ffec3dc6f5a813ec8b1e91}{\index{heap.\-h@{heap.\-h}!h\-\_\-print@{h\-\_\-print}}
+\index{h\-\_\-print@{h\-\_\-print}!heap.h@{heap.\-h}}
+\subsubsection[{h\-\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf h\-\_\-print} (
+\begin{DoxyParamCaption}
+\item[{{\bf Heap} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{heap_8h_aa936e79285ffec3dc6f5a813ec8b1e91}
+\hypertarget{heap_8h_a39238433ff5b04fe1b60594e699c3682}{\index{heap.\-h@{heap.\-h}!h\-\_\-rem\-Node@{h\-\_\-rem\-Node}}
+\index{h\-\_\-rem\-Node@{h\-\_\-rem\-Node}!heap.h@{heap.\-h}}
+\subsubsection[{h\-\_\-rem\-Node}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf h\-\_\-rem\-Node} (
+\begin{DoxyParamCaption}
+\item[{{\bf Heap} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{heap_8h_a39238433ff5b04fe1b60594e699c3682}
+Remove the heap head 
+\begin{DoxyParams}{Parameters}
+{\em p} & pointer to the heap \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+head of the heap 
+\end{DoxyReturn}

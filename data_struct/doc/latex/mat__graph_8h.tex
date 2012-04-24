@@ -1,0 +1,199 @@
+\hypertarget{mat__graph_8h}{\section{src/mat\-\_\-graph.h File Reference}
+\label{mat__graph_8h}\index{src/mat\-\_\-graph.\-h@{src/mat\-\_\-graph.\-h}}
+}
+{\ttfamily \#include \char`\"{}list.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_mat_graph}{Mat\-Graph}
+\begin{DoxyCompactList}\small\item\em Implementation of a graph with help of an incidence matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{mat__graph_8h_a1750ff5baadb8bb33dbf85c46694a120}{m\-\_\-edge\-Val} (\hyperlink{struct_mat_graph}{Mat\-Graph} $\ast$\hyperlink{graph_8h_a9b9b096de8889ed1843bfb1c3c9ca8ab}{mg}, int i, int j)
+\begin{DoxyCompactList}\small\item\em Allows user to get value of the edge between i and j. \end{DoxyCompactList}\item 
+void \hyperlink{mat__graph_8h_a1ad547686a7115cb73785b7cb6451d3b}{m\-\_\-set\-Edge} (\hyperlink{struct_mat_graph}{Mat\-Graph} $\ast$\hyperlink{graph_8h_a9b9b096de8889ed1843bfb1c3c9ca8ab}{mg}, int i, int j, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val})
+\begin{DoxyCompactList}\small\item\em Allows user to change the value of the edge (i,j) \end{DoxyCompactList}\item 
+\hyperlink{struct_list}{List} $\ast$ \hyperlink{mat__graph_8h_a13c6a4eaee408daa72c17c1ca960607a}{m\-\_\-in\-Neighb} (\hyperlink{struct_mat_graph}{Mat\-Graph} $\ast$\hyperlink{graph_8h_a9b9b096de8889ed1843bfb1c3c9ca8ab}{mg}, int k)
+\begin{DoxyCompactList}\small\item\em Allows user to get a copy of incoming neighbourhooh of a node. \end{DoxyCompactList}\item 
+\hyperlink{struct_list}{List} $\ast$ \hyperlink{mat__graph_8h_a2c394ec58287108dcd1c3871a8dffd39}{m\-\_\-out\-Neighb} (\hyperlink{struct_mat_graph}{Mat\-Graph} $\ast$\hyperlink{graph_8h_a9b9b096de8889ed1843bfb1c3c9ca8ab}{mg}, int k)
+\begin{DoxyCompactList}\small\item\em Allows user to get a copy of outgoing neighbourhooh of a node. \end{DoxyCompactList}\item 
+\hyperlink{struct_mat_graph}{Mat\-Graph} $\ast$ \hyperlink{mat__graph_8h_a7e337c85722439ae92a72b4150819b4b}{m\-\_\-copy\-Graph} (\hyperlink{struct_mat_graph}{Mat\-Graph} $\ast$\hyperlink{graph_8h_a9b9b096de8889ed1843bfb1c3c9ca8ab}{mg})
+\begin{DoxyCompactList}\small\item\em Allows user to create a new copy of desired matrix represented graph. \end{DoxyCompactList}\item 
+\hyperlink{struct_mat_graph}{Mat\-Graph} $\ast$ \hyperlink{mat__graph_8h_af50233fa2cf8eea9317a883d1f25a62c}{m\-\_\-alloc\-Graph} (int n)
+\begin{DoxyCompactList}\small\item\em Implements memory allocation for a matrix-\/represented graph. \end{DoxyCompactList}\item 
+void \hyperlink{mat__graph_8h_ac7401b4c930352bb08dbef1e10b9184c}{m\-\_\-free\-Graph} (\hyperlink{struct_mat_graph}{Mat\-Graph} $\ast$\hyperlink{graph_8h_a9b9b096de8889ed1843bfb1c3c9ca8ab}{mg})
+\begin{DoxyCompactList}\small\item\em Implements the memory release of a matrix-\/represented graph. \end{DoxyCompactList}\item 
+void \hyperlink{mat__graph_8h_a4b615d35c36e4db4a7842cfba4024a1b}{m\-\_\-print\-Graph} (F\-I\-L\-E $\ast$stream, \hyperlink{struct_mat_graph}{Mat\-Graph} $\ast$\hyperlink{graph_8h_a9b9b096de8889ed1843bfb1c3c9ca8ab}{mg}, int graphviz, int pref)
+\begin{DoxyCompactList}\small\item\em Print a representation of the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{mat__graph_8h_af50233fa2cf8eea9317a883d1f25a62c}{\index{mat\-\_\-graph.\-h@{mat\-\_\-graph.\-h}!m\-\_\-alloc\-Graph@{m\-\_\-alloc\-Graph}}
+\index{m\-\_\-alloc\-Graph@{m\-\_\-alloc\-Graph}!mat_graph.h@{mat\-\_\-graph.\-h}}
+\subsubsection[{m\-\_\-alloc\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mat\-Graph}$\ast$ {\bf m\-\_\-alloc\-Graph} (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{mat__graph_8h_af50233fa2cf8eea9317a883d1f25a62c}
+
+
+Implements memory allocation for a matrix-\/represented graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & stands for the number of nodes which will be included in the graph \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the new matrix-\/represented graph 
+\end{DoxyReturn}
+\hypertarget{mat__graph_8h_a7e337c85722439ae92a72b4150819b4b}{\index{mat\-\_\-graph.\-h@{mat\-\_\-graph.\-h}!m\-\_\-copy\-Graph@{m\-\_\-copy\-Graph}}
+\index{m\-\_\-copy\-Graph@{m\-\_\-copy\-Graph}!mat_graph.h@{mat\-\_\-graph.\-h}}
+\subsubsection[{m\-\_\-copy\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mat\-Graph}$\ast$ {\bf m\-\_\-copy\-Graph} (
+\begin{DoxyParamCaption}
+\item[{{\bf Mat\-Graph} $\ast$}]{mg}
+\end{DoxyParamCaption}
+)}}\label{mat__graph_8h_a7e337c85722439ae92a72b4150819b4b}
+
+
+Allows user to create a new copy of desired matrix represented graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the matrix represented graph to copy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer on the new copy of graph 
+\end{DoxyReturn}
+\hypertarget{mat__graph_8h_a1750ff5baadb8bb33dbf85c46694a120}{\index{mat\-\_\-graph.\-h@{mat\-\_\-graph.\-h}!m\-\_\-edge\-Val@{m\-\_\-edge\-Val}}
+\index{m\-\_\-edge\-Val@{m\-\_\-edge\-Val}!mat_graph.h@{mat\-\_\-graph.\-h}}
+\subsubsection[{m\-\_\-edge\-Val}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf m\-\_\-edge\-Val} (
+\begin{DoxyParamCaption}
+\item[{{\bf Mat\-Graph} $\ast$}]{mg, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{mat__graph_8h_a1750ff5baadb8bb33dbf85c46694a120}
+
+
+Allows user to get value of the edge between i and j. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on a matrix-\/represented graph \\
+\hline
+{\em i} & a node \\
+\hline
+{\em j} & the other node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value of the (i,j) server 
+\end{DoxyReturn}
+\hypertarget{mat__graph_8h_ac7401b4c930352bb08dbef1e10b9184c}{\index{mat\-\_\-graph.\-h@{mat\-\_\-graph.\-h}!m\-\_\-free\-Graph@{m\-\_\-free\-Graph}}
+\index{m\-\_\-free\-Graph@{m\-\_\-free\-Graph}!mat_graph.h@{mat\-\_\-graph.\-h}}
+\subsubsection[{m\-\_\-free\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf m\-\_\-free\-Graph} (
+\begin{DoxyParamCaption}
+\item[{{\bf Mat\-Graph} $\ast$}]{mg}
+\end{DoxyParamCaption}
+)}}\label{mat__graph_8h_ac7401b4c930352bb08dbef1e10b9184c}
+
+
+Implements the memory release of a matrix-\/represented graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph to destroy \\
+\hline
+\end{DoxyParams}
+\hypertarget{mat__graph_8h_a13c6a4eaee408daa72c17c1ca960607a}{\index{mat\-\_\-graph.\-h@{mat\-\_\-graph.\-h}!m\-\_\-in\-Neighb@{m\-\_\-in\-Neighb}}
+\index{m\-\_\-in\-Neighb@{m\-\_\-in\-Neighb}!mat_graph.h@{mat\-\_\-graph.\-h}}
+\subsubsection[{m\-\_\-in\-Neighb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List}$\ast$ {\bf m\-\_\-in\-Neighb} (
+\begin{DoxyParamCaption}
+\item[{{\bf Mat\-Graph} $\ast$}]{mg, }
+\item[{int}]{k}
+\end{DoxyParamCaption}
+)}}\label{mat__graph_8h_a13c6a4eaee408daa72c17c1ca960607a}
+
+
+Allows user to get a copy of incoming neighbourhooh of a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph which is supposed to contain the desired node \\
+\hline
+{\em k} & node for which the neighbourhood is asked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+desired neighbourhood 
+\end{DoxyReturn}
+\hypertarget{mat__graph_8h_a2c394ec58287108dcd1c3871a8dffd39}{\index{mat\-\_\-graph.\-h@{mat\-\_\-graph.\-h}!m\-\_\-out\-Neighb@{m\-\_\-out\-Neighb}}
+\index{m\-\_\-out\-Neighb@{m\-\_\-out\-Neighb}!mat_graph.h@{mat\-\_\-graph.\-h}}
+\subsubsection[{m\-\_\-out\-Neighb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List}$\ast$ {\bf m\-\_\-out\-Neighb} (
+\begin{DoxyParamCaption}
+\item[{{\bf Mat\-Graph} $\ast$}]{mg, }
+\item[{int}]{k}
+\end{DoxyParamCaption}
+)}}\label{mat__graph_8h_a2c394ec58287108dcd1c3871a8dffd39}
+
+
+Allows user to get a copy of outgoing neighbourhooh of a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on the graph which is supposed to contain the desired node \\
+\hline
+{\em k} & node for which the neighbourhood is asked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+desired neighbourhood 
+\end{DoxyReturn}
+\hypertarget{mat__graph_8h_a4b615d35c36e4db4a7842cfba4024a1b}{\index{mat\-\_\-graph.\-h@{mat\-\_\-graph.\-h}!m\-\_\-print\-Graph@{m\-\_\-print\-Graph}}
+\index{m\-\_\-print\-Graph@{m\-\_\-print\-Graph}!mat_graph.h@{mat\-\_\-graph.\-h}}
+\subsubsection[{m\-\_\-print\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf m\-\_\-print\-Graph} (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{stream, }
+\item[{{\bf Mat\-Graph} $\ast$}]{mg, }
+\item[{int}]{graphviz, }
+\item[{int}]{pref}
+\end{DoxyParamCaption}
+)}}\label{mat__graph_8h_a4b615d35c36e4db4a7842cfba4024a1b}
+
+
+Print a representation of the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & Stream on which the graph will be displayed \\
+\hline
+{\em g} & stands for the graph to display \\
+\hline
+\end{DoxyParams}
+\hypertarget{mat__graph_8h_a1ad547686a7115cb73785b7cb6451d3b}{\index{mat\-\_\-graph.\-h@{mat\-\_\-graph.\-h}!m\-\_\-set\-Edge@{m\-\_\-set\-Edge}}
+\index{m\-\_\-set\-Edge@{m\-\_\-set\-Edge}!mat_graph.h@{mat\-\_\-graph.\-h}}
+\subsubsection[{m\-\_\-set\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf m\-\_\-set\-Edge} (
+\begin{DoxyParamCaption}
+\item[{{\bf Mat\-Graph} $\ast$}]{mg, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}}\label{mat__graph_8h_a1ad547686a7115cb73785b7cb6451d3b}
+
+
+Allows user to change the value of the edge (i,j) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & pointer on a matrix-\/represented graph \\
+\hline
+{\em i} & one of the extremity of the edge \\
+\hline
+{\em j} & the other extremity of the edge \\
+\hline
+\end{DoxyParams}

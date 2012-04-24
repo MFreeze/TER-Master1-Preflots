@@ -1,0 +1,67 @@
+\documentclass[a4paper,9pt]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage{fullpage}
+\usepackage{thmbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[french]{babel}
+\usepackage[pdftex,colorlinks,linkcolor=black]{hyperref}
+%\usepackage{pstricks}
+%\usepackage{pst-tree}
+%\usepackage{pst-node}
+%\usepackage[on]{auto-pst-pdf}
+\usepackage{pgfgantt}
+
+\newtheorem[style=S]{defi}{Définition}[section]
+\newtheorem[style=M]{prop}{Proposition}[section]
+\newtheorem[style=M]{coro}[prop]{Corollaire}
+\newtheorem[style=M]{lemm}[prop]{Lemme}
+\newtheorem[style=L]{theo}[prop]{Théorème}
+\newtheorem[style=S]{defiprop}[defi]{Définition - Proposition}
+\newtheorem[style=S]{defitheo}[defi]{Définition - Théorème}
+
+\begin{document}
+\section{Informations}
+
+\begin{tabular}{rcl}
+	Nom du groupe     &:& mfreeze\\
+	Membre du groupe  &:& Duvillie Guillerme \\
+	                  &:& Ben Moqadem Mahdi \\ & & \\
+					Documents &:& \underline{Introduction à l'Algorithmique}\\ 
+							 			& &	par Thomas Cormen, Charles Leiserson, Ronald Rivest, Clifford Stein \\
+	                  & & \emph{Edition Dunod -- 2002}\\
+										& & Chapitre sur les préflots (p. 649-657)\\ 
+	                  & & \underline{Network Flows : Theory, Algorithms, and Applications}\\
+	                  & & par Ravindra K. Ahuja, Thomas L. Magnanti, James B. Orlin \\
+	                  & & \emph{Edition Prentice Hall -- 1993}\\
+                    & & Chapitre sur les préflots (p. 223-240)\\
+\end{tabular}
+
+\section{Diagramme de Gantt}
+\begin{ganttchart}[hgrid=true, vgrid={{dotted}}]{17}
+	\gantttitle{Théorie}{17}\\ 
+	\ganttbar{Etude des articles (2 sem)}{1}{2}\ganttnewline
+	\ganttlinkedbar{Synthèse des articles (1 sem)}{3}{3} \ganttnewline
+	\ganttlinkedbar{Préparation des algorithmes (2 sem)}{4}{5} \ganttnewline
+	\ganttbar{Approfondissement et Préparation (5 sem)}{10}{14} %\ganttnewline
+	%\ganttbar{Préparation (2 sem)}{13}{14}
+	\ganttnewline[thick,black]
+	\gantttitle{Pratique}{17}\\
+	\ganttbar{Implémentation des algorithmes (4 sem)}{6}{9}\ganttnewline
+	\ganttlinkedbar{Phase de Test (4 sem)}{10}{13}\ganttnewline
+	\ganttbar{Analyse des Résultats (2 sem)}{13}{14}
+	\ganttnewline[thick,black]
+	\gantttitle{Rédaction}{17}\\
+	\ganttbar{Synthèse des articles (1 sem)}{3}{3} \ganttnewline
+	\ganttlinkedbar{Rédaction du mémoire (11 sem)}{4}{14} \ganttnewline
+	\ganttbar{Présentation (2 sem)}{13}{14} \ganttnewline
+	\ganttlinkedbar{Corrections (3 sem.)}{15}{17}
+	\ganttnewline[thick,black]
+	\gantttitle{Rendez-vous}{17}\\
+	\ganttmilestone[inline=true, milestone label inline anchor={above}]{Bilan}{6}
+	\ganttmilestone[inline=true, milestone label inline anchor={above}]{Pré-soutenance}{14} 
+	\ganttmilestone[inline=true, milestone label inline anchor={below}]{Soutenance}{16} 
+\end{ganttchart}
+
+\end{document}
