@@ -141,12 +141,12 @@ Functions</h2></td></tr>
 <tr class="memdesc:ab0307bf70d5822c06a43ae4926112291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a path to a difference graph.  <a href="#ab0307bf70d5822c06a43ae4926112291"></a><br/></td></tr>
 <tr class="memitem:ab489b06c87846ce09210cd438c08ab09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#ab489b06c87846ce09210cd438c08ab09">algoEdmondKarp</a> (<a class="el" href="struct_graph.html">Graph</a> *capa, <a class="el" href="struct_graph.html">Graph</a> *diff, <a class="el" href="struct_graph.html">Graph</a> *flow, int s, int p)</td></tr>
 <tr class="memdesc:ab489b06c87846ce09210cd438c08ab09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the Edmonds-Karps alogrithm.  <a href="#ab489b06c87846ce09210cd438c08ab09"></a><br/></td></tr>
-<tr class="memitem:ac112bd6c4339a6134b91d43f7ca254a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#ac112bd6c4339a6134b91d43f7ca254a5">compLabel</a> (<a class="el" href="struct_graph.html">Graph</a> *g, int p)</td></tr>
-<tr class="memdesc:ac112bd6c4339a6134b91d43f7ca254a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the distance of each node to the sink.  <a href="#ac112bd6c4339a6134b91d43f7ca254a5"></a><br/></td></tr>
+<tr class="memitem:a2f582ce71a03903a700956b63e50b72a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#a2f582ce71a03903a700956b63e50b72a">compLabel</a> (<a class="el" href="struct_graph.html">Graph</a> *g, <a class="el" href="struct_graph.html">Graph</a> *diff, int p, int s)</td></tr>
+<tr class="memdesc:a2f582ce71a03903a700956b63e50b72a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the distance of each node to the sink.  <a href="#a2f582ce71a03903a700956b63e50b72a"></a><br/></td></tr>
 <tr class="memitem:ac57052c962a0d3a4e4b872e8245cb71b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#ac57052c962a0d3a4e4b872e8245cb71b">push</a> (<a class="el" href="struct_graph.html">Graph</a> *flow, <a class="el" href="struct_graph.html">Graph</a> *diff, int i, int j, int s, int p)</td></tr>
 <tr class="memdesc:ac57052c962a0d3a4e4b872e8245cb71b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push preflow on the edge (i,j)  <a href="#ac57052c962a0d3a4e4b872e8245cb71b"></a><br/></td></tr>
-<tr class="memitem:af2b7ac67037138f438a6566283d46d91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#af2b7ac67037138f438a6566283d46d91">relabel</a> (<a class="el" href="struct_graph.html">Graph</a> *diff, int p)</td></tr>
-<tr class="memdesc:af2b7ac67037138f438a6566283d46d91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relabel an active node.  <a href="#af2b7ac67037138f438a6566283d46d91"></a><br/></td></tr>
+<tr class="memitem:ac69be4f0c5523b14b5f171352c8092ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#ac69be4f0c5523b14b5f171352c8092ba">relabel</a> (<a class="el" href="struct_graph.html">Graph</a> *capa, <a class="el" href="struct_graph.html">Graph</a> *flow, <a class="el" href="struct_graph.html">Graph</a> *diff, int k, int p)</td></tr>
+<tr class="memdesc:ac69be4f0c5523b14b5f171352c8092ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relabel an active node.  <a href="#ac69be4f0c5523b14b5f171352c8092ba"></a><br/></td></tr>
 <tr class="memitem:aad346e1d9d35e607e37d594f3d2068ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#aad346e1d9d35e607e37d594f3d2068ab">algoFIFO</a> (<a class="el" href="struct_graph.html">Graph</a> *capa, <a class="el" href="struct_graph.html">Graph</a> *diff, <a class="el" href="struct_graph.html">Graph</a> *flow, int s, int p)</td></tr>
 <tr class="memdesc:aad346e1d9d35e607e37d594f3d2068ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the FIFO variant of preflow-push algorithm.  <a href="#aad346e1d9d35e607e37d594f3d2068ab"></a><br/></td></tr>
 <tr class="memitem:a939bfbfe2cd309b7e7188d6691d3e89a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#a939bfbfe2cd309b7e7188d6691d3e89a">algoLabel</a> (<a class="el" href="struct_graph.html">Graph</a> *capa, <a class="el" href="struct_graph.html">Graph</a> *diff, <a class="el" href="struct_graph.html">Graph</a> *flow, int s, int p)</td></tr>
@@ -484,12 +484,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac112bd6c4339a6134b91d43f7ca254a5"></a>
+<a class="anchor" id="a2f582ce71a03903a700956b63e50b72a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="algo_8h.html#ac112bd6c4339a6134b91d43f7ca254a5">compLabel</a> </td>
+          <td class="memname">void <a class="el" href="algo_8h.html#a2f582ce71a03903a700956b63e50b72a">compLabel</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
           <td class="paramname"><em>g</em>, </td>
@@ -497,8 +497,20 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>diff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>p</em>&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -666,15 +678,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af2b7ac67037138f438a6566283d46d91"></a>
+<a class="anchor" id="ac69be4f0c5523b14b5f171352c8092ba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="algo_8h.html#af2b7ac67037138f438a6566283d46d91">relabel</a> </td>
+          <td class="memname">void <a class="el" href="algo_8h.html#ac69be4f0c5523b14b5f171352c8092ba">relabel</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>capa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>flow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
           <td class="paramname"><em>diff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -822,7 +852,7 @@ Functions</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="algo_8h.html">algo.h</a>      </li>
 
-    <li class="footer">Generated on Tue Apr 24 2012 16:14:10 for Graph Library by
+    <li class="footer">Generated on Tue Apr 24 2012 16:23:27 for Graph Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.0 </li>
    </ul>

@@ -7,6 +7,7 @@ var searchData=
   ['addseg',['addSeg',['../algo_8c.html#ad4666caa2142774f7ed3e6bf584a0678',1,'algo.c']]],
   ['addsegtodiff',['addSegToDiff',['../algo_8c.html#aeed667e662025d1bed2c579a1540631d',1,'algo.c']]],
   ['addsegtoflow',['addSegToFlow',['../algo_8c.html#a3c612c92ccce6d6ad58c93100d229936',1,'algo.c']]],
+  ['addsegtores',['addSegToRes',['../algo_8c.html#a32bbb861bfaecdb21cd96be061b2e9f4',1,'algo.c']]],
   ['algodinic',['algoDinic',['../algo_8c.html#a200dc30985cc5f2b50cc30d116890361',1,'algoDinic(Graph *capa, Graph *flow, int s, int p):&#160;algo.c'],['../algo_8h.html#a200dc30985cc5f2b50cc30d116890361',1,'algoDinic(Graph *capa, Graph *flow, int s, int p):&#160;algo.c']]],
   ['algoedmondkarp',['algoEdmondKarp',['../algo_8c.html#ab489b06c87846ce09210cd438c08ab09',1,'algoEdmondKarp(Graph *capa, Graph *diff, Graph *flow, int s, int p):&#160;algo.c'],['../algo_8h.html#ab489b06c87846ce09210cd438c08ab09',1,'algoEdmondKarp(Graph *capa, Graph *diff, Graph *flow, int s, int p):&#160;algo.c']]],
   ['algofifo',['algoFIFO',['../algo_8c.html#aad346e1d9d35e607e37d594f3d2068ab',1,'algoFIFO(Graph *capa, Graph *diff, Graph *flow, int s, int p):&#160;algo.c'],['../algo_8h.html#aad346e1d9d35e607e37d594f3d2068ab',1,'algoFIFO(Graph *capa, Graph *diff, Graph *flow, int s, int p):&#160;algo.c']]],

@@ -251,7 +251,8 @@ void addSeg(Graph *g, int i, int j, int val, int diff) {
 	}
 	else {
 		setEdge (g, i, j, gval - pval);
-		setEdge (g, j, i, gval2 + pval);
+		if (diff == 1)
+			setEdge (g, j, i, gval2 + pval);
 	}
 }
 
@@ -261,6 +262,10 @@ inline void addSegToFlow(Graph *g, int i, int j, int val) {
 
 inline void addSegToDiff(Graph *g, int i, int j, int val) {
 	addSeg(g,i,j,val,1);
+}
+
+inline void addSegToRes(Graph *g, int i, int j, int val) {
+	addSeg(g,i,j,val,2);
 }
 
 // {{{ Edmonds Karp set of functions
@@ -328,9 +333,10 @@ int algoEdmondKarp(Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 
 // {{{ Preflow set of functions
 // {{{ compLabel
-void compLabel (Graph *g, int p) {
+void compLabel (Graph *g, Graph *diff, int p, int s) {
 	List *to_process  = allocList ();
 	int n = nbVert (g), k = p;
+	int i = 0;
 	int *visited = (int *) calloc (n, sizeof(int));
 
 	if (!visited) {
@@ -338,14 +344,15 @@ void compLabel (Graph *g, int p) {
 		return;
 	}
 
-	lab(g,p)=0;
+	lab(diff,p)=0;
 	visited[p]++;
 	pushTail (to_process, p, 0);
 	while (nb(to_process)) {
 		k = num(begin(to_process));
-		lab(g,k) = val(begin(to_process));
+		lab(diff,k) = val(begin(to_process));
+		if (k != s) {
 		List *in = inNeighb (g, k);
-	//	List *in = g->_lg->_inNeighb[k];
+		//	List *in = g->_lg->_inNeighb[k];
 		Item *it = begin(in);
 		while (it) {
 			if (!visited[num(it)]) {
@@ -355,30 +362,60 @@ void compLabel (Graph *g, int p) {
 			it = next(it);
 		}
 		freeList(in);
+		}
 		popHead (to_process);
 	}
 	freeList(to_process);
+
+	for (i=0; i<nbVert(g); i++)
+		lab(diff,i) = (lab(diff,i) || i == p) ? lab(diff,i) : -1;
+
+	for (i=0; i<nbVert(g); i++) {
+		if (lab(diff, i) == -1 || i == p)
+			continue;
+		if(i==s){
+			List *out = outNeighb(g,s);
+			Item *it = begin(out);
+			while (it) {
+				if (lab(diff, num(it)) != -1)
+					setEdge (diff, s, num(it), val(it));
+				it = next(it);
+			}
+			freeList(out);
+		}
+		else {
+			List *out = outNeighb(g,i);
+			Item *it = begin(out);
+			while (it) {
+				if (lab(diff, num(it)) == lab(diff, i) - 1)
+					setEdge (diff, i, num(it), val(it));
+				it = next(it);
+			}
+			freeList(out);
+		}
+	}
+
+	for (i=0; i<nbVert(diff); i++)
+		printf ("%d(%d) - ", i, lab(diff,i));
+
+	printf ("\n");
+
 	free (visited);
 }
 // }}}
 
 // {{{ Push Function
 int push (Graph *flow, Graph *diff, int i, int j, int s, int p) {
-	if (i == j || i == p || lab(diff,j) == -1)
+	if (i == j || i == p)
 		return 0;
-	int value = edgeVal (diff, i, j);
-	int delta = 0;
-	if (i == s) delta = value;
-	else if (value < exc(diff,i))
-		delta = value;
-	else 
-		delta = exc(diff,i);
+	int value = edgeVal (diff, i, j), exces = exc(diff,i);
+	int delta = (i == s || value < exces) ? value : exces;
 	//int delta = (i == s || value < exc(diff,i)) ? value : exc(diff,i);
-	if (delta > 0 && (i == s || j == p || lab(diff,i) == lab(diff,j) + 1) && lab(diff,i)) {
+	if (delta > 0) {
 		addSegToFlow (flow, i, j, delta);
-		addSegToDiff (diff, i, j, delta);
-//		addPathToFlow (flow, path);
-//		addPathToDiff (diff, path);
+		addSegToRes (diff, i, j, delta);
+		//		addPathToFlow (flow, path);
+		//		addPathToDiff (diff, path);
 		return delta;
 	}
 	return 0;
@@ -387,11 +424,67 @@ int push (Graph *flow, Graph *diff, int i, int j, int s, int p) {
 // }}}
 
 // {{{ relabel
-void relabel (Graph *diff, int k) {
-//	List *out = outNeighb(diff, k);
-	List *out = diff->_lg->_outNeighb[k];
+void relabel (Graph *capa, Graph *flow, Graph *diff, int k, int p) {
+	List *inflow = flow->_lg->_inNeighb[k];
+	List *outcapa = capa->_lg->_outNeighb[k];
+	//	List *out = diff->_lg->_outNeighb[k];
+	List *out = allocList();
+
+	printf ("Je relabel\n");
+
 	int n_label = 0;
-	Item *it = begin(out);
+	Item *itc = begin(outcapa);
+	Item *itf = begin(inflow);
+
+	while (itc && itf) {
+		int numf = num(itf), numc = num(itc);
+		if (numf < numc) {
+			if (numf != k)
+				pushTail(out, numf, val(itf));
+			itf = next(itf);
+		}
+		else if (numc < numf) {
+			int outfl = edgeVal(flow, k, numc);
+			int dif = val(itc) - outfl;
+			if (dif && numc != k)
+				pushTail(out, numc, dif);
+			itc = next(itc);
+		}
+		else {
+			if (numc != k)
+				pushTail(out, numc, val(itc) + val(itf));
+			itf = next(itf);
+			itc = next(itc);
+		}
+	}
+
+	if (!itc) 
+		while (itf) {
+			pushTail(out, num(itf), val(itf));
+			itf = next(itf);
+		}
+	else if (!itf)
+		while (itc) {
+			pushTail(out, num(itc), val(itc));
+			itc = next(itc);
+		}
+
+	printf("Fin de construction de file.\n");
+	printList(stdout, out);
+
+	Item *it = begin (out);
+
+	printf ("%d(%d) - ", k, lab(diff, k));
+
+	while (it) {
+		printf ("%d(%d) - ", num(it), lab(diff,num(it)));
+		it = next(it);
+	}
+
+	printf ("\n");
+
+	it = begin(out);
+
 	while (it && !n_label) {
 		int j = num(it);
 		if (j == k) {
@@ -413,25 +506,59 @@ void relabel (Graph *diff, int k) {
 	}
 
 
-	if (n_label)
+	if (n_label) {
 		lab(diff,k) = ++n_label;
-	else
+		it = begin(out);
+
+		while (it) {
+			if (num(it) != k) {
+				if (num(it) == p)
+					setEdge (diff, k, num(it), val(it));
+				else if (lab(diff, k) == lab(diff, num(it)) + 1)
+					setEdge (diff, k, num(it), val(it));
+				else
+					setEdge (diff, k, num(it), 0);
+			}
+			it = next (it);
+		}
+	}
+	else {
 		printf("C'est le bordel.\n");
+		printf("Noeud %d(%d) n'a pas de majorant.\n", k, lab(diff,k));
+		int z = 0;
+		it = begin(out);
+		while (it) {
+			printf ("%d(%d) - ", num(it), lab(diff,num(it)));
+			it = next(it);
+		}
 
+		printf ("\n");
+	}
 
-	//freeList(out);
+	printf("Nouvelle hauteur : %d \n", n_label);
+
+	freeList(out);
 }
 // }}}
 
 // {{{ algoFIFO 
 int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 	int i = 0;
+	int pref = 0;
 	// Initialization
-	compLabel (diff, p);
+	compLabel (capa, diff, p, s);
 
-	for (i=0; i< nbVert(diff); i++) 
-		if (i!=p && !lab(diff,i))
-			lab(diff,i) = -1;
+	for (i=0; i<nbVert(diff); i++)
+		printf ("%d(%d) - ", i, lab(diff,i));
+
+	printf ("\n");
+
+	printf("Capacité : \n");
+	printGraph(stdout, capa, 0, &pref);
+	printf("Diff : \n");
+	printGraph(stdout, diff, 0, &pref);
+	printf("Flow : \n");
+	printGraph(stdout, flow, 0, &pref);
 
 	if (lab(diff,s) == -1)
 		return 0;
@@ -442,18 +569,29 @@ int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 	//List *out = diff->_lg->_outNeighb[s];
 
 	Item *it = begin(out);
-	while (it != NULL) {
+	while (it) {
 		int j = num(it);
 		if (j == s) {
 			it = next(it);
 			continue;
 		}
 		int delta = push (flow, diff, s, j, s, p);
+		//printf ("%d \n", delta);
 		if (delta) {
 			if (j != p)
 				pushTail(excess_node, j, 0);
+			printf ("Je pousse de %d à %d avec %d.\n", s, j, delta);
+
+			printf("Capacité : \n");
+			printGraph(stdout, capa, 0, &pref);
+			printf("Diff : \n");
+			printGraph(stdout, diff, 0, &pref);
+			printf("Flow : \n");
+			printGraph(stdout, flow, 0, &pref);
+
 			exc(diff,j)+=delta;
 		}
+		//	it = begin(out);
 		it = next(it);
 	}
 	freeList (out);
@@ -468,7 +606,7 @@ int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 			continue;
 		}
 		List *out = outNeighb(diff, k);
-		//List *out = diff->_lg->_outNeighb[k];
+		//		List *out = diff->_lg->_outNeighb[k];
 		it = begin(out);
 		while (it && exc(diff,k)) {
 			int j = num(it);
@@ -477,16 +615,33 @@ int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 				continue;
 			}
 			int delta = push (flow, diff, k, j, s, p);
+			//printf ("%2d(%2d) --> %2d(%2d) [%3d]\n", k, exc(diff,k), j, delta, hlab(diff,k));
 			if (delta) {
 				if (j != p && j != s && !exc(diff,j))
 					pushTail (excess_node, j, 0);
 				exc(diff, j) += delta;
 				exc(diff, k) -= delta;
+				printf ("Je pousse de %d à %d avec %d.\n", k, j, delta);
+
+				printf("Capacité : \n");
+				printGraph(stdout, capa, 0, &pref);
+				printf("Diff : \n");
+				printGraph(stdout, diff, 0, &pref);
+				printf("Flow : \n");
+				printGraph(stdout, flow, 0, &pref);
+
+				/*if (num(it) == s)
+					it = next(it);
+					else
+					it = begin(out);*/
 			}
+			/* else
+				 it = next(it); */
 			it = next(it);
 		}
 		if (exc(diff,k) && k!=s && k!=p) {
-			relabel (diff, k);
+			printf ("Relabel %d(%d).\n", k, lab(diff,k));
+			relabel (capa, flow, diff, k, p);
 			//printf ("Noeud %d, Excedent %d, Hauteur : %d\n", k, exc(diff,k), lab(diff,k));
 			pushTail(excess_node, k, 0);
 		}
@@ -501,12 +656,16 @@ int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 // {{{ algoLabel
 int algoLabel (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 	int i = 0;
+	int pref = 0;
 	// Initialization
-	compLabel (diff, p);
+	compLabel (capa, diff, p, s);
 
-	for (i=0; i< nbVert(diff); i++) 
-		if (i!=p && !lab(diff,i))
-			lab(diff,i) = -1;
+	printf ("\n\n Capacité : \n\n");
+	printGraph (stdout, capa, 0, &pref);
+	printf ("\n\n Diff : \n\n");
+	printGraph (stdout, diff, 0, &pref);
+	printf ("\n\n Flow : \n\n");
+	printGraph (stdout, flow, 0, &pref);
 
 	if (lab(diff,s) == -1)
 		return 0;
@@ -525,6 +684,10 @@ int algoLabel (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 		}
 		int delta = push (flow, diff, s, j, s, p);
 		if (delta) {
+			printf ("Je pousse de %d vers %d avec un flow de %d.\n", s, j, delta);
+			printGraph (stdout, capa, 0, &pref);
+			printGraph (stdout, diff, 0, &pref);
+			printGraph (stdout, flow, 0, &pref);
 			if (j != p)
 				h_insertNode (excess_node, j);
 			exc(diff,j)+=delta;
@@ -551,6 +714,10 @@ int algoLabel (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 			}
 			int delta = push (flow, diff, k, j, s, p);
 			if (delta) {
+				printf ("Je pousse de %d vers %d avec un flow de %d.\n", s, j, delta);
+				printGraph (stdout, capa, 0, &pref);
+				printGraph (stdout, diff, 0, &pref);
+				printGraph (stdout, flow, 0, &pref);
 				if (j != p && j != s && !exc(diff,j))
 					h_insertNode (excess_node, j);
 				exc(diff, j) += delta;
@@ -560,9 +727,13 @@ int algoLabel (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 		}
 		if (exc(diff,k)) {
 			if (k!=s && k!=p) {
-			relabel (diff, k);
-			//printf ("Noeud %d, Excedent %d, Hauteur : %d\n", k, exc(diff,k), lab(diff,k));
-			h_insertNode (excess_node, k);
+				relabel (capa, flow, diff, k, p);
+				printf ("Je relabel %d.\n", k);
+				printGraph (stdout, capa, 0, &pref);
+				printGraph (stdout, diff, 0, &pref);
+				printGraph (stdout, flow, 0, &pref);
+				//printf ("Noeud %d, Excedent %d, Hauteur : %d\n", k, exc(diff,k), lab(diff,k));
+				h_insertNode (excess_node, k);
 			}
 		}
 		freeList(out);

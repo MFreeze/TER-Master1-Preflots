@@ -27,11 +27,11 @@ void \hyperlink{algo_8h_ab0307bf70d5822c06a43ae4926112291}{add\-Path\-To\-Diff} 
 \begin{DoxyCompactList}\small\item\em Add a path to a difference graph. \end{DoxyCompactList}\item 
 int \hyperlink{algo_8h_ab489b06c87846ce09210cd438c08ab09}{algo\-Edmond\-Karp} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
 \begin{DoxyCompactList}\small\item\em Implements the Edmonds-\/\-Karps alogrithm. \end{DoxyCompactList}\item 
-void \hyperlink{algo_8h_ac112bd6c4339a6134b91d43f7ca254a5}{comp\-Label} (\hyperlink{struct_graph}{Graph} $\ast$g, int p)
+void \hyperlink{algo_8h_a2f582ce71a03903a700956b63e50b72a}{comp\-Label} (\hyperlink{struct_graph}{Graph} $\ast$g, \hyperlink{struct_graph}{Graph} $\ast$diff, int p, int s)
 \begin{DoxyCompactList}\small\item\em Compute the distance of each node to the sink. \end{DoxyCompactList}\item 
 int \hyperlink{algo_8h_ac57052c962a0d3a4e4b872e8245cb71b}{push} (\hyperlink{struct_graph}{Graph} $\ast$flow, \hyperlink{struct_graph}{Graph} $\ast$diff, int i, int j, int s, int p)
 \begin{DoxyCompactList}\small\item\em Push preflow on the edge (i,j) \end{DoxyCompactList}\item 
-void \hyperlink{algo_8h_af2b7ac67037138f438a6566283d46d91}{relabel} (\hyperlink{struct_graph}{Graph} $\ast$diff, int p)
+void \hyperlink{algo_8h_ac69be4f0c5523b14b5f171352c8092ba}{relabel} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$flow, \hyperlink{struct_graph}{Graph} $\ast$diff, int k, int p)
 \begin{DoxyCompactList}\small\item\em Relabel an active node. \end{DoxyCompactList}\item 
 int \hyperlink{algo_8h_aad346e1d9d35e607e37d594f3d2068ab}{algo\-F\-I\-F\-O} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
 \begin{DoxyCompactList}\small\item\em Implements the F\-I\-F\-O variant of preflow-\/push algorithm. \end{DoxyCompactList}\item 
@@ -214,14 +214,16 @@ Implements the High-\/\-Label variant of preflow-\/push algorithm.
 \begin{DoxyReturn}{Returns}
 Maximum flow value 
 \end{DoxyReturn}
-\hypertarget{algo_8h_ac112bd6c4339a6134b91d43f7ca254a5}{\index{algo.\-h@{algo.\-h}!comp\-Label@{comp\-Label}}
+\hypertarget{algo_8h_a2f582ce71a03903a700956b63e50b72a}{\index{algo.\-h@{algo.\-h}!comp\-Label@{comp\-Label}}
 \index{comp\-Label@{comp\-Label}!algo.h@{algo.\-h}}
 \subsubsection[{comp\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf comp\-Label} (
 \begin{DoxyParamCaption}
 \item[{{\bf Graph} $\ast$}]{g, }
-\item[{int}]{p}
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{int}]{p, }
+\item[{int}]{s}
 \end{DoxyParamCaption}
-)}}\label{algo_8h_ac112bd6c4339a6134b91d43f7ca254a5}
+)}}\label{algo_8h_a2f582ce71a03903a700956b63e50b72a}
 
 
 Compute the distance of each node to the sink. 
@@ -309,14 +311,17 @@ Push preflow on the edge (i,j)
 \begin{DoxyReturn}{Returns}
 The amount of pushed preflow 
 \end{DoxyReturn}
-\hypertarget{algo_8h_af2b7ac67037138f438a6566283d46d91}{\index{algo.\-h@{algo.\-h}!relabel@{relabel}}
+\hypertarget{algo_8h_ac69be4f0c5523b14b5f171352c8092ba}{\index{algo.\-h@{algo.\-h}!relabel@{relabel}}
 \index{relabel@{relabel}!algo.h@{algo.\-h}}
 \subsubsection[{relabel}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf relabel} (
 \begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{capa, }
+\item[{{\bf Graph} $\ast$}]{flow, }
 \item[{{\bf Graph} $\ast$}]{diff, }
+\item[{int}]{k, }
 \item[{int}]{p}
 \end{DoxyParamCaption}
-)}}\label{algo_8h_af2b7ac67037138f438a6566283d46d91}
+)}}\label{algo_8h_ac69be4f0c5523b14b5f171352c8092ba}
 
 
 Relabel an active node. 

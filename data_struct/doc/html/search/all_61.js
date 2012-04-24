@@ -7,6 +7,7 @@ var searchData=
   ['addseg',['addSeg',['../algo_8c.html#ad4666caa2142774f7ed3e6bf584a0678',1,'algo.c']]],
   ['addsegtodiff',['addSegToDiff',['../algo_8c.html#aeed667e662025d1bed2c579a1540631d',1,'algo.c']]],
   ['addsegtoflow',['addSegToFlow',['../algo_8c.html#a3c612c92ccce6d6ad58c93100d229936',1,'algo.c']]],
+  ['addsegtores',['addSegToRes',['../algo_8c.html#a32bbb861bfaecdb21cd96be061b2e9f4',1,'algo.c']]],
   ['algo_2ec',['algo.c',['../algo_8c.html',1,'']]],
   ['algo_2eh',['algo.h',['../algo_8h.html',1,'']]],
   ['algodinic',['algoDinic',['../algo_8c.html#a200dc30985cc5f2b50cc30d116890361',1,'algoDinic(Graph *capa, Graph *flow, int s, int p):&#160;algo.c'],['../algo_8h.html#a200dc30985cc5f2b50cc30d116890361',1,'algoDinic(Graph *capa, Graph *flow, int s, int p):&#160;algo.c']]],

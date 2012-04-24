@@ -25,6 +25,8 @@ void \hyperlink{algo_8c_a3c612c92ccce6d6ad58c93100d229936}{add\-Seg\-To\-Flow} (
 \item 
 void \hyperlink{algo_8c_aeed667e662025d1bed2c579a1540631d}{add\-Seg\-To\-Diff} (\hyperlink{struct_graph}{Graph} $\ast$g, int i, int j, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val})
 \item 
+void \hyperlink{algo_8c_a32bbb861bfaecdb21cd96be061b2e9f4}{add\-Seg\-To\-Res} (\hyperlink{struct_graph}{Graph} $\ast$g, int i, int j, int \hyperlink{list_8h_a197c5830bca771040d8a8aa6fde159dc}{val})
+\item 
 void \hyperlink{algo_8c_a29eb69125ee65d4096ec60d209e1c290}{add\-Path} (\hyperlink{struct_graph}{Graph} $\ast$g, \hyperlink{struct_list}{List} $\ast$path, int diff)
 \item 
 void \hyperlink{algo_8c_ae0234ec995e6fb8684dc5169be34ffd6}{add\-Path\-To\-Flow} (\hyperlink{struct_graph}{Graph} $\ast$flow, \hyperlink{struct_list}{List} $\ast$path)
@@ -33,11 +35,11 @@ void \hyperlink{algo_8c_ab0307bf70d5822c06a43ae4926112291}{add\-Path\-To\-Diff} 
 \begin{DoxyCompactList}\small\item\em Add a path to a difference graph. \end{DoxyCompactList}\item 
 int \hyperlink{algo_8c_ab489b06c87846ce09210cd438c08ab09}{algo\-Edmond\-Karp} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
 \begin{DoxyCompactList}\small\item\em Implements the Edmonds-\/\-Karps alogrithm. \end{DoxyCompactList}\item 
-void \hyperlink{algo_8c_ac112bd6c4339a6134b91d43f7ca254a5}{comp\-Label} (\hyperlink{struct_graph}{Graph} $\ast$g, int p)
+void \hyperlink{algo_8c_a2f582ce71a03903a700956b63e50b72a}{comp\-Label} (\hyperlink{struct_graph}{Graph} $\ast$g, \hyperlink{struct_graph}{Graph} $\ast$diff, int p, int s)
 \begin{DoxyCompactList}\small\item\em Compute the distance of each node to the sink. \end{DoxyCompactList}\item 
 int \hyperlink{algo_8c_ac57052c962a0d3a4e4b872e8245cb71b}{push} (\hyperlink{struct_graph}{Graph} $\ast$flow, \hyperlink{struct_graph}{Graph} $\ast$diff, int i, int j, int s, int p)
 \begin{DoxyCompactList}\small\item\em Push preflow on the edge (i,j) \end{DoxyCompactList}\item 
-void \hyperlink{algo_8c_a4da153ca131825c58c8ed8cec06add0e}{relabel} (\hyperlink{struct_graph}{Graph} $\ast$diff, int k)
+void \hyperlink{algo_8c_ac69be4f0c5523b14b5f171352c8092ba}{relabel} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$flow, \hyperlink{struct_graph}{Graph} $\ast$diff, int k, int p)
 \begin{DoxyCompactList}\small\item\em Relabel an active node. \end{DoxyCompactList}\item 
 int \hyperlink{algo_8c_aad346e1d9d35e607e37d594f3d2068ab}{algo\-F\-I\-F\-O} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
 \begin{DoxyCompactList}\small\item\em Implements the F\-I\-F\-O variant of preflow-\/push algorithm. \end{DoxyCompactList}\item 
@@ -143,6 +145,16 @@ Implements the update of the layer graph after the saturation of the edge with t
 \item[{int}]{val}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{algo_8c_a3c612c92ccce6d6ad58c93100d229936}
+\hypertarget{algo_8c_a32bbb861bfaecdb21cd96be061b2e9f4}{\index{algo.\-c@{algo.\-c}!add\-Seg\-To\-Res@{add\-Seg\-To\-Res}}
+\index{add\-Seg\-To\-Res@{add\-Seg\-To\-Res}!algo.c@{algo.\-c}}
+\subsubsection[{add\-Seg\-To\-Res}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf add\-Seg\-To\-Res} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{algo_8c_a32bbb861bfaecdb21cd96be061b2e9f4}
 \hypertarget{algo_8c_a200dc30985cc5f2b50cc30d116890361}{\index{algo.\-c@{algo.\-c}!algo\-Dinic@{algo\-Dinic}}
 \index{algo\-Dinic@{algo\-Dinic}!algo.c@{algo.\-c}}
 \subsubsection[{algo\-Dinic}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf algo\-Dinic} (
@@ -260,14 +272,16 @@ Implements the High-\/\-Label variant of preflow-\/push algorithm.
 \begin{DoxyReturn}{Returns}
 Maximum flow value 
 \end{DoxyReturn}
-\hypertarget{algo_8c_ac112bd6c4339a6134b91d43f7ca254a5}{\index{algo.\-c@{algo.\-c}!comp\-Label@{comp\-Label}}
+\hypertarget{algo_8c_a2f582ce71a03903a700956b63e50b72a}{\index{algo.\-c@{algo.\-c}!comp\-Label@{comp\-Label}}
 \index{comp\-Label@{comp\-Label}!algo.c@{algo.\-c}}
 \subsubsection[{comp\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf comp\-Label} (
 \begin{DoxyParamCaption}
 \item[{{\bf Graph} $\ast$}]{g, }
-\item[{int}]{p}
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{int}]{p, }
+\item[{int}]{s}
 \end{DoxyParamCaption}
-)}}\label{algo_8c_ac112bd6c4339a6134b91d43f7ca254a5}
+)}}\label{algo_8c_a2f582ce71a03903a700956b63e50b72a}
 
 
 Compute the distance of each node to the sink. 
@@ -355,14 +369,17 @@ Push preflow on the edge (i,j)
 \begin{DoxyReturn}{Returns}
 The amount of pushed preflow 
 \end{DoxyReturn}
-\hypertarget{algo_8c_a4da153ca131825c58c8ed8cec06add0e}{\index{algo.\-c@{algo.\-c}!relabel@{relabel}}
+\hypertarget{algo_8c_ac69be4f0c5523b14b5f171352c8092ba}{\index{algo.\-c@{algo.\-c}!relabel@{relabel}}
 \index{relabel@{relabel}!algo.c@{algo.\-c}}
 \subsubsection[{relabel}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf relabel} (
 \begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{capa, }
+\item[{{\bf Graph} $\ast$}]{flow, }
 \item[{{\bf Graph} $\ast$}]{diff, }
+\item[{int}]{k, }
 \item[{int}]{p}
 \end{DoxyParamCaption}
-)}}\label{algo_8c_a4da153ca131825c58c8ed8cec06add0e}
+)}}\label{algo_8c_ac69be4f0c5523b14b5f171352c8092ba}
 
 
 Relabel an active node. 

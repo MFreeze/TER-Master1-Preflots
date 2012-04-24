@@ -22,39 +22,34 @@ int main (int argc, char ** argv) {
 				stream = stdout;
 	}
 
-  Graph *capa;
+  Graph *capa, *tmp;
 
 	if (fil) 
 		capa = createGraphFile (fil);
 	else {
-		capa = allocMatGraph(10);
+		capa = allocListGraph(10);
+		tmp = allocGraph(capa);
   	/* http://en.wikipedia.org/wiki/Edmonds-Karp_algorithm#Example 
    	 * J'ai testé sur graph.h : testFill et celui là ^ ^ ^ ^ ^ ^ ^
    	 * J'ai vérifié que les chaines améliorantes sont bonnes.
    	 * Il faudrait peut etre tester un peu plus ? */
-  	setEdge(capa, 0,2,23);
-  	setEdge(capa, 1,6,40);
-  	setEdge(capa, 1,8,21);
-  	setEdge(capa, 2,3,43);
-  	setEdge(capa, 3,2,34);
-  	setEdge(capa, 3,7,25);
-  	setEdge(capa, 5,0,48);
-  	setEdge(capa, 6,5,44);
-  	setEdge(capa, 7,2,20);
-  	setEdge(capa, 9,4,10);
+		randFill(capa, 20, 10, 1, tmp);
 	}
   /* flow nul */
   Graph *flow = allocGraph(capa);
   Graph *flowbis = allocGraph(capa);
 	Graph *flowter = allocGraph(capa);
   /* ecart = capacité */
-  Graph *diff = copyGraph(capa);
-  Graph *diffbis = copyGraph(capa);
+  Graph *diff = allocGraph(capa);
+  Graph *diffbis = allocGraph(capa);
 	/* Ensemble des plus courts chemins */
 	Graph *shpath = setShortPath(capa, 0, 1);
 	/* Test du graphe de couche */
+	printf("\n\nDinic : \n\n");
 	int fbis = algoDinic (capa, flowbis, 0, 1);
+	printf("\n\nFIFO : \n\n");
 	int fter = algoFIFO (capa, diffbis, flowter, 0, 1);
+	printf("\n\nLabel : \n\n");
 	int f = algoLabel (capa, diff, flow, 0, 1);
 	printf ("Max Flow = %3d\n, Max Flow = %3d\n, Max Flow = %3d\n", f, fbis, fter);
   printGraph(stream, diff, print_graphviz, &pref);
@@ -68,6 +63,7 @@ int main (int argc, char ** argv) {
 	freeGraph(flow); freeGraph(shpath);
 	freeGraph(flowbis);
 	freeGraph(flowter); freeGraph (diffbis);
+	freeGraph(tmp);
 
 	if (stream != stdout && stream != stderr) {
 		if (print_graphviz) 

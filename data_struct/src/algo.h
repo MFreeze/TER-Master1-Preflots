@@ -90,7 +90,7 @@ int algoEdmondKarp(Graph *capa, Graph *diff, Graph *flow, int s, int p);
  * \param g Graph on which the computation will be done
  * \param p Sink node of the graph
  * */
-void compLabel (Graph *g, int p);
+void compLabel (Graph *g, Graph *diff, int p, int s);
 
 /**
  * \brief Push preflow on the edge (i,j)
@@ -108,7 +108,7 @@ int push (Graph *flow, Graph *diff, int i, int j, int s, int p);
  * \param diff A difference graph
  * \param k Node to relabel
  * */
-void relabel (Graph *diff, int p);
+void relabel (Graph *capa, Graph *flow, Graph *diff, int k, int p);
 
 /**
  * \brief Implements the FIFO variant of preflow-push algorithm

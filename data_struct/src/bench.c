@@ -22,7 +22,7 @@ stat_t elapsedTime (int n, int m, int c, int nb_iter) {
 
 		// FIFO Algorithm
     Graph * lfFIFO = allocGraph(lcFIFO);
-    Graph * ldFIFO = copyGraph(lcFIFO);
+    Graph * ldFIFO = allocGraph(lcFIFO);
 
 //		printf ("Entrée FIFO\n");
 		g_timer_start(timer);
@@ -38,7 +38,7 @@ stat_t elapsedTime (int n, int m, int c, int nb_iter) {
 
 			// High Label Algorithm
 			Graph * lfLab = allocGraph(lcLab);
-			Graph * ldLab = copyGraph(lcLab);
+			Graph * ldLab = allocGraph(lcLab);
 
 //			printf ("Entrée High Label\n");
 			g_timer_start(timer);
@@ -73,6 +73,9 @@ stat_t elapsedTime (int n, int m, int c, int nb_iter) {
 			g_timer_reset(timer);
 			i --;
 		}
+
+		if (f!=h || g!=h)
+			printf ("Erreur\n");
     
 		freeGraph (lcFIFO); 
 		freeGraph (lcLab);

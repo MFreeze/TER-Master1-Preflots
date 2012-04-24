@@ -8,7 +8,7 @@
 
 #define MAX_NOEUDS 200
 #define SCALE 10
-#define RATIO 5
+#define RATIO 1
 
 int main (int argc, char ** argv)
 {    
@@ -25,7 +25,7 @@ int main (int argc, char ** argv)
 
   for (i=SCALE; i<=MAX_NOEUDS; i+=SCALE) {
 		int j = (i/SCALE) - 1;
-    stat_t s = elapsedTime(tab[j][0],tab[j][1],capa,100);
+    stat_t s = elapsedTime(tab[j][0],tab[j][1],capa,5);
     printf("%d %d %lf %lf %lf \n",tab[j][0],tab[j][1],s._st1*1000,s._st2*1000,s._st3*1000);
   }
 

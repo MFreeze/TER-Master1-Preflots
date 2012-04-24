@@ -134,6 +134,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ad4666caa2142774f7ed3e6bf584a0678"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#ad4666caa2142774f7ed3e6bf584a0678">addSeg</a> (<a class="el" href="struct_graph.html">Graph</a> *g, int i, int j, int <a class="el" href="list_8h.html#a197c5830bca771040d8a8aa6fde159dc">val</a>, int diff)</td></tr>
 <tr class="memitem:a3c612c92ccce6d6ad58c93100d229936"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#a3c612c92ccce6d6ad58c93100d229936">addSegToFlow</a> (<a class="el" href="struct_graph.html">Graph</a> *g, int i, int j, int <a class="el" href="list_8h.html#a197c5830bca771040d8a8aa6fde159dc">val</a>)</td></tr>
 <tr class="memitem:aeed667e662025d1bed2c579a1540631d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#aeed667e662025d1bed2c579a1540631d">addSegToDiff</a> (<a class="el" href="struct_graph.html">Graph</a> *g, int i, int j, int <a class="el" href="list_8h.html#a197c5830bca771040d8a8aa6fde159dc">val</a>)</td></tr>
+<tr class="memitem:a32bbb861bfaecdb21cd96be061b2e9f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#a32bbb861bfaecdb21cd96be061b2e9f4">addSegToRes</a> (<a class="el" href="struct_graph.html">Graph</a> *g, int i, int j, int <a class="el" href="list_8h.html#a197c5830bca771040d8a8aa6fde159dc">val</a>)</td></tr>
 <tr class="memitem:a29eb69125ee65d4096ec60d209e1c290"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#a29eb69125ee65d4096ec60d209e1c290">addPath</a> (<a class="el" href="struct_graph.html">Graph</a> *g, <a class="el" href="struct_list.html">List</a> *path, int diff)</td></tr>
 <tr class="memitem:ae0234ec995e6fb8684dc5169be34ffd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#ae0234ec995e6fb8684dc5169be34ffd6">addPathToFlow</a> (<a class="el" href="struct_graph.html">Graph</a> *flow, <a class="el" href="struct_list.html">List</a> *path)</td></tr>
 <tr class="memdesc:ae0234ec995e6fb8684dc5169be34ffd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a path in a flow graph.  <a href="#ae0234ec995e6fb8684dc5169be34ffd6"></a><br/></td></tr>
@@ -141,12 +142,12 @@ Functions</h2></td></tr>
 <tr class="memdesc:ab0307bf70d5822c06a43ae4926112291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a path to a difference graph.  <a href="#ab0307bf70d5822c06a43ae4926112291"></a><br/></td></tr>
 <tr class="memitem:ab489b06c87846ce09210cd438c08ab09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#ab489b06c87846ce09210cd438c08ab09">algoEdmondKarp</a> (<a class="el" href="struct_graph.html">Graph</a> *capa, <a class="el" href="struct_graph.html">Graph</a> *diff, <a class="el" href="struct_graph.html">Graph</a> *flow, int s, int p)</td></tr>
 <tr class="memdesc:ab489b06c87846ce09210cd438c08ab09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the Edmonds-Karps alogrithm.  <a href="#ab489b06c87846ce09210cd438c08ab09"></a><br/></td></tr>
-<tr class="memitem:ac112bd6c4339a6134b91d43f7ca254a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#ac112bd6c4339a6134b91d43f7ca254a5">compLabel</a> (<a class="el" href="struct_graph.html">Graph</a> *g, int p)</td></tr>
-<tr class="memdesc:ac112bd6c4339a6134b91d43f7ca254a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the distance of each node to the sink.  <a href="#ac112bd6c4339a6134b91d43f7ca254a5"></a><br/></td></tr>
+<tr class="memitem:a2f582ce71a03903a700956b63e50b72a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#a2f582ce71a03903a700956b63e50b72a">compLabel</a> (<a class="el" href="struct_graph.html">Graph</a> *g, <a class="el" href="struct_graph.html">Graph</a> *diff, int p, int s)</td></tr>
+<tr class="memdesc:a2f582ce71a03903a700956b63e50b72a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the distance of each node to the sink.  <a href="#a2f582ce71a03903a700956b63e50b72a"></a><br/></td></tr>
 <tr class="memitem:ac57052c962a0d3a4e4b872e8245cb71b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#ac57052c962a0d3a4e4b872e8245cb71b">push</a> (<a class="el" href="struct_graph.html">Graph</a> *flow, <a class="el" href="struct_graph.html">Graph</a> *diff, int i, int j, int s, int p)</td></tr>
 <tr class="memdesc:ac57052c962a0d3a4e4b872e8245cb71b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push preflow on the edge (i,j)  <a href="#ac57052c962a0d3a4e4b872e8245cb71b"></a><br/></td></tr>
-<tr class="memitem:a4da153ca131825c58c8ed8cec06add0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#a4da153ca131825c58c8ed8cec06add0e">relabel</a> (<a class="el" href="struct_graph.html">Graph</a> *diff, int k)</td></tr>
-<tr class="memdesc:a4da153ca131825c58c8ed8cec06add0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relabel an active node.  <a href="#a4da153ca131825c58c8ed8cec06add0e"></a><br/></td></tr>
+<tr class="memitem:ac69be4f0c5523b14b5f171352c8092ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#ac69be4f0c5523b14b5f171352c8092ba">relabel</a> (<a class="el" href="struct_graph.html">Graph</a> *capa, <a class="el" href="struct_graph.html">Graph</a> *flow, <a class="el" href="struct_graph.html">Graph</a> *diff, int k, int p)</td></tr>
+<tr class="memdesc:ac69be4f0c5523b14b5f171352c8092ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relabel an active node.  <a href="#ac69be4f0c5523b14b5f171352c8092ba"></a><br/></td></tr>
 <tr class="memitem:aad346e1d9d35e607e37d594f3d2068ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#aad346e1d9d35e607e37d594f3d2068ab">algoFIFO</a> (<a class="el" href="struct_graph.html">Graph</a> *capa, <a class="el" href="struct_graph.html">Graph</a> *diff, <a class="el" href="struct_graph.html">Graph</a> *flow, int s, int p)</td></tr>
 <tr class="memdesc:aad346e1d9d35e607e37d594f3d2068ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the FIFO variant of preflow-push algorithm.  <a href="#aad346e1d9d35e607e37d594f3d2068ab"></a><br/></td></tr>
 <tr class="memitem:a939bfbfe2cd309b7e7188d6691d3e89a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8c.html#a939bfbfe2cd309b7e7188d6691d3e89a">algoLabel</a> (<a class="el" href="struct_graph.html">Graph</a> *capa, <a class="el" href="struct_graph.html">Graph</a> *diff, <a class="el" href="struct_graph.html">Graph</a> *flow, int s, int p)</td></tr>
@@ -417,6 +418,45 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a32bbb861bfaecdb21cd96be061b2e9f4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="algo_8c.html#a32bbb861bfaecdb21cd96be061b2e9f4">addSegToRes</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a200dc30985cc5f2b50cc30d116890361"></a>
 <div class="memitem">
 <div class="memproto">
@@ -640,12 +680,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac112bd6c4339a6134b91d43f7ca254a5"></a>
+<a class="anchor" id="a2f582ce71a03903a700956b63e50b72a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="algo_8h.html#ac112bd6c4339a6134b91d43f7ca254a5">compLabel</a> </td>
+          <td class="memname">void <a class="el" href="algo_8h.html#a2f582ce71a03903a700956b63e50b72a">compLabel</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
           <td class="paramname"><em>g</em>, </td>
@@ -653,8 +693,20 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>diff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>p</em>&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -822,15 +874,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4da153ca131825c58c8ed8cec06add0e"></a>
+<a class="anchor" id="ac69be4f0c5523b14b5f171352c8092ba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="algo_8h.html#af2b7ac67037138f438a6566283d46d91">relabel</a> </td>
+          <td class="memname">void <a class="el" href="algo_8h.html#ac69be4f0c5523b14b5f171352c8092ba">relabel</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>capa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>flow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
           <td class="paramname"><em>diff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -978,7 +1048,7 @@ Functions</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="algo_8c.html">algo.c</a>      </li>
 
-    <li class="footer">Generated on Tue Apr 24 2012 16:14:10 for Graph Library by
+    <li class="footer">Generated on Tue Apr 24 2012 16:23:27 for Graph Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.0 </li>
    </ul>
