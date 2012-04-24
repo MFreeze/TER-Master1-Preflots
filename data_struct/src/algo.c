@@ -395,10 +395,10 @@ void compLabel (Graph *g, Graph *diff, int p, int s) {
 		}
 	}
 
-	for (i=0; i<nbVert(diff); i++)
-		printf ("%d(%d) - ", i, lab(diff,i));
+/* for (i=0; i<nbVert(diff); i++)
+		printf ("%d(%d) - ", i, lab(diff,i)); */
 
-	printf ("\n");
+	//printf ("\n");
 
 	free (visited);
 }
@@ -430,7 +430,7 @@ void relabel (Graph *capa, Graph *flow, Graph *diff, int k, int p) {
 	//	List *out = diff->_lg->_outNeighb[k];
 	List *out = allocList();
 
-	printf ("Je relabel\n");
+	//printf ("Je relabel\n");
 
 	int n_label = 0;
 	Item *itc = begin(outcapa);
@@ -469,19 +469,19 @@ void relabel (Graph *capa, Graph *flow, Graph *diff, int k, int p) {
 			itc = next(itc);
 		}
 
-	printf("Fin de construction de file.\n");
-	printList(stdout, out);
+	//printf("Fin de construction de file.\n");
+	//printList(stdout, out);
 
 	Item *it = begin (out);
 
-	printf ("%d(%d) - ", k, lab(diff, k));
+	//printf ("%d(%d) - ", k, lab(diff, k));
 
-	while (it) {
+/*  while (it) {
 		printf ("%d(%d) - ", num(it), lab(diff,num(it)));
 		it = next(it);
-	}
+	}*/
 
-	printf ("\n");
+	//printf ("\n");
 
 	it = begin(out);
 
@@ -518,24 +518,74 @@ void relabel (Graph *capa, Graph *flow, Graph *diff, int k, int p) {
 					setEdge (diff, k, num(it), val(it));
 				else
 					setEdge (diff, k, num(it), 0);
-			}
+				}
 			it = next (it);
 		}
-	}
-	else {
-		printf("C'est le bordel.\n");
-		printf("Noeud %d(%d) n'a pas de majorant.\n", k, lab(diff,k));
-		int z = 0;
-		it = begin(out);
+		List *in = allocList();
+		List *cin = capa->_lg->_inNeighb[k];
+		List *fout = flow->_lg->_outNeighb[k];
+
+		Item *ci = begin(cin);
+		Item *fo = begin(fout);
+
+		while (ci && fo) {
+			if (num(ci) < num(fo)) {
+				if (num(ci) != k)
+					pushTail (in, num(ci), val(ci));
+				ci = next(ci);
+			}
+			else if (num(fo) < num(ci)) {
+				if (num(fo) != k)
+					pushTail (in, num(fo), val(fo));
+				fo = next(fo);
+			}
+			else {
+				if (num(fo) != k)
+					pushTail (in, num(fo), val(fo) + val(ci));
+				fo = next(fo);
+				ci = next(ci);
+			}
+		}
+
+		while (fo) {
+			if (num(fo) != k)
+				pushTail (in, num(fo), val(fo));
+			fo = next(fo);
+		}
+
+		while (ci) {
+			if (num(ci) != k)
+				pushTail(in, num(ci), val(ci));
+			ci = next(ci);
+		}
+
+		it = begin(in);
 		while (it) {
-			printf ("%d(%d) - ", num(it), lab(diff,num(it)));
+			if (num(it) != p) {
+				if (lab(diff, num(it)) == lab(diff, k) + 1)
+					setEdge(diff, num(it), k, val(it));
+				else
+					setEdge(diff, num(it), k, 0);
+			}
 			it = next(it);
 		}
 
-		printf ("\n");
+		freeList(in);
+	}
+	else {
+		//printf("C'est le bordel.\n");
+		//printf("Noeud %d(%d) n'a pas de majorant.\n", k, lab(diff,k));
+		int z = 0;
+		it = begin(out);
+/*		while (it) {
+			printf ("%d(%d) - ", num(it), lab(diff,num(it)));
+			it = next(it);
+		}*/
+
+		//printf ("\n");
 	}
 
-	printf("Nouvelle hauteur : %d \n", n_label);
+	//printf("Nouvelle hauteur : %d \n", n_label);
 
 	freeList(out);
 }
@@ -548,17 +598,17 @@ int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 	// Initialization
 	compLabel (capa, diff, p, s);
 
-	for (i=0; i<nbVert(diff); i++)
-		printf ("%d(%d) - ", i, lab(diff,i));
+//	for (i=0; i<nbVert(diff); i++)
+	//	printf ("%d(%d) - ", i, lab(diff,i));
 
-	printf ("\n");
+	//printf ("\n");
 
-	printf("Capacité : \n");
-	printGraph(stdout, capa, 0, &pref);
-	printf("Diff : \n");
-	printGraph(stdout, diff, 0, &pref);
-	printf("Flow : \n");
-	printGraph(stdout, flow, 0, &pref);
+	//printf("Capacité : \n");
+	//printGraph(stdout, capa, 0, &pref);
+	//printf("Diff : \n");
+	//printGraph(stdout, diff, 0, &pref);
+	//printf("Flow : \n");
+	//printGraph(stdout, flow, 0, &pref);
 
 	if (lab(diff,s) == -1)
 		return 0;
@@ -580,14 +630,14 @@ int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 		if (delta) {
 			if (j != p)
 				pushTail(excess_node, j, 0);
-			printf ("Je pousse de %d à %d avec %d.\n", s, j, delta);
+			//printf ("Je pousse de %d à %d avec %d.\n", s, j, delta);
 
-			printf("Capacité : \n");
-			printGraph(stdout, capa, 0, &pref);
-			printf("Diff : \n");
-			printGraph(stdout, diff, 0, &pref);
-			printf("Flow : \n");
-			printGraph(stdout, flow, 0, &pref);
+			//printf("Capacité : \n");
+			//printGraph(stdout, capa, 0, &pref);
+			//printf("Diff : \n");
+			//printGraph(stdout, diff, 0, &pref);
+			//printf("Flow : \n");
+			//printGraph(stdout, flow, 0, &pref);
 
 			exc(diff,j)+=delta;
 		}
@@ -621,14 +671,14 @@ int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 					pushTail (excess_node, j, 0);
 				exc(diff, j) += delta;
 				exc(diff, k) -= delta;
-				printf ("Je pousse de %d à %d avec %d.\n", k, j, delta);
+				//printf ("Je pousse de %d à %d avec %d.\n", k, j, delta);
 
-				printf("Capacité : \n");
-				printGraph(stdout, capa, 0, &pref);
-				printf("Diff : \n");
-				printGraph(stdout, diff, 0, &pref);
-				printf("Flow : \n");
-				printGraph(stdout, flow, 0, &pref);
+				//printf("Capacité : \n");
+				//printGraph(stdout, capa, 0, &pref);
+				//printf("Diff : \n");
+				//printGraph(stdout, diff, 0, &pref);
+				//printf("Flow : \n");
+				//printGraph(stdout, flow, 0, &pref);
 
 				/*if (num(it) == s)
 					it = next(it);
@@ -640,7 +690,7 @@ int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 			it = next(it);
 		}
 		if (exc(diff,k) && k!=s && k!=p) {
-			printf ("Relabel %d(%d).\n", k, lab(diff,k));
+			//printf ("Relabel %d(%d).\n", k, lab(diff,k));
 			relabel (capa, flow, diff, k, p);
 			//printf ("Noeud %d, Excedent %d, Hauteur : %d\n", k, exc(diff,k), lab(diff,k));
 			pushTail(excess_node, k, 0);
@@ -660,12 +710,12 @@ int algoLabel (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 	// Initialization
 	compLabel (capa, diff, p, s);
 
-	printf ("\n\n Capacité : \n\n");
-	printGraph (stdout, capa, 0, &pref);
-	printf ("\n\n Diff : \n\n");
-	printGraph (stdout, diff, 0, &pref);
-	printf ("\n\n Flow : \n\n");
-	printGraph (stdout, flow, 0, &pref);
+	//printf ("\n\n Capacité : \n\n");
+	//printGraph (stdout, capa, 0, &pref);
+	//printf ("\n\n Diff : \n\n");
+	//printGraph (stdout, diff, 0, &pref);
+	//printf ("\n\n Flow : \n\n");
+	//printGraph (stdout, flow, 0, &pref);
 
 	if (lab(diff,s) == -1)
 		return 0;
@@ -684,10 +734,10 @@ int algoLabel (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 		}
 		int delta = push (flow, diff, s, j, s, p);
 		if (delta) {
-			printf ("Je pousse de %d vers %d avec un flow de %d.\n", s, j, delta);
-			printGraph (stdout, capa, 0, &pref);
-			printGraph (stdout, diff, 0, &pref);
-			printGraph (stdout, flow, 0, &pref);
+			//printf ("Je pousse de %d vers %d avec un flow de %d.\n", s, j, delta);
+			//printGraph (stdout, capa, 0, &pref);
+			//printGraph (stdout, diff, 0, &pref);
+			//printGraph (stdout, flow, 0, &pref);
 			if (j != p)
 				h_insertNode (excess_node, j);
 			exc(diff,j)+=delta;
@@ -714,10 +764,10 @@ int algoLabel (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 			}
 			int delta = push (flow, diff, k, j, s, p);
 			if (delta) {
-				printf ("Je pousse de %d vers %d avec un flow de %d.\n", s, j, delta);
-				printGraph (stdout, capa, 0, &pref);
-				printGraph (stdout, diff, 0, &pref);
-				printGraph (stdout, flow, 0, &pref);
+				//printf ("Je pousse de %d vers %d avec un flow de %d.\n", s, j, delta);
+				//printGraph (stdout, capa, 0, &pref);
+				//printGraph (stdout, diff, 0, &pref);
+				//printGraph (stdout, flow, 0, &pref);
 				if (j != p && j != s && !exc(diff,j))
 					h_insertNode (excess_node, j);
 				exc(diff, j) += delta;
@@ -728,10 +778,10 @@ int algoLabel (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 		if (exc(diff,k)) {
 			if (k!=s && k!=p) {
 				relabel (capa, flow, diff, k, p);
-				printf ("Je relabel %d.\n", k);
-				printGraph (stdout, capa, 0, &pref);
-				printGraph (stdout, diff, 0, &pref);
-				printGraph (stdout, flow, 0, &pref);
+				//printf ("Je relabel %d.\n", k);
+				//printGraph (stdout, capa, 0, &pref);
+				//printGraph (stdout, diff, 0, &pref);
+				//printGraph (stdout, flow, 0, &pref);
 				//printf ("Noeud %d, Excedent %d, Hauteur : %d\n", k, exc(diff,k), lab(diff,k));
 				h_insertNode (excess_node, k);
 			}

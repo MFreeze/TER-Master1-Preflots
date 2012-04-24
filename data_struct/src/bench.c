@@ -24,6 +24,8 @@ stat_t elapsedTime (int n, int m, int c, int nb_iter) {
     Graph * lfFIFO = allocGraph(lcFIFO);
     Graph * ldFIFO = allocGraph(lcFIFO);
 
+//		printf("\n\n FIFO :\n\n");
+
 //		printf ("Entrée FIFO\n");
 		g_timer_start(timer);
     h=algoFIFO (lcFIFO,ldFIFO,lfFIFO,0,1);
@@ -42,6 +44,7 @@ stat_t elapsedTime (int n, int m, int c, int nb_iter) {
 
 //			printf ("Entrée High Label\n");
 			g_timer_start(timer);
+//		printf("\n\n Label :\n\n");
 			g=algoLabel (lcLab,ldLab,lfLab,0,1);
 			g_timer_stop(timer);
 			result._st2 += (double) g_timer_elapsed(timer, NULL);
@@ -51,6 +54,7 @@ stat_t elapsedTime (int n, int m, int c, int nb_iter) {
 			freeGraph(lfLab); freeGraph(ldLab);
 
 
+//		printf("\n\n Dinic :\n\n");
 			// Dinic Algorithm
 			Graph * lfDinic = allocGraph(lcLab);
 
@@ -62,24 +66,26 @@ stat_t elapsedTime (int n, int m, int c, int nb_iter) {
 			g_timer_reset(timer);
 //			printf("Sortie Dinic\n");
 
-			freeGraph (lfDinic);
+//			freeGraph (lfDinic);
 
 //			printf ("%d %d %d \n", f, g, h);
 			if (f!=g || g!=h)
 				result._st4 ++;
 		}
 		else {
-			printf ("Flot nul.\n");
+//			printf ("Flot nul.\n");
 			g_timer_reset(timer);
 			i --;
 		}
 
 		if (f!=h || g!=h)
-			printf ("Erreur\n");
+//			printf ("Erreur\n");
     
 		freeGraph (lcFIFO); 
 		freeGraph (lcLab);
 		freeGraph (lcDinic);
+
+//		printf("\n\n FIN\n\n");
 	}
 
 	result._st1 /= nb_iter;
