@@ -1,0 +1,149 @@
+
+\begin{frame}{Sur le graphe de départ}
+	Reprenons notre entreprise $\dots$\vfill
+	\begin{center}
+		\includegraphics[scale=0.32]{img/exemple.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Sur le graphe de départ}
+	$\dots$ et associons lui un graphe.\vfill
+	\begin{center}
+		\begin{tikzpicture}
+			\tikzset{noeud/.style={circle, draw=black, inner sep=0.1cm, minimum width=0.6cm}, fleche/.style={>=latex, ->}};
+
+				\node[noeud] (s) at (0,0) {s};
+				\node[noeud] (a) at (2, 2) {a};
+				\node[noeud] (b) at (2, -2) {b};
+				\node[noeud] (d) at (4.5, -2) {d};
+				\node[noeud] (c) at (4.5, 2) {c};
+				\node[noeud] (t) at (6.5,0) {t};
+
+				\draw[fleche] (s) to node[above  left] {$5$} (a);
+				\draw[fleche] (s) to node[below  left] {$1$} (b);
+				\draw[fleche] (a) to node[       left] {$1$} (b);
+				\draw[fleche] (a) to node[above      ] {$3$} (c);
+				\draw[fleche] (b) to node[below      ] {$1$} (d);
+				\draw[fleche] (c) to node[above  left] {$1$} (b);
+				\draw[fleche] (c) to node[above right] {$4$} (t);
+				\draw[fleche] (d) to node[      right] {$2$} (c);
+				\draw[fleche] (d) to node[below right] {$1$} (t);
+
+		\end{tikzpicture}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Initialisation}
+	\begin{minipage}[c]{0.6\linewidth}
+		\begin{tikzpicture}[scale=0.55]
+			\tikzset{noeud/.style={circle, draw=black, inner sep=0.1cm, minimum width=0.6cm}, fleche/.style={>=latex, ->}};
+
+			\input{noeuds.tex}
+
+			\draw[fleche] (s1) to node[above right] {$0/5$} (a1);
+			\draw[fleche] (s1) to node[above  left] {$0/1$} (b1);
+			\draw[fleche] (a1) to node[above      ] {$0/1$} (b1);
+			\draw[fleche] (a1) to node[      right] {$0/3$} (c1);
+			\draw[fleche] (b1) to node[       left] {$0/1$} (d1);
+			\draw[fleche] (c1) to node[above right] {$0/1$} (b1);
+			\draw[fleche] (c1) to node[below right] {$0/2$} (t1);
+			\draw[fleche] (d1) to node[below      ] {$0/2$} (c1);
+			\draw[fleche] (d1) to node[below  left] {$0/1$} (t1);
+
+			\draw[fleche] (s2) to node[above right] {$2$} (a2);
+			\draw[fleche] (s2) to node[above  left] {$1$} (b2);
+			\draw[fleche] (a2) to node[      right] {$3$} (c2);
+			\draw[fleche] (b2) to node[       left] {$1$} (d2);
+			\draw[fleche] (c2) to node[below right] {$4$} (t2);
+			\draw[fleche] (d2) to node[below  left] {$1$} (t2);
+
+		\end{tikzpicture}
+	\end{minipage}\hfill
+	\begin{minipage}[c]{0.3\linewidth}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			$i$ & $e(i)$ & $d(i)$ \\ \hline
+			s & $\infty$ & 6* \\ \hline
+			a &  0 & 2 \\ \hline
+			b &  0 & 2 \\ \hline
+			c &  0 & 1 \\ \hline
+			d &  0 & 1 \\ \hline
+			t &  0 & 0 \\ \hline
+		\end{tabular}
+	\end{minipage}
+\end{frame}
+
+\begin{frame}{Phase 1}
+	\begin{minipage}[c]{0.6\linewidth}
+		\begin{tikzpicture}[scale=0.55]
+			\tikzset{noeud/.style={circle, draw=black, inner sep=0.1cm, minimum width=0.6cm}, fleche/.style={>=latex, ->}};
+
+			\input{noeuds.tex}
+
+			\draw[fleche, red] (s1) to node[above right, red] {$5/5$} (a1);
+			\draw[fleche, red] (s1) to node[above  left, red] {$1/1$} (b1);
+			\draw[fleche] (a1) to node[above      ] {$0/1$} (b1);
+			\draw[fleche] (a1) to node[      right] {$0/3$} (c1);
+			\draw[fleche] (b1) to node[       left] {$0/1$} (d1);
+			\draw[fleche] (c1) to node[above right] {$0/1$} (b1);
+			\draw[fleche] (c1) to node[below right] {$0/2$} (t1);
+			\draw[fleche] (d1) to node[below      ] {$0/2$} (c1);
+			\draw[fleche] (d1) to node[below  left] {$0/1$} (t1);
+
+			\draw[fleche] (a2) to node[      right] {$3$} (c2);
+			\draw[fleche] (b2) to node[       left] {$1$} (d2);
+			\draw[fleche] (c2) to node[below right] {$4$} (t2);
+			\draw[fleche] (d2) to node[below  left] {$1$} (t2);
+
+		\end{tikzpicture}
+	\end{minipage}\hfill
+	\begin{minipage}[c]{0.3\linewidth}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			$i$ & $e(i)$ & $d(i)$ \\ \hline
+			s & $\infty$ & 6* \\ \hline
+			a &  \textcolor{green}{5} & 2 \\ \hline
+			b &  \textcolor{green}{1} & 2 \\ \hline
+			c &  0 & 1 \\ \hline
+			d &  0 & 1 \\ \hline
+			t &  0 & 0 \\ \hline
+		\end{tabular}
+	\end{minipage}
+\end{frame}
+
+\begin{frame}{Phase 1}
+	\begin{minipage}[c]{0.6\linewidth}
+		\begin{tikzpicture}[scale=0.55]
+			\tikzset{noeud/.style={circle, draw=black, inner sep=0.1cm, minimum width=0.6cm}, fleche/.style={>=latex, ->}};
+
+			\input{noeuds.tex}
+
+			\draw[fleche, red] (s1) to node[above right, red] {$5/5$} (a1);
+			\draw[fleche, red] (s1) to node[above  left, red] {$1/1$} (b1);
+			\draw[fleche] (a1) to node[above      ] {$0/1$} (b1);
+			\draw[fleche, red] (a1) to node[      right, red] {$3/3$} (c1);
+			\draw[fleche, red] (b1) to node[       left, red] {$1/1$} (d1);
+			\draw[fleche] (c1) to node[above right] {$0/1$} (b1);
+			\draw[fleche] (c1) to node[below right] {$0/2$} (t1);
+			\draw[fleche] (d1) to node[below      ] {$0/2$} (c1);
+			\draw[fleche] (d1) to node[below  left] {$0/1$} (t1);
+
+			\draw[fleche] (c2) to node[below right] {$4$} (t2);
+			\draw[fleche] (d2) to node[below  left] {$1$} (t2);
+
+		\end{tikzpicture}
+	\end{minipage}\hfill
+	\begin{minipage}[c]{0.3\linewidth}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			$i$ & $e(i)$ & $d(i)$ \\ \hline
+			s & $\infty$ & 6* \\ \hline
+			a &  \textcolor{orange}{2} & 2 \\ \hline
+			b &  \textcolor{orange}{0} & 2 \\ \hline
+			c &  \textcolor{green}{3} & 1 \\ \hline
+			d &  \textcolor{green}{1} & 1 \\ \hline
+			t &  0 & 0 \\ \hline
+		\end{tabular}
+	\end{minipage}
+\end{frame}
+

@@ -1,0 +1,59 @@
+
+\begin{frame}{Initialisation}
+	Consiste à calculer les distances de chacun des noeuds de façon à obtenir une fonction de distance
+	valide.\vfill
+\end{frame}
+
+\begin{frame}{Initialisation}
+	Consiste à calculer les distances de chacun des noeuds de façon à obtenir une fonction de distance
+	valide.\vfill
+	Procédure d'initialisation : 
+	\begin{algorithmic}[1]
+			\FOR{$i\ \in\ S$}
+				\STATE Calculer la distance $d(i)$ en nombre d'arêtes de $i$ à $t$  
+			\ENDFOR
+			\FOR{$a$ $\in$ $A(s)$}
+				\STATE $x(a)\ \leftarrow$ $c(a)$  
+			\ENDFOR
+			\STATE $d(s)\ \leftarrow |S|$ 
+	\end{algorithmic}
+\end{frame}
+
+\begin{frame}{Examen des noeuds}
+	Consiste à sélectionner un noeud actif et à effectuer un poussage si possible, ou un ré-étiquetage
+	sinon. \vfill
+\end{frame}
+
+\begin{frame}{Examen des noeuds}
+	Consiste à sélectionner un noeud actif et à effectuer un poussage si possible, ou un ré-étiquetage
+	sinon. \vfill
+
+	Procédure Pousser-Réétiqueter :
+	\begin{algorithmic}[1]
+		\IF {$e(i) > 0$}
+		\IF {$\exists j$ tel que $c(i,j) > 0$ \AND $d(i) = d(j) + 1$}
+				\STATE $\delta \leftarrow \min(e(i), c(i,j))$
+				\STATE $f(i,j) \leftarrow f(i,j) + \delta$
+				\STATE $e(i) \leftarrow e(i) - \delta$
+				\STATE $e(j) \leftarrow e(j) + \delta$
+			\ELSE
+				\STATE $d(i) \leftarrow 1 + \min\{ d(j) / (i,j) \in A_f\}$
+			\ENDIF
+		\ENDIF
+	\end{algorithmic}\vfill
+\end{frame}
+
+\begin{frame}{La procédure principale}
+	Consiste à initialiser le problème, et parcourir les noeuds pour l'application du poussage et
+	ré-étiquetage.\vfill
+
+	Algorithme Générique :
+	\begin{algorithmic}[1]
+			\STATE Initialisation() \\
+			\WHILE{Il existe un noeud actif $i$}
+				\STATE Pousser-Réétiqueter(i) 
+			\ENDWHILE
+	\end{algorithmic}\vfill
+\end{frame}
+
+
