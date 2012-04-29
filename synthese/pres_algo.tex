@@ -9,7 +9,7 @@ Les calculs de complexité seront développés dans la partie suivante.
 
 \subsection{Principe}
 
-L'algorithme générique repose sur les principes suivant :
+L'algorithme générique repose sur les principes suivants :
 \begin{enumerate}
 	\item une action locale
 	\item l'utilisation de la relaxation de contrainte des préflots
@@ -19,26 +19,27 @@ L'algorithme générique repose sur les principes suivant :
 D'une façon imagée, assimilons le graphe à un réseau de tuyaux de capacité donnée, les sommets à des
 réservoirs pouvant accumuler une quantité infinie de préflot et étant caractérisés par leur distance au
 puits. Le but de la manoeuvre étant d'acheminer une quantité maximale de flot de la source vers le
-puits à l'aide du réseau fourni. Pour des raisons de commodité, la distance du noeud source est fixée
-au nombre de sommets dans le réseau.
+puits à l'aide du réseau fourni. Pour des raisons de commodité, la distance du n\oe ud source est fixée
+au nombre de sommets dans le réseau. 
 
 Intuitivement, il est facile de comprendre que, pour que le préflot aille de la source vers le puits,
 celui ci doit transiter d'un réservoir $a$ vers un réservoir $b$ satisfaisant la condition suivante:
-\emph{La distance de $a$ au puits doit être supérieure à la distance de $b$.} En imaginant que l'on
+\emph{La distance de $a$ au puits doit être supérieure à la distance de $b$.} Ceci indique que le
+n\oe ud cherchant à pousser est plus loin de $t$ que le n\oe ud cible.  En imaginant que l'on
 fasse le contraire, le préflot resterait cantonné à sa source sans même entrer dans le réseau défini
-par le graphe. L'action de faire transiter le préflot d'un noeud $a$ à un noeud $b$ est appelée
+par le graphe. L'action de faire transiter le préflot d'un n\oe ud $a$ à un n\oe ud $b$ est appelée
 opération de \emph{poussage}.
 
-Au moment ou un noeud $a$ reçoit une quantité de préflot de l'un de ses voisins $b$ ayant réalisé une
+Au moment ou un n\oe ud $a$ reçoit une quantité de préflot de l'un de ses voisins $b$ ayant réalisé une
 opération de poussage, la quantité de préflot envoyée de $b$ vers $a$ est alors directement stockée
 dans $a$, s'ajoutant ainsi à la quantité de flot déjà stockée. Cette dernière sera appelée
-\emph{excédent du sommet $a$} et notée $e$. À un moment donné, si, pour un noeud quelconque $a$,
+\emph{excédent du sommet $a$} et notée $e$. À un moment donné, si, pour un n\oe ud quelconque $a$,
 $e(a) > 0$, alors $a$ sera dit excédentaire.
 
 Seulement, l'opération de poussage à elle seule ne permets pas d'obtenir un flot satisfaisant.
-Ceci est illustré par l'exemple de la figure \ref{ex_pouss} : après la phase 2, le noeud $1$ est
-encore excédentaire mais il lui est impossible d'effectuer une opération de poussage puisque l'arête
-le reliant à $t$ est saturée et $s$ et $2$ ont une distance au noeud puits supérieure ou égale à
+Ceci est illustré par l'exemple de la figure \ref{ex_pouss} : après la phase 2, le n\oe ud $1$ est
+encore débordant mais il lui est impossible d'effectuer une opération de poussage puisque l'arête
+le reliant à $t$ est saturée et $s$ et $2$ ont une distance au n\oe ud puits supérieure ou égale à
 celle de $1$. Il faut donc introduire une opération supplémentaire, appelée ré-étiquetage.
 
 \begin{figure}
@@ -48,10 +49,10 @@ celle de $1$. Il faut donc introduire une opération supplémentaire, appelée r
 			fleche/.style={->,>=latex,thick}};
 
 
-			\foreach \y/\f/\fl/\flo/\flot/\e/\ex/\text in {0/0/0/0/0/0/0/Initialisation,
-				5/10/0/0/0/10/0/Phase 1, 10/10/0/0/9/1/0/Phase 2}{
+			\foreach \y/\f/\fl/\flo/\flot/\e/\ex/\text/\excd in {0/0/0/0/0/0/0/Initialisation/0,
+				5/10/0/0/0/10/0/Phase 1/0, 10/10/0/0/9/1/0/Phase 2/9}{
 					\node at (0, -1 * \y + 1) {\underline{\text}};
-			\foreach \name/\x/\exc\dist in {s/0/0/4, 1/3/\e/1, 2/6/\ex/1, t/9/0/0}{
+			\foreach \name/\x/\exc\dist in {s/0/0/4, 1/3/\e/1, 2/6/\ex/1, t/9/\excd/0}{
 				\node[noeud] (\y-\name) at (\x, -1 * \y) {$\name$};
 				\node (\y-e-\name) at (\x, -1 - \y ) {$e=\exc$};
 				\node (\y-d-\name) [below of=\y-e-\name] {$d=\dist$};
@@ -69,28 +70,27 @@ celle de $1$. Il faut donc introduire une opération supplémentaire, appelée r
 	\label{ex_pouss}
 \end{figure}
 
-Le ré-étiquetage consiste à réévaluer la distance du noeud excédentaire au noeud puits de façon à ce
-qu'il soit possible, après cette opération, d'effectuer une opération de poussage depuis ce noeud.
-Soit un noeud excédentaire $i$ de distance $d_i$ et son $v_i$ son voisinage de sorte que $\forall v
+Le ré-étiquetage consiste à réévaluer la distance du n\oe ud débordant au n\oe ud puits de façon à ce
+qu'il soit possible, après cette opération, d'effectuer une opération de poussage depuis ce n\oe ud.
+Soit un n\oe ud excédentaire $i$ de distance $d_i$ et son $v_i$ son voisinage de sorte que $\forall v
 \in v_i$, on a : $d_v \geq d_i$. La distance de $i$ doit être réévaluée afin de pouvoir évacuer
 l'excédent de flot, il faut donc augmenter $d_i$ jusqu'à ce qu'un poussage puisse être réalisé ce
 qui revient à fixer $d_i = 1 + \min(d_v), \quad v \in v_i$. 
 
-L'algorithme générique se résume à l'application de poussages et de ré-étiquetages sur les sommets
-actifs du graphe. La validité de cet algorithme sera démontrée dans la section suivante, les détails
-de l'algorithme de poussage-réétiquetage, d'initialisation de l'algorothme générique et l'algorithme
-en lui-même sont décrits aux algorithmes \ref{proc_pousreet}, \ref{proc_init} et
-\ref{algo_generic}.
+L'algorithme générique se résume en deux étapes qui sont la procédure d'initialisation qui permet de
+fournir une fonction de distance valide et de créer les premiers n\oe uds actifs en saturant les
+arcs sortant de $s$ et une boucle agissant sur les n\oe uds débordants par poussage ou réétiquetage.
+
+\input{gen.tex}
+\input{initialisation.tex}
 
 La procédure Pousser-Réétiqueter appelle à quelques explications. La variable $p$ est un booléen
 permettant de déterminer si l'algorithme a effectué une opération de poussage, si ce n'est pas la
 cas, la procédure effectue un réétiquetage. La variable $f$ quant à elle permet de déterminer s'il
 s'agit là de la première itération, afin de pouvoir initialiser correctement $m$ (qui est utilisé
-pour rechercher le plus petit des voisins du noeud effectuant l'algorithme).
+pour rechercher le plus petit des voisins du n\oe ud effectuant l'algorithme).
 
-\textbf{\underline{Remarque :}} \\
-On considère qu'une arête $(i,j)$ est admissible\footnote{On utilise aussi le terme acceptable}, si 
-et seulement si : $r(i,j) > 0$ et $d(i) = d(j) + 1$.
+\input{pousser.tex}
 
 \subsection{Validité}
 
@@ -162,6 +162,12 @@ $S$-\{$s$,$t$\} doit avoir un excédent vaut 0, en effet d'après le lemme3.2.1 
 
 \section{Les algorithmes dérivés}
 
+Nous présenterons dans cette section, les différents algorithmes reposant sur l'algorithme générique
+présenté précédemment. Pour la totalité d'entre eux, il s'agit de chercher à réaliser un choix
+judicieux pour l'examen des n\oe uds débordants.
+
 \subsection{L'algorithme FIFO}
+
+
 
 \subsection{L'algorithme High label}

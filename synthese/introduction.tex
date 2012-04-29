@@ -1,16 +1,16 @@
 % Contexte général - historique
 
-Le sujet de TER porte sur la recherche d'un flot maximum au sein d'un graphe quelconque par
-l'utilisation d'algorithmes reposant sur la notion de \emph{préflot}, qui est une structure de
-données obtenue par relaxation des contraintes de la structure de flot. \\
+Le sujet de TER porte sur la recherche d'un flot maximum dans un graphe quelconque par
+l'utilisation d'algorithmes reposant sur la notion de \emph{préflot}, qui est une fonction obtenue
+par relaxation des contraintes de la structure de flot. \\
 
 \section{Un peu d'histoire}
 
-Le problème de flots maximum, consistant à déterminer la quantité maximum de \emph{ressources} que
+Le problème de flot maximum, consistant à déterminer la quantité maximum de \emph{ressources} que
 l'on peut transporter d'un point $A$ à un point $B$ dans un graphe, trouve ses racines, d'après A. 
 Schrijver~\cite{schrij02} dans un rapport de Harris et Ross rédigé pour l'US
 Air Force, en 1955, intitulé \emph{Fundamentals of a Method for Evaluating Rail Net Capacities}.  Il
-s'agit là de la résolution d'un problème de flots maximum dans un graphe basé sur le réseau de
+s'agit là de la résolution d'un problème de flot maximum dans un graphe basé sur le réseau de
 chemin de fer couvrant l'ouest de l'Union Soviétique et les pays satellites de l'Europe de l'est,
 afin d'obtenir une coupe minimale de celui-ci, ce pour des raisons stratégiques.
 
@@ -26,8 +26,8 @@ algorithmes.} \\
 % Problèmatique
 
 Cependant, il existe de nombreux graphes pour lesquels l'exécution des algorithmes cités
-ci-dessus est très longues. Le graphe représenté à la fig. \ref{graphe_defaut} (p.
-\pageref{graphe_defaut}) est l'un d'eux. C'est pour cette raison que la structure de préflots a été
+ci-dessus est très longue. Le graphe représenté à la figure \ref{graphe_defaut} (p.
+\pageref{graphe_defaut}) est l'un d'eux. C'est pour cette raison que la notion de préflot a été
 développée, et aujourd'hui, les algorithmes basés sur les préflots font partie des plus rapides
 développés à ce jour.\\
 
@@ -67,7 +67,7 @@ développés à ce jour.\\
 \end{figure}
 
 L'algorithme d'Edmonds-Karp, recherchant une chaîne améliorante de plus court chemin dans le graphe,
-effectue $n-6$ recherche de chaînes améliorantes et atteint son temps maximal d'exécution. Ce
+effectue $(n-6)$ recherche de chaînes améliorantes et atteint son temps maximal d'exécution. Ce
 problème se résout très vite à l'aide de préflots, ce que nous allons voir.
 
 Au préalable, la notion de préflot sera définie\footnote{ainsi qu'un bref rappel de la notion de
@@ -114,7 +114,7 @@ Toute l'essence du problème étudié consiste en la maximisation de cette valeu
 
 \subsubsection{La notion de préflot}
 
-Le préflot étant une structure de donnée obtenue par relaxation de contraintes sur les flots, son
+Le préflot étant une fonction obtenue par relaxation de contraintes sur les flots, son
 domaine de définition est donc le même : il s'agit d'une application $x : A \rightarrow \mathbb{N}$
 respectant les contraintes suivantes :
 		\begin{equation}
@@ -123,14 +123,18 @@ respectant les contraintes suivantes :
 		\end{equation}
 		\begin{equation} 
 			\label{preflot_2}
-			\forall i \in S - \{s,t\},\quad \sum_{j \in A^+(i)} x(i,j) = \sum_{k \in A^-(i)} x(k,i)
+			\forall i \in S - \{s,t\},\quad \sum_{j \in A^+(i)} x(i,j) \leq \sum_{k \in A^-(i)} x(k,i)
 		\end{equation}
 		\begin{equation}
 			\label{preflot_3}
-			f = \sum_{j \in A^+(s)} x(s,j) = \sum_{k \in A^-(t)} x(k, t)
+			f = \sum_{j \in A^+(s)} x(s,j) \geq \sum_{k \in A^-(t)} x(k, t)
 		\end{equation}
-On introduit alors la valeur $e(i)$ représentant l'excédent de flot d'un noeud $i \in S$. On peut
-alors écrire l'inéquation \ref{preflot_2} de cette manière :
+On introduit alors la valeur $e(i)$ représentant l'excédent de flot d'un noeud $i \in S$, elle est
+définie comme la différence entre le préflot entrant dans un noeud et le préflot sortant de celui-ci
+: \begin{equation}
+	e(i) = \sum_{j \in A^+(i)} x(i,j) - \sum_{k \in A^-(i)} x(k,i)
+\end{equation}
+ On peut alors écrire l'inéquation (\ref{preflot_2}) de cette manière :
 \begin{equation}ss
 \forall i \in S - \{s,t\},\quad \sum_{j \in A^+(i)} x(i,j) = \sum_{k \in A^-(i)} x(k,i) + e(i)
 \end{equation}
@@ -144,15 +148,16 @@ dira aussi qu'il est débordant.
 
 \subsubsection{La notion de réseau résiduel}
 
-Soit un graphe $G(S, A)$, un flot (ou préflot) $f$ et $i,j$ deux sommets e $G$. On dira que l'arête
+Soit un graphe $G(S, A)$, un flot $f$ et $i,j$ deux sommets e $G$. On dira que l'arête
 $(i,j)$ appartiendra au réseau résiduel $A_f$ si et seulement si :
 \begin{equation}
 	 r(i,j) = c(i,j) - x(i,j) > 0
 \end{equation}
 
 On appelle alors $r(i,j)$ la capacité résiduelle de l'arête $(i,j)$. De plus la présence d'un flot
-(ou préflot) $f$ circulant sur l'arc $(i,j)$ de valeur $x(i,j)$ entraîne la présence d'une arête $(j,i)$
-dans le réseau résiduel de capacité résiduelle $r(j,i) = x(i,j)$.
+$f$ circulant sur l'arc $(i,j)$ de valeur $x(i,j)$ entraîne la présence d'une arête $(j,i)$
+dans le réseau résiduel de capacité résiduelle $r(j,i) = x(i,j)$. Une arête sera dite
+\emph{acceptable} si et seulement si elle appartient au réseau résiduel.
 
 \subsection{Quelques fonctions importantes}
 
@@ -161,7 +166,7 @@ dans le réseau résiduel de capacité résiduelle $r(j,i) = x(i,j)$.
 Il est important de réaliser un point précis sur les fonctions de potentiel. Certaines des
 démonstrations réalisées au cours de ce rapport se basent sur l'utilisation de ces fonctions.
 
-Considérons une structure de donnée appelée $D_0$ sur laquelle sont effectuée des opérations
+Considérons une structure de données appelée $D_0$ sur laquelle sont effectuée des opérations
 numérotées. Appelons $D_i$ la structure de données résultant de la $i^e$ opération. On appelle
 fonction de potentiel, toute fonction $\Phi$ qui, à une structure de données $D_i$ associe un réel
 appelé potentiel, noté $\Phi(D_i)$. Ce formalisme est décrit à la figure \ref{formal} (p.
@@ -212,9 +217,9 @@ Soit $G(S, A)$ un graphe ayant $s$ pour sommet source et $t$ pour sommet puits. 
 \begin{subequations}
 	\label{eq:prop_haut}
 	\begin{align}
-		h(s) &= |S| \label{eq:ph1} \\
-		h(t) &= 0   \label{eq:ph2} \\
-		\forall (i,j) \in A_f \quad d(i) &\leq d(j) + 1 \label{eq:ph3} 
+		d(s) &= |S| \label{eq:ph1} \\
+		d(t) &= 0   \label{eq:ph2} \\
+		\forall (i,j) \in A_f \quad d(i) &= d(j) + 1 \label{eq:ph3} 
 	\end{align}
 \end{subequations}
 
@@ -222,5 +227,23 @@ On en déduit immédiatement ce qui suit :
 \begin{lemma}
 	\label{ingr}
 	Soit $G(S,A)$ un graphe, soit $f$ un préflot de $G$ et $d$ une fonction de distance de $G$, soient
-	$i,j \in S$, si $d(i) > d(j) + 1$ alors $(i,j) \not \in A_f$.
+	$i,j \in S$, si $d(i) \not = d(j) + 1$ alors $(i,j) \not \in A_f$.
 \end{lemma}
+
+\subsubsection{Conséquences sur le réseau résiduel}
+
+Le lemme (\ref{ingr}) impose, en cas de présence d'une fonction de distance valide, une condition
+supplémentaire sur l'appartenance d'une arête au réseau résiduel, basée sur la différence de
+distance des noeuds $i,j$.
+
+Par conséquent, on peut redéfinir la notion de réseau résiduel associé à un préflot ainsi :
+
+Soit un graphe $G(S,A)$, un préflot $f$, et $i,j$ deux sommets de $G$. L'arête $(i,j)$ appartient à
+$A_f$ si et seulement si :
+\begin{equation}
+	r(i,j) > 0
+\end{equation}
+\begin{equation}
+	d(i) = d(j) + 1
+\end{equation}
+
