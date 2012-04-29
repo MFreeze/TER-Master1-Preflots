@@ -92,6 +92,8 @@ pour rechercher le plus petit des voisins du n\oe ud effectuant l'algorithme).
 
 \input{pousser.tex}
 
+Il sera démontré plus loin que cet algorithme s'exécute en $O(n^2m)$.
+
 \subsection{Validité}
 
 Pour montrer que l'algorithme de préflot-générique résout le probléme du flot maximum, Nous allons démonter que s'il se termine, Alors le préflot $f$ calculé est un flot maximum!.\\
@@ -168,6 +170,64 @@ judicieux pour l'examen des n\oe uds débordants.
 
 \subsection{L'algorithme FIFO}
 
+L'algorithme FIFO, utilise une file afin de gérer l'ordre des n\oe uds actifs à traiter : au moment
+ou un sommet du graphe devient débordant, celui-ci est placé dans une file, dont la politique de
+traitement est du type \emph{First In First Out}. 
 
+A chaque examen, l'algorithme réalise des opérations de poussage tant que celles-ci sont possible et
+tant que le n\oe ud $i$ examiné est débordant. Si, lorsqu'il n'existe plus d'arêtes acceptables,
+$e(i)$ est toujours supérieur à $0$, l'algorithme réalise donc un réétiquetage et place à nouveau
+$i$ dans la file des sommets à examiner. L'initialisation de l'algorithme est la procédure
+principale restent les mêmes que l'algorithme générique.
+
+Ce choix permet une amélioration de la complexité de l'agorithme générique en $O(n^3)$.
 
 \subsection{L'algorithme High label}
+
+Il existe des graphes pour lesquels, l'agorithme FIFO est très lent. On peut par exemple citer
+celui décrit figure \ref{bad_fifo}.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[node distance=2.2cm]
+\tikzset{n/.style={circle, draw=black, minimum size=27pt, inner sep=1pt}, 
+f/.style={->, >=latex}};
+
+\node[n] (s) at (4.4, 3) {$s$};
+\node[n] (n0) at (0, 0) {$n$};
+\node[n] (n1) [right of=n0] {$n-1$};
+\node[right of=n1] (point) {$\cdots$};
+\node[n, right of=point] (2) {$2$};
+\node[n, right of=2] (1) {$1$};
+\node[n, right of=1] (t) {$t$};
+
+\foreach \x/\pos in {n0/right, n1/right, 2/left, 1/left} {
+	\draw[f] (s) to node[\pos] {$1$} (\x);
+}
+
+\draw[f] (n0) to node[below] {$\infty$} (n1);
+\draw[f] (n1) to node[below] {$\infty$} (point);
+\draw[f] (point) to node[below] {$\infty$} (2);
+\draw[f] (2) to node [below] {$\infty$} (1);
+\draw[f] (1) to node [below] {$\infty$} (t);
+
+\end{tikzpicture}
+\end{center}
+\caption{Exemple de graphe mettant en défaut l'algorithme FIFO}
+\label{bad_fifo}
+\end{figure}
+
+En effet, lors de l'initialisation de ce dernier, les n\oe uds vont être placés en file d'attente
+selon l'ordre de traitement des arêtes sortant de $s$. Si celui ci se fait par ordre
+lexicographique, le sommet $1$ sera placé dans la file en premier puis le $2$ et ainsi de suite
+jusqu'au sommet $n$. L'examen se fera donc dans cet ordre, on s'aperçoit alors que $1$ pousse son
+excédent vers $t$, puis $2$ pousse son excédent vers $1$ et ainsi de suite jusqu'au n\oe ud $n$
+poussant vers $n-1$.
+Puis le traitement recommence à partir de $1$ jusque $n-1$, puis de $1$ jusque $n-2$, etc... On
+dénombre alors $n!$ opérations.
+
+Le principe de l'algorithme High Label est de choisir pour l'examen, le n\oe ud ayant la distance la
+plus grande, de lui appliquer le plus grand nombre de poussage et de le réétiqueter si besoin est.
+L'algorithme effectue, sur le graphe représenté figure \ref{bad_fifo}, seulement $n$ opérations.
+Nous démontrerons que la complexité de cet algorithme s'en voit améliorée pour atteindre du
+$O(n^2\sqrt{m})$.

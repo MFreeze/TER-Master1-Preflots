@@ -1,4 +1,4 @@
-Nous nous intéressons à présent à la complexité de l'algorithme générique (algo
+Nous nous intéressons à présent à la complexité de l'algorithme générique (algorithme
 \ref{algo_generic} p. \pageref{algo_generic}). Afin de pouvoir calculer cette dernière, nous allons
 avoir besoin de quelques bornes utiles.
 
@@ -22,10 +22,114 @@ noeud $j$ tel que l'opération de réétiquetage diminue sa distance $d$.
 \end{lemma}
 
 \textbf{Preuve}\\
-D'après le théorème de décomposition des flots, il est possible de décomposer n'importe quel préflot
-en des flots positifs le long de chemins reliant $s$ à $t$ \footnote{le noeud puis}, $s$ aux noeuds
+D'après le théorème de décomposition des flots\footnote{Un exemple d'application de ce théorème est
+donné à la figure \ref{app_dec_preflot}}, il est possible de décomposer n'importe quel préflot
+en des flots positifs le long de chemins reliant $s$ à $t$ \footnote{Le noeud puits}, $s$ aux noeuds
 actifs et le long de cycles. De plus par définition d'un préflot on a : $e(s) \leq 0$ et $e(i) \geq
-0 \forall i \in S - \{s\}$.
+0 \ \forall i \in S - \{s\}$.
+
+\begin{figure}
+	\begin{center}
+		\subfloat[Un préflot]{
+		\begin{tikzpicture}[node distance=1.7cm]
+			\tikzset{n/.style={draw=black, circle, minimum width=17pt},
+			f/.style={->, >=latex}};
+
+			\node[n] (s) at (0,0) {$s$};
+			\node[n, above right of=s] (a) {$a$};
+			\node[n, below right of=s] (b) {$b$};
+			\node[n, above of=a] (e) {$e$};
+			\node[n, right of=a] (c) {$c$};
+			\node[n, right of=b] (d) {$d$};
+			\node[n, above right of=d] (t) {$t$};
+
+			\draw[f, red] (s) to node[above left, red] {$3/4$} (a);
+			\draw[f, red] (s) to node[below left, red] {$2/2$} (b);
+			\draw[f, red] (a) to[out=110, in=250] node[left, red] {$2/2$} (e);
+			\draw[f, red] (e) to[out=290, in=70] node[right, red] {$2/2$} (a);
+			\draw[f, red] (a) to node[above, red] {$3/3$} (c);
+			\draw[f, red] (b) to node[below, red] {$2/4$} (d);
+			\draw[f, red] (d) to node[below right, red] {$1/1$} (t);
+			\draw[f] (c) to node[above right] {$0/1$} (t);
+			\draw[f] (b) to node[left] {$0/1$} (a);
+			\draw[f] (c) to node[right] {$0/2$} (d);
+	\end{tikzpicture}}\hfill
+	\subfloat[La décomposition en flots de $s$ vers $t$]{
+		\begin{tikzpicture}[node distance=1.7cm]
+			\tikzset{n/.style={draw=black, circle, minimum width=17pt},
+			f/.style={->, >=latex}};
+
+			\node[n] (s) at (0,0) {$s$};
+			\node[n, above right of=s] (a) {$a$};
+			\node[n, below right of=s] (b) {$b$};
+			\node[n, above of=a] (e) {$e$};
+			\node[n, right of=a] (c) {$c$};
+			\node[n, right of=b] (d) {$d$};
+			\node[n, above right of=d] (t) {$t$};
+
+			\draw[f] (s) to node[above left] {$0/4$} (a);
+			\draw[f, red] (s) to node[below left, red] {$1/2$} (b);
+			\draw[f] (a) to[out=110, in=250] node[left] {$0/2$} (e);
+			\draw[f] (e) to[out=290, in=70] node[right] {$0/2$} (a);
+			\draw[f] (a) to node[above] {$0/3$} (c);
+			\draw[f, red] (b) to node[below, red] {$1/4$} (d);
+			\draw[f, red] (d) to node[below right, red] {$1/1$} (t);
+			\draw[f] (c) to node[above right] {$0/1$} (t);
+			\draw[f] (b) to node[left] {$0/1$} (a);
+			\draw[f] (c) to node[right] {$0/2$} (d);
+		\end{tikzpicture}}\hfill
+	\subfloat[La décomposition en flots de $s$ vers les n\oe uds actifs]{
+		\begin{tikzpicture}[node distance=1.7cm]
+			\tikzset{n/.style={draw=black, circle, minimum width=17pt},
+			f/.style={->, >=latex}};
+
+			\node[n] (s) at (0,0) {$s$};
+			\node[n, above right of=s] (a) {$a$};
+			\node[n, below right of=s] (b) {$b$};
+			\node[n, above of=a] (e) {$e$};
+			\node[n, right of=a] (c) {$c$};
+			\node[n, right of=b] (d) {$d$};
+			\node[n, above right of=d] (t) {$t$};
+
+			\draw[f, red] (s) to node[above left, red] {$3/4$} (a);
+			\draw[f, red] (s) to node[below left, red] {$1/2$} (b);
+			\draw[f] (a) to[out=110, in=250] node[left] {$0/2$} (e);
+			\draw[f] (e) to[out=290, in=70] node[right] {$0/2$} (a);
+			\draw[f, red] (a) to node[above, red] {$3/3$} (c);
+			\draw[f, red] (b) to node[below, red] {$1/4$} (d);
+			\draw[f] (d) to node[below right] {$0/1$} (t);
+			\draw[f] (c) to node[above right] {$0/1$} (t);
+			\draw[f] (b) to node[left] {$0/1$} (a);
+			\draw[f] (c) to node[right] {$0/2$} (d);
+		\end{tikzpicture}}\\
+	\subfloat[La décomposition en cycles]{
+		\begin{tikzpicture}[node distance=1.7cm]
+			\tikzset{n/.style={draw=black, circle, minimum width=17pt},
+			f/.style={->, >=latex}};
+
+			\node[n] (s) at (0,0) {$s$};
+			\node[n, above right of=s] (a) {$a$};
+			\node[n, below right of=s] (b) {$b$};
+			\node[n, above of=a] (e) {$e$};
+			\node[n, right of=a] (c) {$c$};
+			\node[n, right of=b] (d) {$d$};
+			\node[n, above right of=d] (t) {$t$};
+
+			\draw[f] (s) to node[above left] {$0/4$} (a);
+			\draw[f] (s) to node[below left] {$0/2$} (b);
+			\draw[f, red] (a) to[out=110, in=250] node[left, red] {$2/2$} (e);
+			\draw[f, red] (e) to[out=290, in=70] node[right, red] {$2/2$} (a);
+			\draw[f] (a) to node[above] {$0/3$} (c);
+			\draw[f] (b) to node[below] {$0/4$} (d);
+			\draw[f] (d) to node[below right] {$0/1$} (t);
+			\draw[f] (c) to node[above right] {$0/1$} (t);
+			\draw[f] (b) to node[left] {$0/1$} (a);
+			\draw[f] (c) to node[right] {$0/2$} (d);
+		\end{tikzpicture}}
+	\end{center}
+	\caption{Un exemple de décomposition de préflot, d'après le théorème de décomposition des flots}
+	\label{app_dec_preflot}
+\end{figure}
 
 Considérons un noeud actif $i$, l'excès de flots $e(i)$ est strictement supérieur à $0$. Or, lors de la
 considération des flots obtenus par le théorème de décomposition des flots, on observe que les flots
@@ -34,9 +138,11 @@ $i$, ce qui implique qu'il existe un flot strictement positif coulant le long d'
 $i$ et donc que l'inverse de ce chemin se trouve dans le réseau résiduel. D'où l'existence d'un chemin
 de $i$ vers $s$ dans le réseau résiduel.\\
 
-On peut directement déduire de ce lemme lors de, pour un noeud actif $i$, il existe toujours un
+On peut directement déduire de ce lemme que, pour un noeud actif $i$, il existe toujours un
 noeud de son voisinage $j$ tel que $d(j) > d(i)$ et donc que lors d'un réétiquetage, la
-minimisation de la hauteur des voisins ne se fait pas sur un ensemble vide.
+minimisation de la hauteur des voisins ne se fait pas sur un ensemble vide. Autrement dit, pour un
+n\oe ud que l'on réétiquete, il existe toujours un sommet de son voisinage dont la distance au puits
+est supérieure au n\oe ud réétiqueté.
 
 \begin{lemma} ~\\
 	\label{borne_reetiq}
@@ -44,7 +150,7 @@ minimisation de la hauteur des voisins ne se fait pas sur un ensemble vide.
 \end{lemma}
 
 \textbf{Preuve}\\
-Une opération de réétiquetage n'affecte que la distance du noeud $i$ au noeud puits, par conséquent
+Une opération de réétiquetage d'un sommet $i$ n'affecte que la distance de $i$ au noeud puits, par conséquent
 l'excédent de flot sur le noeud $i$ après l'opération est le même qu'avant. D'après le lemme
 \ref{residual_path}, il existe donc un chemin $P$ de $s$ à $i$\footnote{$i \ne t$} dans le réseau
 résiduel dont la longueur est au plus $n-2$ sommets\footnote{Le chemin ne peut inclure $t$, de plus
@@ -117,10 +223,10 @@ au minimum d'une unité, on obtient le lemme \ref{borne_n2}.
 
 \textbf{Preuve}\\
 Considérons deux sommets voisins $i$ et $j$. Si l'on considère un poussage saturant de $i$ vers
-$j$ (respectivement de $j$ vers $i$), alors l'arête $(j, i)$ (resp. $(i,j)$) est une arête de $A$.
+$j$ (respectivement de $j$ vers $i$), alors l'arête $(j, i)$ (resp. $(i,j)$) est une arête de $A_f$.
 Pour pouvoir effectuer le poussage saturant inverse, $j$ (resp. $i$) doit augmenter sa distance de
 : $d(j) - d(i) + 1$ (resp. $d(i) - d(j) + 1$) $\geq 2$. Donc chacun des sommets peut au maximum
-effectuer $n$ poussage saturant vers l'autre\footnote{La distance de chaque sommet est bornée
+effectuer $n$ poussages saturants vers l'autre\footnote{La distance de chaque sommet est bornée
 ainsi : $0 \leq d(i) \leq 2n$, le nombre maximum d'augmentation de $d$ de 2 unités est donc $n$.}.
 Ce qui nous donne pour chaque arc, un nombre de poussages saturants inférieur à $2n$. Sur
 l'ensemble de l'algorithme ce dernier est bien majoré par $2nm$.
@@ -128,7 +234,7 @@ l'ensemble de l'algorithme ce dernier est bien majoré par $2nm$.
 \begin{lemma}~\\
 	\label{borne_pns}
 	Le nombre de poussage non saturants lors de l'exécution de l'algorithme est borné supérieurement
-	par : $O(n^2m)$.
+	par $O(n^2m)$.
 \end{lemma}
 
 \textbf{Preuve}\\
@@ -138,12 +244,13 @@ $|S|$ et que la distance de chaque somme est bornée par $2n$, la valeur initial
 initialisation.} de $\Phi$ est inférieure à $2n^2$, à la fin de l'algorithme, il n'existe plus de
 sommets actifs, et donc : $\Phi = 0$.
 Lors du déroulement de l'algorithme, trois choses peuvent se produire : \begin{enumerate}
-	\item Poussage non saturant. Il y a lieu lorsque l'excédent de flot du sommet est inférieure à la
+	\item Poussage non saturant. Il a lieu lorsque l'excédent de préflot du sommet est inférieur à la
 		capacité résiduelle de l'arc emprunté, donc une fois cette étape effectuée le noeud $i$ ayant
 		effectué le poussage n'est plus actif. Dans le cas ou $j$, le sommet cible du poussage
-		n'appartenait pas à $I$, la fonction $\Phi$ est incrémentée de $d(j)$ et décrémentée de $d(i)$.
-		Or $d(i) \geq d(j) + 1$, donc $\Phi$ diminue d'au moins une unité.
-	\item Poussage saturant. Il y a lieu lorsque $e(i) \geq r((i,j))$, Dans le pire des cas, $j \not
+		n'appartenait pas à l'ensemble des n\oe uds débordants $I$, la fonction $\Phi$ est incrémentée de 
+		$d(j)$ et décrémentée de $d(i)$.  Or $d(i) \geq d(j) + 1$, donc $\Phi$ diminue d'au moins une
+		unité.
+	\item Poussage saturant. Il a lieu lorsque $e(i) \geq r((i,j))$, Dans le pire des cas, $j \not
 		\in I$ avant l'opération, on a alors une augmentation maximale de $\Phi$ égale à la hauteur max
 		de $j$, soit $2n$ donc une augmentation de $2n^2m$ pour l'ensemble des poussages saturants.
 	\item Ré-étiquetage. Cette opération n'a lieu que lorsqu'aucun arc sortant de $i$ n'est valide
