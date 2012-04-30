@@ -1,1 +1,13 @@
-Comme vu précédemment, l'algorithme High Label analyse les n\oe uds en fonction de leur distance. 
+Comme vu précédemment, l'algorithme High Label analyse les n\oe uds en fonction de la valeur de leur
+fonction de distance. Cette sélection permet d'obtenir une borne maximale en $O(n^2\sqrt{m})$, c'est
+ce que nous allons démontrer.
+
+Soit une constante $K = \sqrt{m}$, soit la fonction $d': S \longrightarrow \mathbb{N}$, définie par
+: $$
+d'(i) = |\{j : d(j) \leq d(i) \}| \quad \forall i,j \in S $$
+Autrement dit, $d'(i)$ représente le nombre de n\oe uds de $S$ étant plus proche du puits que $i$.
+
+Soit la fonction de potentiel $\Phi$ définie comme suit : $$
+\Phi = \sum_{i : e(i) > 0} d'(i) / K $$
+
+
