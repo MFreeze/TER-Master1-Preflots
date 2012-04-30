@@ -156,8 +156,7 @@ $(i,j)$ appartiendra au réseau résiduel $A_f$ si et seulement si :
 
 On appelle alors $r(i,j)$ la capacité résiduelle de l'arête $(i,j)$. De plus la présence d'un flot
 $f$ circulant sur l'arc $(i,j)$ de valeur $x(i,j)$ entraîne la présence d'une arête $(j,i)$
-dans le réseau résiduel de capacité résiduelle $r(j,i) = x(i,j)$. Une arête sera dite
-\emph{acceptable} si et seulement si elle appartient au réseau résiduel.
+dans le réseau résiduel de capacité résiduelle $r(j,i) = x(i,j)$. 
 
 \subsection{Quelques fonctions importantes}
 
@@ -219,31 +218,11 @@ Soit $G(S, A)$ un graphe ayant $s$ pour sommet source et $t$ pour sommet puits. 
 	\begin{align}
 		d(s) &= |S| \label{eq:ph1} \\
 		d(t) &= 0   \label{eq:ph2} \\
-		\forall (i,j) \in A_f \quad d(i) &= d(j) + 1 \label{eq:ph3} 
+		\forall (i,j) \in A_f \quad d(i) &\leq d(j) + 1 \label{eq:ph3} 
 	\end{align}
 \end{subequations}
 
-On en déduit immédiatement ce qui suit :
-\begin{lemma}
-	\label{ingr}
-	Soit $G(S,A)$ un graphe, soit $f$ un préflot de $G$ et $d$ une fonction de distance de $G$, soient
-	$i,j \in S$, si $d(i) \not = d(j) + 1$ alors $(i,j) \not \in A_f$.
-\end{lemma}
-
-\subsubsection{Conséquences sur le réseau résiduel}
-
-Le lemme (\ref{ingr}) impose, en cas de présence d'une fonction de distance valide, une condition
-supplémentaire sur l'appartenance d'une arête au réseau résiduel, basée sur la différence de
-distance des noeuds $i,j$.
-
-Par conséquent, on peut redéfinir la notion de réseau résiduel associé à un préflot ainsi :
-
-Soit un graphe $G(S,A)$, un préflot $f$, et $i,j$ deux sommets de $G$. L'arête $(i,j)$ appartient à
-$A_f$ si et seulement si :
-\begin{equation}
-	r(i,j) > 0
-\end{equation}
-\begin{equation}
-	d(i) = d(j) + 1
-\end{equation}
+Une notion inhérente à la fonction de distance, est celle d'arête acceptable : une arête $(i,j)$ est
+dite acceptable si et seulement si $d(i) = d(j) + 1$. Par définition, toute arête acceptable
+appartient au réseau résiduel.
 

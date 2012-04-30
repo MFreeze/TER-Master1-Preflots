@@ -253,7 +253,7 @@
 		$$ d(t) = 0 $$
 	\end{block} \vfill
 	\begin{exampleblock}{Distances des sommets}
-		si $(i,j)$ appartient au réseau résiduel, la distance du sommet $i$ est égale à la distance du sommet $i$ plus un
+		si $(i,j)$ appartient au réseau résiduel, la distance du sommet $i$ est inférieure ou égale à la distance du sommet $i$ plus un
 	\end{exampleblock}
 \end{frame}
 
@@ -263,137 +263,8 @@
 	\begin{block}{Propriétés}
 		$$ d(s) = |S| $$
 		$$ d(t) = 0 $$
-		$$ \forall (i,j) \in A_f,\quad d(i) = d(j) + 1 $$
+		$$ \forall (i,j) \in A_f,\quad d(i) \leq d(j) + 1 $$
 	\end{block}
-\end{frame}
-
-\begin{frame}{Conséquences sur le réseau résiduel}
-	Le réseau résiduel associé au flot suivant : \vfill
-	\begin{minipage}[c]{0.45\linewidth}
-		\begin{figure}
-			\begin{tikzpicture}[scale=0.55]
-				\tikzset{noeud/.style={circle, draw=black, inner sep=0.1cm, minimum width=0.6cm}, fleche/.style={>=latex, ->}};
-				\node[noeud] (s) at (0,0) {s};
-				\node[noeud] (a) at (2, 2) {a};
-				\node[noeud] (b) at (2, -2) {b};
-				\node[noeud] (c) at (4.5, -2) {c};
-				\node[noeud] (d) at (4.5, 2) {d};
-				\node[noeud] (t) at (6.5,0) {t};
-
-				\draw[fleche, red] (s) -- node[above left, red] {$2/2$}(a);
-				\draw[fleche] (s) -- node[below left] {$0/1$}(b);
-				\draw[fleche] (a) -- node[left] {$0/1$}(b);
-				\draw[fleche, red] (a) -- node[above, red] {$1/3$}(d);
-				\draw[fleche] (d) -- node[above left] {$0/1$}(b);
-				\draw[fleche] (b) -- node[below] {$0/1$}(c);
-				\draw[fleche, red] (d) -- node[above right, red] {$1/4$}(t);
-				\draw[fleche] (c) -- node[below right] {$0/1$}(t);
-				\draw[fleche] (c) -- node[right] {$0/2$}(d);
-			\end{tikzpicture}
-			\caption{Un exemple de flot}
-		\end{figure}
-	\end{minipage} \hfill
-	\begin{minipage}[c]{0.45\linewidth}
-	\end{minipage}
-\end{frame}
-
-\begin{frame}{Conséquences sur le réseau résiduel}
-	devient : \vfill
-	\begin{minipage}[c]{0.45\linewidth}
-		\begin{figure}
-			\begin{tikzpicture}[scale=0.55]
-				\tikzset{noeud/.style={circle, draw=black, inner sep=0.1cm, minimum width=0.6cm}, fleche/.style={>=latex, ->}};
-				\node[noeud] (s) at (0,0) {s};
-				\node[noeud] (a) at (2, 2) {a};
-				\node[noeud] (b) at (2, -2) {b};
-				\node[noeud] (c) at (4.5, -2) {c};
-				\node[noeud] (d) at (4.5, 2) {d};
-				\node[noeud] (t) at (6.5,0) {t};
-
-				\draw[fleche, red] (s) -- node[above left, red] {$2/2$}(a);
-				\draw[fleche] (s) -- node[below left] {$0/1$}(b);
-				\draw[fleche] (a) -- node[left] {$0/1$}(b);
-				\draw[fleche, red] (a) -- node[above, red] {$1/3$}(d);
-				\draw[fleche] (d) -- node[above left] {$0/1$}(b);
-				\draw[fleche] (b) -- node[below] {$0/1$}(c);
-				\draw[fleche, red] (d) -- node[above right, red] {$1/4$}(t);
-				\draw[fleche] (c) -- node[below right] {$0/1$}(t);
-				\draw[fleche] (c) -- node[right] {$0/2$}(d);
-			\end{tikzpicture}
-			\caption{Un exemple de flot}
-		\end{figure}
-	\end{minipage} \hfill
-	\begin{minipage}[c]{0.45\linewidth}
-		\begin{figure}
-			\begin{tikzpicture}[scale=0.55]
-				\tikzset{noeud/.style={circle, draw=black, inner sep=0.1cm, minimum width=0.6cm}, fleche/.style={>=latex, ->}};
-				\node[noeud] (s) at (0,0) {s};
-				\node[noeud] (a) at (2, 2) {a};
-				\node[noeud] (b) at (2, -2) {b};
-				\node[noeud] (c) at (4.5, -2) {c};
-				\node[noeud] (d) at (4.5, 2) {d};
-				\node[noeud] (t) at (6.5,0) {t};
-
-				\draw[fleche] (s) -- node[below left] {$1$}(b);
-				\draw[fleche] (a) to node[above] {$2$}(d);
-				\draw[fleche] (d) to node[below left] {$3$}(t);
-				\draw[fleche] (c) -- node[below right] {$1$}(t);
-				\draw[fleche] (b) -- node[below] {$1$}(c);
-			\end{tikzpicture}
-			\caption{Le réseau résiduel associé}
-		\end{figure}
-	\end{minipage}
-\end{frame}
-
-\begin{frame}{Conséquences sur le réseau résiduel}
-	devient : \vfill
-	\begin{minipage}[c]{0.45\linewidth}
-		\begin{figure}
-			\begin{tikzpicture}[scale=0.55]
-				\tikzset{noeud/.style={circle, draw=black, inner sep=0.1cm, minimum width=0.6cm}, fleche/.style={>=latex, ->}};
-				\node[noeud] (s) at (0,0) {s};
-				\node[noeud] (a) at (2, 2) {a};
-				\node[noeud] (b) at (2, -2) {b};
-				\node[noeud] (c) at (4.5, -2) {c};
-				\node[noeud] (d) at (4.5, 2) {d};
-				\node[noeud] (t) at (6.5,0) {t};
-
-				\draw[fleche, red] (s) -- node[above left, red] {$2/2$}(a);
-				\draw[fleche] (s) -- node[below left] {$0/1$}(b);
-				\draw[fleche] (a) -- node[left] {$0/1$}(b);
-				\draw[fleche, red] (a) -- node[above, red] {$1/3$}(d);
-				\draw[fleche] (d) -- node[above left] {$0/1$}(b);
-				\draw[fleche] (b) -- node[below] {$0/1$}(c);
-				\draw[fleche, red] (d) -- node[above right, red] {$1/4$}(t);
-				\draw[fleche] (c) -- node[below right] {$0/1$}(t);
-				\draw[fleche] (c) -- node[right] {$0/2$}(d);
-			\end{tikzpicture}
-			\caption{Un exemple de flot}
-		\end{figure}
-	\end{minipage} \hfill
-	\begin{minipage}[c]{0.45\linewidth}
-		\begin{figure}
-			\begin{tikzpicture}[scale=0.55]
-				\tikzset{noeud/.style={circle, draw=black, inner sep=0.1cm, minimum width=0.6cm}, fleche/.style={>=latex, ->}};
-				\node[noeud] (s) at (0,0) {s};
-				\node[noeud] (a) at (2, 2) {a};
-				\node[noeud] (b) at (2, -2) {b};
-				\node[noeud] (c) at (4.5, -2) {c};
-				\node[noeud] (d) at (4.5, 2) {d};
-				\node[noeud] (t) at (6.5,0) {t};
-
-				\draw[fleche] (s) -- node[below left] {$1$}(b);
-				\draw[fleche] (a) to node[above] {$2$}(d);
-				\draw[fleche] (d) to node[below left] {$3$}(t);
-				\draw[fleche] (c) -- node[below right] {$1$}(t);
-				\draw[fleche] (b) -- node[below] {$1$}(c);
-			\end{tikzpicture}
-			\caption{Le réseau résiduel associé}
-		\end{figure}
-	\end{minipage}
-	\begin{exampleblock}{Note}
-		Le réseau résiduel sert à déterminer les actions à effectuer.
-	\end{exampleblock}
 \end{frame}
 
 \subsection{Principe}
@@ -407,7 +278,7 @@
 	opération de poussage.\\
 	\begin{alertblock}{Condition}
 		On ne peut pas appliquer un poussage sur l'arrête $(i,j)$ que si le sommet $i$ est
-		actif, $C_f$ $(i,j)>0$ et $d(i) = d(j)$ + 1.\\
+		actif, $C_f$ $(i,j)>0$ et $d(i) = d(j)$ + 1. L'arête $(i,j)$ sera alors appelée arête acceptable.\\
 	\end{alertblock}
 \end{frame}
 
