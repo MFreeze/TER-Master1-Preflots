@@ -110,4 +110,45 @@ Une phase présentant un nombre d'opérations de poussage non saturant supérieu
 \underline{\textbf{Preuve :}}\\
 Au début et à la fin de l'algorithme, $d^* = 0$ dans la mesure où il n'existe aucun sommet actif
 dans le graphe. De plus la seule opération capable d'augmenter la valeur de $d^*$ est un
-réétiquetage, dont le nombre est borné par $2n^2$.
+réétiquetage. Puisque $d^*$ augmente au plus de $2n^2$\footnote{Cette borne provient du nombre maximal
+de réétiquetage}, sa valeur diminue au plus $2n^2$, on a alors au plus $4n^2$ changements, donc
+autant de phases.
+
+\begin{corol}
+	Le nombre maximum de poussages non saturants en phase \emph{faible} est borné par $4n^2K$.
+\end{corol}
+
+Cecii est directement donné par la limite du nombre de phases : à supposer que toutes les phases
+sont des phases faibles, présentant au plus $K$ poussages non saturants. Il y a alors, au maximum,
+$4n²K$ poussages non saturants sur l'ensemble de l'algorithme.
+
+\begin{lemma}
+	Une phase forte présentant $Q>K$ poussages non saturant diminue la valeur de $\Phi$ d'au moins
+	$Q$.
+\end{lemma}
+
+\underline{\textbf{Preuve :}}\\
+Considérons un phase forte au cours de laquelle sont effectuées $Q$ poussages non saturant.
+Dans la mesure où chacune de ces opération a lieu dans la même phase, la valeur de $d^*$ est
+constante, ce qui implique que chacune de ces opérations est faite depuis un n\oe ud $i$ tel que
+$d(i) = d^*$.
+
+La phase s'achève lorsque, tous les sommets de distance $d^*$ sont sortis de leur état actif, ou
+lorsque l'un d'entre eux est réétiqueter impliquant une nouvelle valeur de $d^*$. Dans les deux cas,
+puisqu'il s'agit d'une phase forte, il y a au moins $Q$ n\oe uds, qui ont vu leur excédent chuter à
+zéro, réduisant ainsi la valeur de $\Phi$ d'au moins $Q/K$ à chaque poussage non
+saturant\footnote{Ceci est dû au fait qu'il y a au moins $Q$ n\oe ud ayant la même distance que le
+sommet effectuant le poussage. Si l'on appelle $i$ ce sommet $d'(i) \geq Q$}. Or $Q>K$
+donc chaque poussage diminue $\Phi$ d'au moins $1$ et donc la phase diminue $\Phi$ d'au moins $Q$.
+
+\begin{theorem}
+	L'algorithme High Label s'exécute en $O(n²\sqrt{m})$.
+\end{theorem}
+
+L'augmentation maximale de la fonction de potentielle $\Phi$ est égale à $(2n²+2nm)n/K$\footnote{Il
+	y a au plus $An²$ réétiquetage et $2nm$ poussages saturant augmentant la valeur de $\Phi$ d'au
+plus $n/K$}. Donc la valeur maximale de $\Phi$ se résume à sa valeur initiale maximale ($n²/K$) à
+laquelle est ajoutée l'augmentation maximale $(2n²+2nm)n/K$, on obtient alors : $$
+\Phi_{\max} = \frac{2n³ + n² + 2n²m}{K} $$
+
+De plus, par définition du principe de fonction potentielle
