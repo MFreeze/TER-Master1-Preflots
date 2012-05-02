@@ -47,15 +47,15 @@ dans ce cas une augmentation de $k/K$ soit $(n-2)/k$.
 				\node[n] (1) at (2,0) {$1$};
 				\node[n] (2) at (4,0) {$2$};
 				\node (pt) at (6,0) {$\dots$};
-				\node[n] at (8,0) {$k$};
-				\node[n] at (10,0) {$t$};
+				\node[n] (k) at (8,0) {$k$};
+				\node[n] (t) at (10,0) {$t$};
 
-				\draw[f] (s) to node[above] (1) {$2/2$};
-				\draw[f] (1) to node[above] (2) {$1/2$};
-				\draw[f] (2) to node[above] (pt) {$1/2$};
-				\draw[f] (pt) to node[above] (n) {$1/2$};
-				\draw[f] (n) to node[above] (t) {$1/1$};
-		\end{tikzpicture}}
+				\draw[f] (s) to node[above] {$2/2$}(1) ;
+				\draw[f] (1) to node[above] {$1/2$}(2) ;
+				\draw[f] (2) to node[above]  {$1/2$}(pt);
+				\draw[f] (pt) to node[above] {$1/2$} (k);
+				\draw[f] (k) to node[above] {$1/1$}(t) ;
+			\end{tikzpicture}}
 		\subfloat[Excédents, distances et fonctions de potentiel]{
 			\begin{tabular}{|c|c|c|c|} \hline
 				$i$ & $d(i)$ & $e(i)$ & $d'(i)$ \\ \hline
@@ -98,4 +98,16 @@ consécutifs de la valeur :
 	d^* = \max\{d(v) : v \mbox{ est actif }\}
 \end{equation}
 
-Autrement dit il s'agit de l'ensemble des poussages ayant lieu
+Autrement dit il s'agit de l'ensemble des poussages ayant lieu sans qu'il y ait changement de la
+valeur maximale des distances des n\oe uds.
+Une phase présentant un nombre d'opérations de poussage non saturant supérieure à $K$ sera dite
+\emph{faible}, elle sera désignée comme \emph{forte} sinon.
+
+\begin{lemma}
+	Le nombre de phases est inférieur à $4n^2$
+\end{lemma}
+
+\underline{\textbf{Preuve :}}\\
+Au début et à la fin de l'algorithme, $d^* = 0$ dans la mesure où il n'existe aucun sommet actif
+dans le graphe. De plus la seule opération capable d'augmenter la valeur de $d^*$ est un
+réétiquetage, dont le nombre est borné par $2n^2$.
