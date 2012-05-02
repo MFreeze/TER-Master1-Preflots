@@ -6,8 +6,96 @@ Soit une constante $K = \sqrt{m}$, soit la fonction $d': S \longrightarrow \math
 : $$
 d'(i) = |\{j : d(j) \leq d(i) \}| \quad \forall i,j \in S $$
 Autrement dit, $d'(i)$ représente le nombre de n\oe uds de $S$ étant plus proche du puits que $i$.
+Cette fonctions vérifie alors quelques propriétés : 
+\begin{lemma}
+	$$\forall i \in S, \quad d'(i) \leq n$$
+\end{lemma}
 
-Soit la fonction de potentiel $\Phi$ définie comme suit : $$
+\underline{\textbf{Preuve :}}\\
+L'ensemble des sommets dont la distance est inférieure à une valeur donnée est un sous-ensemble de
+l'ensemble des sommets du graphe. Son cardinal est donc majoré par ce dernier.
+Introduisons la fonction de potentiel $\Phi$ définie comme suit : $$
 \Phi = \sum_{i : e(i) > 0} d'(i) / K $$
 
+On peut remarquer qu'à n'importe quel moment de l'exécution de l'algorithme, $\Phi \geq 0$ et que
+après l'initialisation : $Phi \leq n^2 / K$. Cette borne est atteinte dans le cas d'un graphe
+complet puisque chaque n\oe ud ayant une distance de 1 et étant relié à la source, on obtient alors
+$n$ n\oe uds actifs vérifiant tous $d'(n) = n$, d'où $\Phi = n^2/K$.
 
+Regardons les effets des opérations de poussage et réétiquetage sur la fonction $\Phi$.
+
+\begin{lemma}
+	Une opération de réétiquetage augmente la valeur de $\Phi$ d'au plus $n/K$.
+\end{lemma}
+
+\underline{\textbf{Preuve :}}\\Dans le pire des cas, le sommet réétiqueté passe de la plus petite
+distance du graphe à la plus grande. Une représentation d'un de ces cas est donnée \ref{pdc}. Il
+s'agit là d'une chaîne dont la capacité de chacun des arcs est supérieure à la capacité du dernier
+arc de la chaîne, de façon à ce que l'on observe un phénomène de flux et reflux influant sur la
+distance de tous les sommets. Lors du dernier réétiquetage de l'algorithme on se retrouve dans le
+cas représenté.
+Aucun autre n\oe ud n'étant actif, on a, avant réétiquetage, $\Phi = d'(1) / K = 1/K$, or après
+réétiquetage, le sommet $1$ est le sommet présentant la plus haute distance du graphe. On observe
+dans ce cas une augmentation de $k/K$ soit $(n-2)/k$.
+
+\begin{figure}
+	\begin{center}
+		\subfloat[Le graphe de flots]{
+			\begin{tikzpicture}
+				\tikzset{n/.style={draw=black, circle, minimum size=17pt},f/.style={->,>=latex}};
+				\node[n] (s) at (0,0) {$s$};
+				\node[n] (1) at (2,0) {$1$};
+				\node[n] (2) at (4,0) {$2$};
+				\node (pt) at (6,0) {$\dots$};
+				\node[n] at (8,0) {$k$};
+				\node[n] at (10,0) {$t$};
+
+				\draw[f] (s) to node[above] (1) {$2/2$};
+				\draw[f] (1) to node[above] (2) {$1/2$};
+				\draw[f] (2) to node[above] (pt) {$1/2$};
+				\draw[f] (pt) to node[above] (n) {$1/2$};
+				\draw[f] (n) to node[above] (t) {$1/1$};
+		\end{tikzpicture}}
+		\subfloat[Excédents, distances et fonctions de potentiel]{
+			\begin{tabular}{|c|c|c|c|} \hline
+				$i$ & $d(i)$ & $e(i)$ & $d'(i)$ \\ \hline
+				$s$ & $k+2$ & $\infty$ & $k+1$ \\ \hline
+				$1$ & $k+1$ & $1$ & $1$ \\ \hline
+				$2$ & $k+2$ & $0$ & $n+1$ \\ \hline
+				$\dots$ & $\dots$ & $\dots$ & $\dots$ \\ \hline
+				$n$ & $k+2$ & $0$ & $k+1$ \\ \hline
+				$t$ & $0$ & $1$ & $0$ \\ \hline
+				& & & $\Phi = 1/K$ \\ \hline
+			\end{tabular}}
+	\end{center}
+	\label{pdc}
+	\caption{Exemple de l'influence du réétiquetage sur la fonction $\Phi$}
+\end{figure}
+
+\begin{lemma}
+	Une opération de poussage saturant augmente la valeur de $\Phi$ d'au plus $n/K$.
+\end{lemma}
+
+\underline{\textbf{Preuve :}}\\
+Chaque opération de poussage non saturant rend actif, au plus un seul sommet supplémentaire,
+appelons $k$ ce sommet. Or on sait que $d'(k) \leq n$, donc l'augmentation de $\Phi$ par l'ajout
+d'un sommet actif est bornée par $n/K$.
+
+\begin{lemma}
+	Une opération de poussage non saturant n'augmente pas la valeur de $\Phi$.
+\end{lemma}
+
+\underline{\textbf{Preuve :}}\\
+Soient $i$ et $j$ deux sommets tels qu'il est possible de réaliser un poussage non saturant de $i$
+vers $j$.  Après cette opération, le sommet $i$ n'est plus actif et le sommet $j$ le devient, or
+$d(i) = d(j) + 1$ donc $d'(i) > d'(j)$, on observe même une diminution de la valeur de $\Phi$ d'au
+moins $1/K$.
+
+Afin de quantifier le nombre de poussage non saturant, l'algorithme est scindée en phases définie
+comme suit : une phase est l'ensemble des opérations de poussage ayant lieu entre deux changements
+consécutifs de la valeur :
+\begin{equation}
+	d^* = \max\{d(v) : v \mbox{ est actif }\}
+\end{equation}
+
+Autrement dit il s'agit de l'ensemble des poussages ayant lieu
