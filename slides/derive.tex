@@ -1,0 +1,38 @@
+
+\begin{frame}{Une question de choix}
+	Les algorithmes dérivés sont basés sur un choix plus judicieux des sommets actfis à traiter.
+	\vfill
+\end{frame}
+
+\begin{frame}{Une question de choix}
+	Les algorithmes dérivés sont basés sur un choix plus judicieux des sommets actfis à traiter.
+	\vfill
+	\textbf{L'algorithme FIFO :} dès qu'un noeud devient actif, on le place dans une file. On traite
+	alors les sommets de la file dans l'ordre \emph{First In First Out}\vfill
+\end{frame}
+
+\begin{frame}{Une question de choix}
+	Les algorithmes dérivés sont basés sur un choix plus judicieux des sommets actfis à traiter.
+	\vfill
+	\textbf{L'algorithme FIFO :} dès qu'un noeud devient actif, on le place dans une file. On traite
+	alors les sommets de la file dans l'ordre \emph{First In First Out}\vfill
+	\textbf{L'algorithme High Label :} on choisit de préférence, le noeud actif ayant la plus grande
+	distance au puits \vfill
+\end{frame}
+
+\begin{frame}{Complexités}
+	\renewcommand{\arraystretch}{2.5}
+	\begin{tabular}{c|p {0.12\linewidth}|p {0.35\linewidth}|p {0.35\linewidth}|} \cline{3-4}
+		\multicolumn{2}{c|}{}& Algorithme & Complexité \\ \cline{2-4}
+		&\multirow{2}{*}{$\quad$\rotatebox{90}{\parbox[b]{5.1em}{\centering Chaînes\\ améliorantes~}}} & Edmonds-Karp & $O(SA^2)$ \\
+		\cline{3-4}
+	\renewcommand{\arraystretch}{2}
+		& & Dinic & $O(S^2A)$ \\\cline{2-4}
+		&\multirow{3}{*}{$\quad$\rotatebox{90}{\parbox[t]{5.5em}{\centering Poussage\\ Réétiquetage}}} &
+		Générique & $O(S^2A)$ \\ \cline{3-4}
+		& & FIFO & $O(S^3)$ \\ \cline{3-4}
+		& & High Label & $O(S^2\sqrt{A})$ \\ \cline{2-4}
+	\end{tabular}
+\end{frame}
+
+
