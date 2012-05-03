@@ -146,9 +146,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00087"></a>00087 <span class="comment">// {{{ Preflow set of functions</span>
 <a name="l00093"></a>00093 <span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="algo_8c.html#ac112bd6c4339a6134b91d43f7ca254a5" title="Compute the distance of each node to the sink.">compLabel</a> (<a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *g, <span class="keywordtype">int</span> p);
 <a name="l00094"></a>00094 
-<a name="l00104"></a>00104 <span class="keywordtype">int</span> <a class="code" href="algo_8c.html#ac57052c962a0d3a4e4b872e8245cb71b" title="Push preflow on the edge (i,j)">push</a> (<a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *flow, <a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *diff, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">int</span> s, <span class="keywordtype">int</span> p);
+<a name="l00103"></a>00103 <span class="keywordtype">void</span> <a class="code" href="algo_8c.html#a30147f436a9b198966e5f60e1bfa477c" title="Push preflow on the edge (i,j)">fifo_push_relab</a> (<a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *flow, <a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *diff, <a class="code" href="struct_list.html">List</a> *excess, <span class="keywordtype">int</span> s, <span class="keywordtype">int</span> p);
+<a name="l00104"></a>00104 <span class="keywordtype">void</span> <a class="code" href="algo_8c.html#aa6d71415f36d96c2ea900b03d078d171">hl_push_relab</a> (<a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *flow, <a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *diff, <a class="code" href="structh.html" title="Basic implementation of a heap (max)">Heap</a> *excess, <span class="keywordtype">int</span> s, <span class="keywordtype">int</span> p);
 <a name="l00105"></a>00105 
-<a name="l00111"></a>00111 <span class="keywordtype">void</span> <a class="code" href="algo_8c.html#a4da153ca131825c58c8ed8cec06add0e" title="Relabel an active node.">relabel</a> (<a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *diff, <span class="keywordtype">int</span> p);
+<a name="l00111"></a>00111 <span class="keywordtype">void</span> <a class="code" href="algo_8h.html#af2b7ac67037138f438a6566283d46d91" title="Relabel an active node.">relabel</a> (<a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *diff, <span class="keywordtype">int</span> p);
 <a name="l00112"></a>00112 
 <a name="l00121"></a>00121 <span class="keywordtype">int</span> <a class="code" href="algo_8c.html#aad346e1d9d35e607e37d594f3d2068ab" title="Implements the FIFO variant of preflow-push algorithm.">algoFIFO</a> (<a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *capa, <a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *diff, <a class="code" href="struct_graph.html" title="General graph structure.">Graph</a> *flow, <span class="keywordtype">int</span> s, <span class="keywordtype">int</span> p);
 <a name="l00122"></a>00122 
@@ -161,7 +162,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul>
       <li class="navelem"><a class="el" href="algo_8h.html">algo.h</a>      </li>
 
-    <li class="footer">Generated on Fri Apr 27 2012 19:34:52 for Graph Library by
+    <li class="footer">Generated on Thu May 3 2012 15:41:47 for Graph Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.0 </li>
    </ul>

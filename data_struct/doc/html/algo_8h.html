@@ -143,8 +143,9 @@ Functions</h2></td></tr>
 <tr class="memdesc:ab489b06c87846ce09210cd438c08ab09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the Edmonds-Karps alogrithm.  <a href="#ab489b06c87846ce09210cd438c08ab09"></a><br/></td></tr>
 <tr class="memitem:ac112bd6c4339a6134b91d43f7ca254a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#ac112bd6c4339a6134b91d43f7ca254a5">compLabel</a> (<a class="el" href="struct_graph.html">Graph</a> *g, int p)</td></tr>
 <tr class="memdesc:ac112bd6c4339a6134b91d43f7ca254a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the distance of each node to the sink.  <a href="#ac112bd6c4339a6134b91d43f7ca254a5"></a><br/></td></tr>
-<tr class="memitem:ac57052c962a0d3a4e4b872e8245cb71b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#ac57052c962a0d3a4e4b872e8245cb71b">push</a> (<a class="el" href="struct_graph.html">Graph</a> *flow, <a class="el" href="struct_graph.html">Graph</a> *diff, int i, int j, int s, int p)</td></tr>
-<tr class="memdesc:ac57052c962a0d3a4e4b872e8245cb71b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push preflow on the edge (i,j)  <a href="#ac57052c962a0d3a4e4b872e8245cb71b"></a><br/></td></tr>
+<tr class="memitem:a30147f436a9b198966e5f60e1bfa477c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#a30147f436a9b198966e5f60e1bfa477c">fifo_push_relab</a> (<a class="el" href="struct_graph.html">Graph</a> *flow, <a class="el" href="struct_graph.html">Graph</a> *diff, <a class="el" href="struct_list.html">List</a> *excess, int s, int p)</td></tr>
+<tr class="memdesc:a30147f436a9b198966e5f60e1bfa477c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push preflow on the edge (i,j)  <a href="#a30147f436a9b198966e5f60e1bfa477c"></a><br/></td></tr>
+<tr class="memitem:aa6d71415f36d96c2ea900b03d078d171"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#aa6d71415f36d96c2ea900b03d078d171">hl_push_relab</a> (<a class="el" href="struct_graph.html">Graph</a> *flow, <a class="el" href="struct_graph.html">Graph</a> *diff, <a class="el" href="heap_8h.html#a02307effd51ee225e9740db0f9eff01f">Heap</a> *excess, int s, int p)</td></tr>
 <tr class="memitem:af2b7ac67037138f438a6566283d46d91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#af2b7ac67037138f438a6566283d46d91">relabel</a> (<a class="el" href="struct_graph.html">Graph</a> *diff, int p)</td></tr>
 <tr class="memdesc:af2b7ac67037138f438a6566283d46d91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relabel an active node.  <a href="#af2b7ac67037138f438a6566283d46d91"></a><br/></td></tr>
 <tr class="memitem:aad346e1d9d35e607e37d594f3d2068ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="algo_8h.html#aad346e1d9d35e607e37d594f3d2068ab">algoFIFO</a> (<a class="el" href="struct_graph.html">Graph</a> *capa, <a class="el" href="struct_graph.html">Graph</a> *diff, <a class="el" href="struct_graph.html">Graph</a> *flow, int s, int p)</td></tr>
@@ -550,6 +551,109 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a30147f436a9b198966e5f60e1bfa477c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="algo_8h.html#a30147f436a9b198966e5f60e1bfa477c">fifo_push_relab</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>flow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>diff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_list.html">List</a> *&#160;</td>
+          <td class="paramname"><em>excess</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Push preflow on the edge (i,j) </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flow</td><td>Preflow graph </td></tr>
+    <tr><td class="paramname">diff</td><td>Residual Network </td></tr>
+    <tr><td class="paramname">excess</td><td><a class="el" href="struct_list.html">List</a> of node to examinate </td></tr>
+    <tr><td class="paramname">s</td><td>source node </td></tr>
+    <tr><td class="paramname">p</td><td>sink node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns:</dt><dd>The amount of pushed preflow </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa6d71415f36d96c2ea900b03d078d171"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="algo_8h.html#aa6d71415f36d96c2ea900b03d078d171">hl_push_relab</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>flow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
+          <td class="paramname"><em>diff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="heap_8h.html#a02307effd51ee225e9740db0f9eff01f">Heap</a> *&#160;</td>
+          <td class="paramname"><em>excess</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a939d93e11f6a622e01ad96232d6433a8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -598,71 +702,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns:</dt><dd>flow increase </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ac57052c962a0d3a4e4b872e8245cb71b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int <a class="el" href="algo_8h.html#ac57052c962a0d3a4e4b872e8245cb71b">push</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
-          <td class="paramname"><em>flow</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_graph.html">Graph</a> *&#160;</td>
-          <td class="paramname"><em>diff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>i</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>j</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>p</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Push preflow on the edge (i,j) </p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">flow</td><td>Preflow graph </td></tr>
-    <tr><td class="paramname">diff</td><td>Residual Network </td></tr>
-    <tr><td class="paramname">i</td><td>node </td></tr>
-    <tr><td class="paramname">j</td><td>node </td></tr>
-    <tr><td class="paramname">s</td><td>source node </td></tr>
-    <tr><td class="paramname">p</td><td>sink node </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns:</dt><dd>The amount of pushed preflow </dd></dl>
 
 </div>
 </div>
@@ -822,7 +861,7 @@ Functions</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="algo_8h.html">algo.h</a>      </li>
 
-    <li class="footer">Generated on Fri Apr 27 2012 19:34:52 for Graph Library by
+    <li class="footer">Generated on Thu May 3 2012 15:41:47 for Graph Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.0 </li>
    </ul>

@@ -63,10 +63,6 @@ stat_t elapsedTime (int n, int m, int c, int nb_iter) {
 //			printf("Sortie Dinic\n");
 
 			freeGraph (lfDinic);
-
-//			printf ("%d %d %d \n", f, g, h);
-			if (f!=g || g!=h)
-				result._st4 ++;
 		}
 		else {
 			printf ("Flot nul.\n");

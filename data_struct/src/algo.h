@@ -96,12 +96,12 @@ void compLabel (Graph *g, int p);
  * \brief Push preflow on the edge (i,j)
  * \param flow Preflow graph
  * \param diff Residual Network
- * \param i node 
- * \param j node
+ * \param excess List of node to examinate
  * \param s source node
  * \param p sink node
  * \return The amount of pushed preflow */
-int push (Graph *flow, Graph *diff, int i, int j, int s, int p);
+void fifo_push_relab (Graph *flow, Graph *diff, List *excess, int s, int p);
+void hl_push_relab (Graph *flow, Graph *diff, Heap *excess, int s, int p);
 
 /**
  * \brief Relabel an active node

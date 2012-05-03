@@ -35,10 +35,10 @@ int \hyperlink{algo_8c_ab489b06c87846ce09210cd438c08ab09}{algo\-Edmond\-Karp} (\
 \begin{DoxyCompactList}\small\item\em Implements the Edmonds-\/\-Karps alogrithm. \end{DoxyCompactList}\item 
 void \hyperlink{algo_8c_ac112bd6c4339a6134b91d43f7ca254a5}{comp\-Label} (\hyperlink{struct_graph}{Graph} $\ast$g, int p)
 \begin{DoxyCompactList}\small\item\em Compute the distance of each node to the sink. \end{DoxyCompactList}\item 
-int \hyperlink{algo_8c_ac57052c962a0d3a4e4b872e8245cb71b}{push} (\hyperlink{struct_graph}{Graph} $\ast$flow, \hyperlink{struct_graph}{Graph} $\ast$diff, int i, int j, int s, int p)
+void \hyperlink{algo_8c_a30147f436a9b198966e5f60e1bfa477c}{fifo\-\_\-push\-\_\-relab} (\hyperlink{struct_graph}{Graph} $\ast$flow, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_list}{List} $\ast$excess, int s, int p)
 \begin{DoxyCompactList}\small\item\em Push preflow on the edge (i,j) \end{DoxyCompactList}\item 
-void \hyperlink{algo_8c_a4da153ca131825c58c8ed8cec06add0e}{relabel} (\hyperlink{struct_graph}{Graph} $\ast$diff, int k)
-\begin{DoxyCompactList}\small\item\em Relabel an active node. \end{DoxyCompactList}\item 
+void \hyperlink{algo_8c_aa6d71415f36d96c2ea900b03d078d171}{hl\-\_\-push\-\_\-relab} (\hyperlink{struct_graph}{Graph} $\ast$flow, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{heap_8h_a02307effd51ee225e9740db0f9eff01f}{Heap} $\ast$excess, int s, int p)
+\item 
 int \hyperlink{algo_8c_aad346e1d9d35e607e37d594f3d2068ab}{algo\-F\-I\-F\-O} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
 \begin{DoxyCompactList}\small\item\em Implements the F\-I\-F\-O variant of preflow-\/push algorithm. \end{DoxyCompactList}\item 
 int \hyperlink{algo_8c_a939bfbfe2cd309b7e7188d6691d3e89a}{algo\-Label} (\hyperlink{struct_graph}{Graph} $\ast$capa, \hyperlink{struct_graph}{Graph} $\ast$diff, \hyperlink{struct_graph}{Graph} $\ast$flow, int s, int p)
@@ -293,6 +293,48 @@ Generates the difference graph from the flow graph and capacity graph.
 
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000001}{Todo}]documentation \end{DoxyRefDesc}
+\hypertarget{algo_8c_a30147f436a9b198966e5f60e1bfa477c}{\index{algo.\-c@{algo.\-c}!fifo\-\_\-push\-\_\-relab@{fifo\-\_\-push\-\_\-relab}}
+\index{fifo\-\_\-push\-\_\-relab@{fifo\-\_\-push\-\_\-relab}!algo.c@{algo.\-c}}
+\subsubsection[{fifo\-\_\-push\-\_\-relab}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf fifo\-\_\-push\-\_\-relab} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{flow, }
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{{\bf List} $\ast$}]{excess, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_a30147f436a9b198966e5f60e1bfa477c}
+
+
+Push preflow on the edge (i,j) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flow} & Preflow graph \\
+\hline
+{\em diff} & Residual Network \\
+\hline
+{\em excess} & \hyperlink{struct_list}{List} of node to examinate \\
+\hline
+{\em s} & source node \\
+\hline
+{\em p} & sink node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The amount of pushed preflow 
+\end{DoxyReturn}
+\hypertarget{algo_8c_aa6d71415f36d96c2ea900b03d078d171}{\index{algo.\-c@{algo.\-c}!hl\-\_\-push\-\_\-relab@{hl\-\_\-push\-\_\-relab}}
+\index{hl\-\_\-push\-\_\-relab@{hl\-\_\-push\-\_\-relab}!algo.c@{algo.\-c}}
+\subsubsection[{hl\-\_\-push\-\_\-relab}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf hl\-\_\-push\-\_\-relab} (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{flow, }
+\item[{{\bf Graph} $\ast$}]{diff, }
+\item[{{\bf Heap} $\ast$}]{excess, }
+\item[{int}]{s, }
+\item[{int}]{p}
+\end{DoxyParamCaption}
+)}}\label{algo_8c_aa6d71415f36d96c2ea900b03d078d171}
 \hypertarget{algo_8c_a939d93e11f6a622e01ad96232d6433a8}{\index{algo.\-c@{algo.\-c}!layer\-Graph\-Flow@{layer\-Graph\-Flow}}
 \index{layer\-Graph\-Flow@{layer\-Graph\-Flow}!algo.c@{algo.\-c}}
 \subsubsection[{layer\-Graph\-Flow}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf layer\-Graph\-Flow} (
@@ -321,59 +363,6 @@ Implements the research of the maximal flow in a layer graph and updates the ass
 \begin{DoxyReturn}{Returns}
 flow increase 
 \end{DoxyReturn}
-\hypertarget{algo_8c_ac57052c962a0d3a4e4b872e8245cb71b}{\index{algo.\-c@{algo.\-c}!push@{push}}
-\index{push@{push}!algo.c@{algo.\-c}}
-\subsubsection[{push}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf push} (
-\begin{DoxyParamCaption}
-\item[{{\bf Graph} $\ast$}]{flow, }
-\item[{{\bf Graph} $\ast$}]{diff, }
-\item[{int}]{i, }
-\item[{int}]{j, }
-\item[{int}]{s, }
-\item[{int}]{p}
-\end{DoxyParamCaption}
-)}}\label{algo_8c_ac57052c962a0d3a4e4b872e8245cb71b}
-
-
-Push preflow on the edge (i,j) 
-
-
-\begin{DoxyParams}{Parameters}
-{\em flow} & Preflow graph \\
-\hline
-{\em diff} & Residual Network \\
-\hline
-{\em i} & node \\
-\hline
-{\em j} & node \\
-\hline
-{\em s} & source node \\
-\hline
-{\em p} & sink node \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The amount of pushed preflow 
-\end{DoxyReturn}
-\hypertarget{algo_8c_a4da153ca131825c58c8ed8cec06add0e}{\index{algo.\-c@{algo.\-c}!relabel@{relabel}}
-\index{relabel@{relabel}!algo.c@{algo.\-c}}
-\subsubsection[{relabel}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf relabel} (
-\begin{DoxyParamCaption}
-\item[{{\bf Graph} $\ast$}]{diff, }
-\item[{int}]{p}
-\end{DoxyParamCaption}
-)}}\label{algo_8c_a4da153ca131825c58c8ed8cec06add0e}
-
-
-Relabel an active node. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em diff} & A difference graph \\
-\hline
-{\em k} & Node to relabel \\
-\hline
-\end{DoxyParams}
 \hypertarget{algo_8c_a565c1fb4fe27530c7bb57277d3475843}{\index{algo.\-c@{algo.\-c}!set\-Short\-Path@{set\-Short\-Path}}
 \index{set\-Short\-Path@{set\-Short\-Path}!algo.c@{algo.\-c}}
 \subsubsection[{set\-Short\-Path}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph}$\ast$ {\bf set\-Short\-Path} (

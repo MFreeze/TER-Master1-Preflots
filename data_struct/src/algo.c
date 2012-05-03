@@ -362,64 +362,62 @@ void compLabel (Graph *g, int p) {
 }
 // }}}
 
-// {{{ Push Function
-int push (Graph *flow, Graph *diff, int i, int j, int s, int p) {
-	if (i == j || i == p || lab(diff,j) == -1)
-		return 0;
-	int value = edgeVal (diff, i, j);
-	int delta = 0;
-	if (i == s) delta = value;
-	else if (value < exc(diff,i))
-		delta = value;
-	else 
-		delta = exc(diff,i);
-	//int delta = (i == s || value < exc(diff,i)) ? value : exc(diff,i);
-	if (delta > 0 && (i == s || j == p || lab(diff,i) == lab(diff,j) + 1) && lab(diff,i)) {
-		addSegToFlow (flow, i, j, delta);
-		addSegToDiff (diff, i, j, delta);
-//		addPathToFlow (flow, path);
-//		addPathToDiff (diff, path);
-		return delta;
+// {{{ push_relab
+void fifo_push_relab (Graph *flow, Graph *diff, List *excess, int s, int p) {
+	int k = num(begin(excess));
+	List *out = outNeighb(diff, k);
+	Item *it = begin(out);
+	int M= 2*nbVert(diff);
+	while (it) {
+		int i = num(it);
+		if (lab(diff, k) == lab(diff, i) + 1) {
+			int val = edgeVal(diff, k, i);
+			int min = val < exc(diff, k) ? val : exc(diff, k);
+			addSegToDiff(diff, k, i, min);
+			addSegToFlow(flow, k, i, min);
+			if (exc(diff,i) == 0 && i != s && i!= p)
+				pushTail(excess, i, 0);
+			exc(diff, i) += min;
+			exc(diff, k) -= min;
+		}
+		else if (lab(diff, i) >= lab(diff, k))
+			M = lab(diff, i) < M ? lab(diff, i) : M;
+		it = next(it);
 	}
-	return 0;
-}
+	if (exc(diff, k) > 0)
+		lab(diff, k) = M;
 
+	popHead(excess);
+	freeList(out);
+}
 // }}}
 
-// {{{ relabel
-void relabel (Graph *diff, int k) {
-//	List *out = outNeighb(diff, k);
-	List *out = diff->_lg->_outNeighb[k];
-	int n_label = 0;
+// {{{ push_relab
+void hl_push_relab (Graph *flow, Graph *diff, Heap *excess, int s, int p) {
+	int k = h_remNode(excess);
+	List *out = outNeighb(diff, k);
 	Item *it = begin(out);
-	while (it && !n_label) {
-		int j = num(it);
-		if (j == k) {
-			it = next(it);
-			continue;
-		}
-		n_label = (lab(diff,j) >= lab(diff,k)) ? lab(diff,j) : 0;
-		it = next(it);
-	}
-
+	int M= 2*nbVert(diff);
 	while (it) {
-		int j = num(it);
-		if (j == k) {
-			it = next(it);
-			continue;
+		int i = num(it);
+		if (lab(diff, k) == lab(diff, i) + 1) {
+			int val = edgeVal(diff, k, i);
+			int min = val < exc(diff, k) ? val : exc(diff, k);
+			addSegToDiff(diff, k, i, min);
+			addSegToFlow(flow, k, i, min);
+			if (exc(diff,i) == 0 && i != s && i!= p)
+				h_insertNode(excess, i);
+			exc(diff, i) += min;
+			exc(diff, k) -= min;
 		}
-		n_label = (lab(diff,j) >= lab(diff,k) && lab(diff,j) < n_label) ? lab(diff,j):n_label;
+		else if (lab(diff, i) >= lab(diff, k))
+			M = lab(diff, i) < M ? lab(diff, i) : M;
 		it = next(it);
 	}
+	if (exc(diff, k) > 0)
+		lab(diff, k) = M;
 
-
-	if (n_label)
-		lab(diff,k) = ++n_label;
-	else
-		printf("C'est le bordel.\n");
-
-
-	//freeList(out);
+	freeList(out);
 }
 // }}}
 
@@ -444,16 +442,12 @@ int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 	Item *it = begin(out);
 	while (it != NULL) {
 		int j = num(it);
-		if (j == s) {
-			it = next(it);
-			continue;
-		}
-		int delta = push (flow, diff, s, j, s, p);
-		if (delta) {
-			if (j != p)
-				pushTail(excess_node, j, 0);
-			exc(diff,j)+=delta;
-		}
+		int delta = edgeVal(diff, s, j);
+		addSegToFlow(flow, s, j, delta);
+		addSegToDiff(diff, s, j, delta);
+		if (j != s && j!= p)
+			pushTail(excess_node, j, 0);
+		exc(diff,j)+=delta;
 		it = next(it);
 	}
 	freeList (out);
@@ -461,38 +455,8 @@ int algoFIFO (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 	lab(diff,s) = nbVert(diff);
 
 	// Algorithm
-	while (nb(excess_node)) {
-		int k = num(begin(excess_node));
-		if (k==p || k==s) {
-			popHead(excess_node);
-			continue;
-		}
-		List *out = outNeighb(diff, k);
-		//List *out = diff->_lg->_outNeighb[k];
-		it = begin(out);
-		while (it && exc(diff,k)) {
-			int j = num(it);
-			if (j==k) {
-				it = next(it);
-				continue;
-			}
-			int delta = push (flow, diff, k, j, s, p);
-			if (delta) {
-				if (j != p && j != s && !exc(diff,j))
-					pushTail (excess_node, j, 0);
-				exc(diff, j) += delta;
-				exc(diff, k) -= delta;
-			}
-			it = next(it);
-		}
-		if (exc(diff,k) && k!=s && k!=p) {
-			relabel (diff, k);
-			//printf ("Noeud %d, Excedent %d, Hauteur : %d\n", k, exc(diff,k), lab(diff,k));
-			pushTail(excess_node, k, 0);
-		}
-		popHead(excess_node);
-		freeList(out);
-	}
+	while (nb(excess_node)) 
+		fifo_push_relab (flow, diff, excess_node, s, p);
 	freeList (excess_node);
 	return exc(diff,p);
 }
@@ -515,20 +479,16 @@ int algoLabel (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 	Heap *excess_node = allocHeap(nbVert(capa), glab(capa));
 	List *out = outNeighb(diff, s);
 	//List *out = diff->_lg->_outNeighb[s];
-
+	
 	Item *it = begin(out);
 	while (it != NULL) {
 		int j = num(it);
-		if (j==s){
-			it = next(it);
-			continue;
-		}
-		int delta = push (flow, diff, s, j, s, p);
-		if (delta) {
-			if (j != p)
-				h_insertNode (excess_node, j);
-			exc(diff,j)+=delta;
-		}
+		int delta = edgeVal(diff, s, j);
+		addSegToFlow(flow, s, j, delta);
+		addSegToDiff(diff, s, j, delta);
+		if (j != s && j!= p)
+			h_insertNode(excess_node, j);
+		exc(diff,j)+=delta;
 		it = next(it);
 	}
 	freeList (out);
@@ -536,37 +496,9 @@ int algoLabel (Graph *capa, Graph *diff, Graph *flow, int s, int p) {
 	lab(diff,s) = nbVert(diff);
 
 	// Algorithm
-	while (cur(excess_node)) {
-		int k = h_remNode(excess_node);
-		if (k==p || k==s) 
-			continue;
-		List *out = outNeighb(diff, k);
-		//List *out = diff->_lg->_outNeighb[k];
-		it = begin(out);
-		while (it && exc(diff,k)) {
-			int j = num(it);
-			if (j == k) {
-				it = next(it);
-				continue;
-			}
-			int delta = push (flow, diff, k, j, s, p);
-			if (delta) {
-				if (j != p && j != s && !exc(diff,j))
-					h_insertNode (excess_node, j);
-				exc(diff, j) += delta;
-				exc(diff, k) -= delta;
-			}
-			it = next(it);
-		}
-		if (exc(diff,k)) {
-			if (k!=s && k!=p) {
-			relabel (diff, k);
-			//printf ("Noeud %d, Excedent %d, Hauteur : %d\n", k, exc(diff,k), lab(diff,k));
-			h_insertNode (excess_node, k);
-			}
-		}
-		freeList(out);
-	}
+	while (cur(excess_node)) 
+		hl_push_relab (flow, diff, excess_node, s, p);
+
 	freeHeap (excess_node);
 	return exc(diff,p);
 }

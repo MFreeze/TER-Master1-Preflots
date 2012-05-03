@@ -7,6 +7,7 @@ var searchData=
   ['heap',['Heap',['../heap_8h.html#a02307effd51ee225e9740db0f9eff01f',1,'heap.h']]],
   ['heap_2ec',['heap.c',['../heap_8c.html',1,'']]],
   ['heap_2eh',['heap.h',['../heap_8h.html',1,'']]],
+  ['hl_5fpush_5frelab',['hl_push_relab',['../algo_8c.html#aa6d71415f36d96c2ea900b03d078d171',1,'hl_push_relab(Graph *flow, Graph *diff, Heap *excess, int s, int p):&#160;algo.c'],['../algo_8h.html#aa6d71415f36d96c2ea900b03d078d171',1,'hl_push_relab(Graph *flow, Graph *diff, Heap *excess, int s, int p):&#160;algo.c']]],
   ['hlab',['hlab',['../heap_8h.html#a0fe40558fd7623ae1ad9a75df2b97aee',1,'heap.h']]],
   ['htlab',['htlab',['../heap_8h.html#ad45dbd538fa3b9165a81043205d7721e',1,'heap.h']]]
 ];

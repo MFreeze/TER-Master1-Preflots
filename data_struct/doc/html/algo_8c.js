@@ -13,9 +13,9 @@ var algo_8c =
     [ "algoLabel", "algo_8c.html#a939bfbfe2cd309b7e7188d6691d3e89a", null ],
     [ "compLabel", "algo_8c.html#ac112bd6c4339a6134b91d43f7ca254a5", null ],
     [ "diffGraph", "algo_8c.html#ae403c05ffe3a208f5c4e4cb639c926f4", null ],
+    [ "fifo_push_relab", "algo_8c.html#a30147f436a9b198966e5f60e1bfa477c", null ],
+    [ "hl_push_relab", "algo_8c.html#aa6d71415f36d96c2ea900b03d078d171", null ],
     [ "layerGraphFlow", "algo_8c.html#a939d93e11f6a622e01ad96232d6433a8", null ],
-    [ "push", "algo_8c.html#ac57052c962a0d3a4e4b872e8245cb71b", null ],
-    [ "relabel", "algo_8c.html#a4da153ca131825c58c8ed8cec06add0e", null ],
     [ "setShortPath", "algo_8c.html#a565c1fb4fe27530c7bb57277d3475843", null ],
     [ "shortPath", "algo_8c.html#a4129be3eacbd386fff6d9e62f372e402", null ],
     [ "updateLayGraph", "algo_8c.html#a1e517c2e1446f443b1b6e1e6f0f07e6d", null ]
