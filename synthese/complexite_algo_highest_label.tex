@@ -118,7 +118,7 @@ autant de phases.
 	Le nombre maximum de poussages non saturants en phase \emph{faible} est borné par $4n^2K$.
 \end{corol}
 
-Cecii est directement donné par la limite du nombre de phases : à supposer que toutes les phases
+Ceci est directement donné par la limite du nombre de phases : à supposer que toutes les phases
 sont des phases faibles, présentant au plus $K$ poussages non saturants. Il y a alors, au maximum,
 $4n²K$ poussages non saturants sur l'ensemble de l'algorithme.
 
@@ -141,9 +141,9 @@ saturant\footnote{Ceci est dû au fait qu'il y a au moins $Q$ n\oe ud ayant la m
 sommet effectuant le poussage. Si l'on appelle $i$ ce sommet $d'(i) \geq Q$}. Or $Q>K$
 donc chaque poussage diminue $\Phi$ d'au moins $1$ et donc la phase diminue $\Phi$ d'au moins $Q$.
 
-\begin{theorem}
+\begin{thrm}
 	L'algorithme High Label s'exécute en $O(n²\sqrt{m})$.
-\end{theorem}
+\end{thrm}
 
 L'augmentation maximale de la fonction de potentielle $\Phi$ est égale à $(2n²+2nm)n/K$\footnote{Il
 	y a au plus $An²$ réétiquetage et $2nm$ poussages saturant augmentant la valeur de $\Phi$ d'au
@@ -151,4 +151,12 @@ plus $n/K$}. Donc la valeur maximale de $\Phi$ se résume à sa valeur initiale 
 laquelle est ajoutée l'augmentation maximale $(2n²+2nm)n/K$, on obtient alors : $$
 \Phi_{\max} = \frac{2n³ + n² + 2n²m}{K} $$
 
-De plus, par définition du principe de fonction potentielle
+Il s'agit là aussi de la borne supérieure du nombre de poussages non saturant qui ont lieu lors des
+phases fortes. En prenant en compte le nombre de poussages saturant maximum lors des phases faibles,
+on obtient : $$
+N \leq \frac{2n³ + n² + 2n²m}{K} + 4n²K \leq \frac{3n³ + 2n²m}{K} + 4n²K = \frac{3n³ +
+2n²m}{\sqrt{m}} + 4n²\sqrt{m} = \frac{3n³\sqrt{m}}{m} + 6n²\sqrt{m} $$
+
+Le nombre de poussages non saturant est en $O(n²\sqrt{m})$ et donc l'algorithme s'exécute de la même
+manière en $O(n²\sqrt{m})$.
+

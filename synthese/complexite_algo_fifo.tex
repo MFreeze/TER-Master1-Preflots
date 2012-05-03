@@ -7,7 +7,7 @@ le cas d'une opération de poussage saturant, nous avons vu que le noeud réalis
 très probablement, un noeud actif, il est donc candidat à la sélection lors de la prochaine boucle
 de l'algorithme. Seulement rien ne garantit qu'il sera à nouveau choisi, il peut donc être
 intéressant dans ce genre de situation de réaliser plusieurs poussages saturants suivis soit d'un
-poussage non saturant, soit d'une opération de ré-étiquetage. C'est cette suite d'opérations de que
+poussage non saturant, soit d'une opération de réétiquetage. C'est cette suite d'opérations de que
 nous appellerons dorénavant \emph{analyse de noeud}.
 
 \begin{thrm}
@@ -26,7 +26,7 @@ nombre de phases.
 Considérons la fonction $\Phi = max \{d(i) / i \mbox{ actif }\}$. Considérons à présent l'effet
 d'une phase sur la fonction $\Phi$, on remarque alors plusieurs cas :
 \begin{enumerate}
-	\item Lors de la phase aucune opération de ré-étiquetage n'a lieu. Dans ce cas, les sommets $i$ de
+	\item Lors de la phase aucune opération de réétiquetage n'a lieu. Dans ce cas, les sommets $i$ de
 		cette phase ont tous effectués une opération de poussage non saturant, ils ne sont donc plus
 		actifs. Les noeuds actifs après la phase $j$ ont tous une distance respectant cette loi : $d(j)
 		< d(i) \quad \forall i, j$. $\Phi$ diminue alors d'au moins une unité.

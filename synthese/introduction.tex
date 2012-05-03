@@ -81,7 +81,7 @@ présentées dans la documentation fournie}.
 \subsection{Quelques rappels sur les graphes}
 
 Un graphe $G$ est défini par un ensemble de sommets noté $S$ et un ensemble d'arêtes notées
-$A$\footnote{Il paraît important de faire remarquer que la définition d'un graphe non simple est
+$A$\footnote{\samepage Il paraît important de faire remarquer que la définition d'un graphe non simple est
 	parfaitement rigoureuse, si l'on rajoute à cette définition une fonction dite d'incidence notée
 	$\gamma : A \rightarrow S \times S$ qui associe à chaque arête de $A$ un couple de sommets de
 $S$.}, ainsi qu'un sommet source noté $s$ et un sommet puits $t$.\\
@@ -132,10 +132,10 @@ respectant les contraintes suivantes :
 On introduit alors la valeur $e(i)$ représentant l'excédent de flot d'un noeud $i \in S$, elle est
 définie comme la différence entre le préflot entrant dans un noeud et le préflot sortant de celui-ci
 : \begin{equation}
-	e(i) = \sum_{j \in A^+(i)} x(i,j) - \sum_{k \in A^-(i)} x(k,i)
+	e(i) = \sum_{k \in A^-(i)} x(k,i) - \sum_{j \in A^+(i)} x(i,j)
 \end{equation}
  On peut alors écrire l'inéquation (\ref{preflot_2}) de cette manière :
-\begin{equation}ss
+\begin{equation} 
 \forall i \in S - \{s,t\},\quad \sum_{j \in A^+(i)} x(i,j) = \sum_{k \in A^-(i)} x(k,i) + e(i)
 \end{equation}
 De la même manière, l'inéquation \ref{preflot_3} sera réécrite de la sorte :
@@ -211,7 +211,7 @@ effectuées et donc sur la complexité de l'algorithme.
 \subsubsection{Fonction de distance}
 
 Soit $G(S, A)$ un graphe ayant $s$ pour sommet source et $t$ pour sommet puits. Une fonction $d: S
-\rightarrow \mathbb{N}$ est une fonction de hauteur\footnote{Aussi appelée \emph{fonction de
+\rightarrow \mathbb{N}$ est une fonction de distance\footnote{Aussi appelée \emph{fonction de
 	hauteur}} si elle vérifie les propriétés suivantes :
 \begin{subequations}
 	\label{eq:prop_haut}
@@ -222,7 +222,7 @@ Soit $G(S, A)$ un graphe ayant $s$ pour sommet source et $t$ pour sommet puits. 
 	\end{align}
 \end{subequations}
 
-Une notion inhérente à la fonction de distance, est celle d'arête acceptable : une arête $(i,j)$ est
+Une notion inhérente à la fonction de distance, est celle d'\emph{arête acceptable} : une arête $(i,j)$ est
 dite acceptable si et seulement si $d(i) = d(j) + 1$. Par définition, toute arête acceptable
 appartient au réseau résiduel.
 

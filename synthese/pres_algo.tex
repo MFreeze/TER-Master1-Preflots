@@ -1,5 +1,5 @@
 Au cours de cette partie l'algorithme de préflot générique sera étudié et sa validité sera
-démontrée, deux autres algorithmes (FIFO et high label) très similaires au générique seront
+démontrée, deux autres algorithmes (FIFO et High Label) très similaires au générique seront
 présentés et puisque ces derniers ne sont qu'une amélioration de l'algorithme générique, leur
 validité découlera de la validité de ce dernier.
 
@@ -40,7 +40,7 @@ Seulement, l'opération de poussage à elle seule ne permets pas d'obtenir un fl
 Ceci est illustré par l'exemple de la figure \ref{ex_pouss} : après la phase 2, le n\oe ud $1$ est
 encore débordant mais il lui est impossible d'effectuer une opération de poussage puisque l'arête
 le reliant à $t$ est saturée et $s$ et $2$ ont une distance au n\oe ud puits supérieure ou égale à
-celle de $1$. Il faut donc introduire une opération supplémentaire, appelée ré-étiquetage.
+celle de $1$. Il faut donc introduire une opération supplémentaire, appelée réétiquetage.
 
 \begin{figure}
 	\begin{center}
@@ -70,7 +70,7 @@ celle de $1$. Il faut donc introduire une opération supplémentaire, appelée r
 	\label{ex_pouss}
 \end{figure}
 
-Le ré-étiquetage consiste à réévaluer la distance du n\oe ud débordant au n\oe ud puits de façon à ce
+Le réétiquetage consiste à réévaluer la distance du n\oe ud débordant au n\oe ud puits de façon à ce
 qu'il soit possible, après cette opération, d'effectuer une opération de poussage depuis ce n\oe ud.
 Soit un n\oe ud excédentaire $i$ de distance $d_i$ et son $v_i$ son voisinage de sorte que $\forall v
 \in v_i$, on a : $d_v \geq d_i$. La distance de $i$ doit être réévaluée afin de pouvoir évacuer
@@ -96,7 +96,11 @@ Il sera démontré plus loin que cet algorithme s'exécute en $O(n^2m)$.
 
 \subsection{Validité}
 
-Pour montrer que l'algorithme de préflot-générique résout le probléme du flot maximum, Nous allons démonter que s'il se termine, Alors le préflot $f$ calculé est un flot maximum!.\\
+\begin{thrm}
+	L'algorithme de préflot générique se termine~\cite{introalg}.
+\end{thrm}
+
+Pour montrer que l'algorithme de préflot générique résout le problème du flot maximum, Nous allons démonter que s'il se termine, Alors le préflot $f$ calculé est un flot maximum!.\\
 
 \textbf{Passage par les opérations de poussage et réétiquetage:}  
 \begin{lemma} ~\\
@@ -107,18 +111,18 @@ Pour montrer que l'algorithme de préflot-générique résout le probléme du fl
 soit ($u$,$v$) un arc résiduel quelconque, donc on a $d(u)\leq d(v)+$1. car $d$ est une fonction  de distance .  Si une opération de poussage ne peut pas appliquer à $u$, alors pour tous les arcs résiduels($u$,$v$),on doit avoir $d$($u$)$<$ $d$($v$)$+$1, ce qui implique que $d$($u$)$\leq$ $d$($v$). Donc une opération de réétiquetage peut être appliqué à $u$.\\                        
 
 $***$ Opération poussage:
-D'après la procédure de poussage dans ce qui précéde on peut conclure que
+D'après la procédure de poussage dans ce qui précède on peut conclure que
 si $f$ est un préflot avant que la procédure de poussage soit appelée, il reste un préflot après.\\
 
 \textbf{Retour à $d$ la fonction de distance:}\\
 \begin{lemma} ~\\
-	\label{residual_path}Durrant l'exécution de l'algorithme de préflot-générique sur $G$ un réseau de transport de source $s$ et puits $t$. la fonction $d$ reste toujours une fonction de distance
+	\label{residual_path}Durant l'exécution de l'algorithme de préflot générique sur $G$ un réseau de transport de source $s$ et puits $t$. la fonction $d$ reste toujours une fonction de distance
 \end{lemma}  
 \textbf{Preuve} \\
-  On raisone par récurence sur le nombre d'opérations élémentaires éffectuées.
+  On raisonne par récurrence sur le nombre d'opérations élémentaires effectuées.
   Après l'initialisation au départ, il est vrai que $d$ est une fonction de distance.\\
   
-  A-en réétiqutage:
+  A-en réétiquetage:
   Comme nous l'avons déjà vu.
   On assure que si $d$ est une fonction de distance, alors elle la restera après une opération de réétiquetage de $u$.
   Prenons un arc résiduel ($u$,$v$)$\in$ $A_f$  sortant du sommet $u$.
@@ -127,7 +131,7 @@ si $f$ est un préflot avant que la procédure de poussage soit appelée, il res
   Prenons maintenant un autre arc ($w$,$u$) entrant au sommet $u$. alors on a d'après lemme5.0.1(vu en partie Complexité) que $d$($w$)$\leq$ $d$($u$)$+$1 avant le réétiquetage de $u$. entraîne que $d$($w$)$\leq$ $d$($u$)$+$1 après. Donc la fonction $d$ reste toujours une fonction de distance après l'opération réétiquetage\\
   
   B-en poussage:
-  L'opération poussage($u$,$v$), soit elle ajoutera l'arc ($v$,$u$)$\in$ $A_f$, soit supprimera l'arc ($u$,$v$) de $A_f$. alors dans le cas d'ajout, on a $d$($v$)$=$ $d$($u$)$-$1 $<$ $d$($u$)$+$1 ce qui implique que $d$ reste une fonction de distance. dans le cas de suppression de l'arc ($u$,$v$) dans le réseau résiduel supprime le contraint correspondant et $d$ reste encore une fonction de hautaur 
+  L'opération poussage($u$,$v$), soit elle ajoutera l'arc ($v$,$u$)$\in$ $A_f$, soit supprimera l'arc ($u$,$v$) de $A_f$. alors dans le cas d'ajout, on a $d$($v$)$=$ $d$($u$)$-$1 $<$ $d$($u$)$+$1 ce qui implique que $d$ reste une fonction de distance. dans le cas de suppression de l'arc ($u$,$v$) dans le réseau résiduel supprime le contraint correspondant et $d$ reste encore une fonction de distance 
  
  Conclusion:
   D'après A et B on conclut que $d$ la fonction de distance reste toujours une fonction de distance.
@@ -142,14 +146,14 @@ Supposons le contraire, c'est-à-dire qu'il existe un chemin élémentaire $µ$ 
 $µ$ élémentaire donc $k$ $<$ $|$ $s$ $|$
 Soit $i$ $=$\{0,1,...,$k$ $-$1\}, l'arc ($v_i$,$v_{i+1}$)$\in$ $A_f$. Comme $d$ est une fonction de distance $d$($v_i$)$\leq$ $d$($v_{i+1}$)$+$1 encore pour $i$ $=$\{0,1,...,$k$ $-$1\}, en appliquant ces inégalités sur tout le chemin $µ$, on aura
 $d$($s$)$\leq$ $d$($t$)$+$ $k$. Mais comme $d$($v_k$)$=$ $d$($t$)$=$0, on obtient 
-$d$($s$)$=$ $k$ $<$ $|$ $s$ $|$, ce qui conterdit la contrainte $d$($s$)$=$ $|$ $s$ $|$ pour une fonction de distance \\
+$d$($s$)$=$ $k$ $<$ $|$ $s$ $|$, ce qui contredit la contrainte $d$($s$)$=$ $|$ $s$ $|$ pour une fonction de distance \\
 
 \begin{thrm}
 Si l'algorithme de préflot se termine, Alors le préflot $f$ calculé est un flot maximum.
 \end{thrm}
 
 \textbf{Preuve} \\
- Regardons la boucle 'Tant que' dans l'algorithme préflot-générique A chaque exécution de test de cette boucle, $f$ est un préflot.
+ Regardons la boucle 'Tant que' dans l'algorithme préflot générique A chaque exécution de test de cette boucle, $f$ est un préflot.
  
  \textbf{Initialisation:}Initialiser-préflot fait de $f$ est un préflot.\\ 
  
@@ -180,11 +184,11 @@ $e(i)$ est toujours supérieur à $0$, l'algorithme réalise donc un réétiquet
 $i$ dans la file des sommets à examiner. L'initialisation de l'algorithme est la procédure
 principale restent les mêmes que l'algorithme générique.
 
-Ce choix permet une amélioration de la complexité de l'agorithme générique en $O(n^3)$.
+Ce choix permet une amélioration de la complexité de l'algorithme générique en $O(n^3)$.
 
 \subsection{L'algorithme High label}
 
-Il existe des graphes pour lesquels, l'agorithme FIFO est très lent. On peut par exemple citer
+Il existe des graphes pour lesquels, l'algorithme FIFO est très lent. On peut par exemple citer
 celui décrit figure \ref{bad_fifo}.
 
 \begin{figure}
