@@ -496,28 +496,52 @@ Il met en défaut les algorithmes de recherche de chaînes améliorantes.
 			\tikzset{noeud/.style={circle, draw=black, text centered,minimum size=26pt, inner sep=0pt},
 			fleche/.style={thick}};
 
-			\node[noeud] (t) at (14, 0) {$t$};
-			\node[noeud] (s) at (2, 0) {$s$};
+			\node[noeud] (t) at (12, 0) {$t$};
+			\node[noeud] (s) at (0, 0) {$s$};
+			\node[noeud] (1) at (2, 0) {$1$};
 
 			\foreach \x in {2, 3, 4, 5}{
 				\node[noeud] (\x) at (2*\x, 0) {$\x$}; 
 			}
 
-			\foreach \y/\ytext in {3.5/6, 1.7/7, -1.7/n-1, -3.5/n}{
-				\node[noeud] (\ytext) at (12, \y) {$\ytext$};
-				\draw[fleche] (5) --node[right] {$1$} (\ytext) --node[left] {$1$} (t);
-			}
+			\node[noeud] (6) at ( 9, 1) {$7$};
+			\node[noeud] (7) at (11, 1) {$8$};
+			\node[noeud] (8) at (8.5, 2) {$9$};
+			\node[noeud] (9) at (10, 2.5) {$10$};
+			\node[noeud] (10) at (11.5, 2) {$11$};
+			\node (p1) at (8.5, 3) {$\vdots$};
+			\node (p2) at (11.5, 3) {$\vdots$};
+			\node[noeud] (k) at (7, 4) {$k$};
+			\node (p3) at (10, 4.5) {$\dots$};
+			\node[noeud] (n) at (13, 4) {$n-2$};
 
-			\node (point) at (12, 0) {$\vdots$};
+			\draw[fleche] (s) to node[below] {$\infty$} (1);
+			\draw[fleche] (1) to node[below] {$\infty$} (2);
+			\draw[fleche] (2) to node[below] {$\infty$} (3);
+			\draw[fleche] (3) to node[below] {$\infty$} (4);
+			\draw[fleche] (4) to node[below] {$\infty$} (5);
+			\draw[fleche] (5) to node[below] {$\infty$} (t);
 
-			\draw[fleche] (s) --node[above] {$\infty$} (2) --node[above] {$\infty$} (3) --node[above] {$\infty$}
-			(4) --node[above] {$\infty$} (5) ;
+			\draw[fleche] (4) to node[above] {$1$} (6);
+			\draw[fleche] (4) to node[above left] {$1$} (8);
+			\draw[fleche] (4) to node[left] {$1$} (k);
 
+			\draw[fleche] (n) to node[right] {$1$} (t);
+			\draw[fleche] (7) to node[above right] {$1$} (t);
+			\draw[fleche] (10) to node[right] {$1$} (t);
+
+			\draw[fleche] (6) to node[above] {$1$} (7);
+			\draw[fleche] (8) to node[above] {$1$} (9);
+			\draw[fleche] (9) to node[above] {$1$} (10);
+
+			\draw[fleche] (k) to node[above left] {$1$} (p3);
+			\draw[fleche] (p3) to node[above right] {$1$} (n);
 		\end{tikzpicture}}
 	\end{center}
 \end{figure} \vfill
+
 \begin{exampleblock}{Intuition}
-Agir de façon locale au noeud $5$, afin d'envoyer du flot à tous ses voisins en une seule opération.
+Agir de façon locale au noeud $4$, afin d'envoyer du flot à tous ses voisins en une seule opération.
 \end{exampleblock}
 \end{frame}
 
