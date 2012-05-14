@@ -29,4 +29,59 @@ chacun des algorithmes sur ces graphes. Il calcule ensuite la moyenne des temps 
 
 \subsubsection{L'évolution du temps d'éxécution en fonction du nombre de n\oe uds}
 
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../data_struct/results/ratio2.png}
+\end{center}
+\caption{Evolution du temps d'exécution des algorithmes en fonction du nombre de n\oe uds (densité =
+2)}
+\label{d2}
+\end{figure}
 
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../data_struct/results/ratio130.png}
+\end{center}
+\caption{Evolution du temps d'exécution des algorithmes en fonction du nombre de n\oe uds (densité =
+130)}
+\label{d130}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../data_struct/results/ratio200b.png}
+\end{center}
+\caption{Evolution du temps d'exécution des algorithmes en fonction du nombre de n\oe uds (densité =
+200)}
+\label{d200}
+\end{figure}
+
+Nous présenterons ici des résultats pour, respectivement, une densité faible, moyenne et grande.
+
+\textbf{\underline{Densité $d = 2$ :}}
+
+Pour ce genre de densité, on a le nombre d'arêtes qui est du même ordre de grandeur que le nombre de
+n\oe uds ce qui nous donne les complexités suivantes :
+\begin{itemize}
+\item Dinic $O(n^3)$
+\item FIFO $O(n^3)$
+\item High Label $O(n^2\sqrt{n})$
+\end{itemize}
+
+Malgré une complexité du même ordre de grandeur, l'agorithme FIFO s'exécute plus rapidement que
+l'algorithme de Dinic, ce qui est du au fait que la borne supérieure de l'algorithme FIFO est très
+rarement atteinte et que les cas où ce dernier est dit "lent" sont des cas pathologiques. On peut
+remarquer aussi que l'algorithme High Label est un peu plus rapide que l'algorithme FIFO, mais que
+ce gain de temps est plus faible qu'escompté. Il est possible d'expliquer cette "mauvaise"
+performance par un choix non adapté de structure de données.
+
+En effet, lors du calcul de la complexité de ce dernier, nous avons estimé (implicitement) que le
+temps d'accès au n\oe ud de plus grande distance n'influe pas sur la complexité de ce dernier. Or
+ceci n'est vrai que si la structure de données utilisée pour stocker les sommets actifs est
+correctement choisie. Lors de l'implémentation, nous nous sommes tourné ves un tas permettant un
+accès en temps constant à la donnée recherchée. Seulement l'insertion et la suppression d'un n\oe ud
+se font en $O(\log(n))$, ce qui augmente légèrement le temps d'exécution. Un choix judicieux aurait
+été un tableau de listes chaînées $t$ et l'utilisation d'une variable $k$ sauvegardant une borne
+supérieure de la distance des n\oe uds. Ainsi, pour la sélection du n\oe ud de plus grand distance,
+le tableau est parcouru en commençant par $t[k], t[k-1], \dots$, ce qui permet une insertion et une
+suppression plus rapide.
