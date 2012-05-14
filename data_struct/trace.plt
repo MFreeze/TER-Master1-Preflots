@@ -1,6 +1,6 @@
 #!/usr/bin/gnuplot
 
-fil="ratio5"
+fil="ratio200"
 dir="results/"
 ext=".png"
 

@@ -8,7 +8,7 @@
 
 #define MAX_NOEUDS 200
 #define SCALE 10
-#define RATIO 5
+#define RATIO 200
 
 int main (int argc, char ** argv)
 {    
