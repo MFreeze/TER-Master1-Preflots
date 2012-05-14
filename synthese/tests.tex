@@ -104,4 +104,28 @@ dernière.
 
 \subsection{Evolution du temps d'execution en fonction du nombre d'arêtes}
 
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.6]{../data_struct/results/result_arete.png}
+	\end{center}
+	\caption{Evolution du temps d'exécution des algorithmes en fonction du nombre d'arêtes (n=100)}
+	\label{res_arete}
+\end{figure}
 
+Ici, le nombre de sommets du graphe est fixé\footnote{$n=100$} et l'on fait varier le nombre
+d'arêtes. On oberve, que l'influence du nombre d'arête sur le temps d'exécution est moindre pour les
+algorithmes de préflots ce qui confirme les résultats attendus.
+
+Le point intéressant de ces résultats est la diminution du temps d'exécution pour des graphes dont
+la densité est élevée \footnote{Proche de $n$.}. Ceci est du au fait que les algorithmes de préflots
+sont très rapides pour ce genre de graphe puisque le préflot circule alors très rapidement vers les
+sommet puits diminuant considérablement le nombe d'évaluation des sommets actifs.
+
+\subsection{D'un point de vue général}
+
+Les résultats obtenus concordent pour la majorité avec les résultats attendus après une approche
+théorique. Il ne reste qu'à observer l'influence du choix de la structure de données pour
+l'algorithme High Label. 
+
+Ceci mis à part, les complexités théoriques sont confirmées par la pratique ainsi que les réactions
+des algorithmes aux caractéristiques du graphe.
