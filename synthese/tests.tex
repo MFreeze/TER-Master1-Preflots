@@ -1,4 +1,4 @@
-\subsection{Modus Operandi et implémentation}
+\section{Modus Operandi et implémentation}
 
 Le développement a été réalisé sous vim en langage C, afin de profiter de la vitesse d'éxécution
 ainsi que des optimisations de gcc à la compilation. D'un point de vue collaboratif, git a été
@@ -25,9 +25,13 @@ vérification des bornes calculées théoriquement précédemment.
 Le programme de test génère un nombre donné de graphes aléatoires de densité fixée et applique
 chacun des algorithmes sur ces graphes. Il calcule ensuite la moyenne des temps d'exécutions.
 
-\subsection{Les résultats des tests}
+\section{Les résultats des tests}
 
-\subsubsection{L'évolution du temps d'éxécution en fonction du nombre de n\oe uds}
+\subsection{L'évolution du temps d'éxécution en fonction du nombre de n\oe uds}
+
+Nous présenterons ici des résultats pour, respectivement, une densité faible, moyenne et grande.\\
+
+\subsubsection{Densité $d = 2$ :}
 
 \begin{figure}
 \begin{center}
@@ -37,28 +41,6 @@ chacun des algorithmes sur ces graphes. Il calcule ensuite la moyenne des temps 
 2)}
 \label{d2}
 \end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.6]{../data_struct/results/ratio130.png}
-\end{center}
-\caption{Evolution du temps d'exécution des algorithmes en fonction du nombre de n\oe uds (densité =
-130)}
-\label{d130}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.6]{../data_struct/results/ratio200b.png}
-\end{center}
-\caption{Evolution du temps d'exécution des algorithmes en fonction du nombre de n\oe uds (densité =
-200)}
-\label{d200}
-\end{figure}
-
-Nous présenterons ici des résultats pour, respectivement, une densité faible, moyenne et grande.
-
-\textbf{\underline{Densité $d = 2$ :}}
 
 Pour ce genre de densité, on a le nombre d'arêtes qui est du même ordre de grandeur que le nombre de
 n\oe uds ce qui nous donne les complexités suivantes :
@@ -71,8 +53,8 @@ n\oe uds ce qui nous donne les complexités suivantes :
 Malgré une complexité du même ordre de grandeur, l'agorithme FIFO s'exécute plus rapidement que
 l'algorithme de Dinic, ce qui est du au fait que la borne supérieure de l'algorithme FIFO est très
 rarement atteinte et que les cas où ce dernier est dit "lent" sont des cas pathologiques. On peut
-remarquer aussi que l'algorithme High Label est un peu plus rapide que l'algorithme FIFO, mais que
-ce gain de temps est plus faible qu'escompté. Il est possible d'expliquer cette "mauvaise"
+remarquer aussi que l'algorithme High Label n'est un pas plus rapide que l'algorithme FIFO,
+contrairement à ce que l'on pouvait escompter. Il est possible d'expliquer cette "mauvaise"
 performance par un choix non adapté de structure de données.
 
 En effet, lors du calcul de la complexité de ce dernier, nous avons estimé (implicitement) que le
@@ -80,8 +62,46 @@ temps d'accès au n\oe ud de plus grande distance n'influe pas sur la complexit�
 ceci n'est vrai que si la structure de données utilisée pour stocker les sommets actifs est
 correctement choisie. Lors de l'implémentation, nous nous sommes tourné ves un tas permettant un
 accès en temps constant à la donnée recherchée. Seulement l'insertion et la suppression d'un n\oe ud
-se font en $O(\log(n))$, ce qui augmente légèrement le temps d'exécution. Un choix judicieux aurait
-été un tableau de listes chaînées $t$ et l'utilisation d'une variable $k$ sauvegardant une borne
+se font en $O(\log(n))$, ce qui augmente le temps d'exécution. Un choix judicieux aurait
+été un tableau de listes chaînées~\cite{ahuj93} $t$ et l'utilisation d'une variable $k$ sauvegardant une borne
 supérieure de la distance des n\oe uds. Ainsi, pour la sélection du n\oe ud de plus grand distance,
 le tableau est parcouru en commençant par $t[k], t[k-1], \dots$, ce qui permet une insertion et une
 suppression plus rapide.
+
+\subsubsection{Densités $d=130$ et $d=200$}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{../data_struct/results/ratio130.png}
+\end{center}
+\caption{Evolution du temps d'exécution des algorithmes en fonction du nombre de n\oe uds (densité =
+130)}
+\label{d130}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=1.2]{../data_struct/results/ratio200b.png}
+\end{center}
+\caption{Evolution du temps d'exécution des algorithmes en fonction du nombre de n\oe uds (densité =
+200)}
+\label{d200}
+\end{figure}
+
+Lorsque la densité est grande, le nombre d'arêtes du graphe devient de l'ordre de $n^2$. On peut
+alors espérer obtenir des complexités en $O(n^4)$ pour Dinic et $O(n^3)$ pour les algorithmes de
+préflots.
+
+Ce sont effectivement les résultats obtenus lorsque $d=200$, les courbes rajoutées correspondent aux
+approximations données par gnuplot. Elles sont de la forme $P_1(x) = ax^4 + bx^3 +cx^2 +dx +e$ pour
+Dinic et $P_2(x) = ax^3 + bx^2 + cx +d$ pour les algorithmes de préflots. Il est important de noter
+que le coefficient $a$ est positif pour les deux plynômes ce qui prouve que la croissance de la
+valeur du polynôme est de l'ordre du degré le plus élevé.
+
+On observe, dans la majorité des cas, lorsque la densité est de l'ordre de $\frac{n}{2}$, une
+brisure dans la courbe du temps des algorithmes. Nous n'avons aucune explication pour cette
+dernière.
+
+\subsection{Evolution du temps d'execution en fonction du nombre d'arêtes}
+
+
