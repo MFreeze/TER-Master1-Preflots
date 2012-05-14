@@ -1,5 +1,32 @@
-\section{Implémentation des algorithmes, structures de données}
+\subsection{Modus Operandi et implémentation}
 
-La question de la structure de données se pose principalement pour la variante High Label de
-l'algorithme de préflto générique. Il faut en effet choisir une structure de données permettant
-d'avoir accès rapidement au sommet ayant la distance la plus haute.
+Le développement a été réalisé sous vim en langage C, afin de profiter de la vitesse d'éxécution
+ainsi que des optimisations de gcc à la compilation. D'un point de vue collaboratif, git a été
+choisi pour sa facilité d'utilisation et l apossibilité d'héberger le code source et les documents
+sur github.
+
+Au niveau des choix d'implémentation, nous avons codé les graphes de manière à ce qu'il soit
+possible d'utiliser une réprésentation en mémoire sous forme de matrice ou de liste
+d'adjacence\footnote{Le choix de la représentation en mémoire est laissée à l'utilisateur et est
+défini par les procédures utilisées pour la création des graphes.}. Chacun des algorithmes utilisés
+requiérant un accès rapide aux voisins d'un noeud, nous avons choisi de représenter les graphes sous
+forme de liste.
+
+Nous avons créé un générateur de graphe aléatoire, garantissant la connexité du graphe généré. Le
+générateur requiert pour s'éxécuter un nombre de n\oe uds et un nombre d'arêtes. A partir de ces
+données, il crèe dans un premier temps un arbre contenant l'ensemble des n\oe uds du graphe puis par
+une loi de probabilité défini le nombre de voisins de chacun des n\oe uds en s'assurant d'atteindre
+exactement le nombre d'arêtes fixées.
+
+Avec l'aide du générateur il est donc possible de générer des graphes de densité fixée. Cette
+démarche permet l'expression du nombre d'arêtes en fonction du n\oe ud et vice versa et donc la
+vérification des bornes calculées théoriquement précédemment.
+
+Le programme de test génère un nombre donné de graphes aléatoires de densité fixée et applique
+chacun des algorithmes sur ces graphes. Il calcule ensuite la moyenne des temps d'exécutions.
+
+\subsection{Les résultats des tests}
+
+\subsubsection{L'évolution du temps d'éxécution en fonction du nombre de n\oe uds}
+
+
