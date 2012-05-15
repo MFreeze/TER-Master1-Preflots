@@ -33,10 +33,10 @@ opération de \emph{poussage}.
 Au moment ou un n\oe ud $a$ reçoit une quantité de préflot de l'un de ses voisins $b$ ayant réalisé une
 opération de poussage, la quantité de préflot envoyée de $b$ vers $a$ est alors directement stockée
 dans $a$, s'ajoutant ainsi à la quantité de flot déjà stockée. Cette dernière sera appelée
-\emph{excédent du sommet $a$} et notée $e$. À un moment donné, si, pour un n\oe ud quelconque $a$,
-$e(a) > 0$, alors $a$ sera dit excédentaire.
+\emph{excédent du sommet $a$} et notée $e(a)$. À un moment donné, si, pour un n\oe ud quelconque $a$,
+$e(a) > 0$, alors $a$ sera dit excédentaire, débordant ou actif.
 
-Seulement, l'opération de poussage à elle seule ne permets pas d'obtenir un flot satisfaisant.
+Seulement, l'opération de poussage à elle seule ne permet pas d'obtenir un flot.
 Ceci est illustré par l'exemple de la figure \ref{ex_pouss} : après la phase 2, le n\oe ud $1$ est
 encore débordant mais il lui est impossible d'effectuer une opération de poussage puisque l'arête
 le reliant à $t$ est saturée et $s$ et $2$ ont une distance au n\oe ud puits supérieure ou égale à
@@ -92,7 +92,7 @@ pour rechercher le plus petit des voisins du n\oe ud effectuant l'algorithme).
 
 \input{pousser.tex}
 
-Il sera démontré plus loin que cet algorithme s'exécute en $O(n^2m)$.
+Il sera démontré plus loin que cet algorithme s'exécute en $O(n^2m)$~\cite{gold88}.
 
 \subsection{Validité}
 
@@ -103,46 +103,60 @@ Il sera démontré plus loin que cet algorithme s'exécute en $O(n^2m)$.
 Pour montrer que l'algorithme de préflot générique résout le problème du flot maximum, Nous allons démonter que s'il se termine, Alors le préflot $f$ calculé est un flot maximum!.\\
 
 \textbf{Passage par les opérations de poussage et réétiquetage:}  
-\begin{lemma} ~\\
-	\label{increase_distance}Soit $G$ $=$($S$,$A$) un réseau de transport de source $s$ et puits $t$, soit $f$ un préflot et 
-  soit $d$ une fonction  de distance  pour $f$. si $u$ est un sommet débordant, alors on peut lui appliquer soit un poussage, soit un réétiquetage  
+
+Considérons un graphe $G = (S,A)$ de source $s$ et de puits $t$, un préflot $f$ et une fonction de
+distance valide $d$. Soit $u$ un sommet de $G$, on a alors :
+
+\begin{lemma}
+	\label{increase_distance}
+  Si $u$ est débordant, alors il peut être soumis à une opération soit de poussage, soit de
+	réétiquetage.  
 \end{lemma}   
 \textbf{Preuve} \\
-soit ($u$,$v$) un arc résiduel quelconque, donc on a $d(u)\leq d(v)+$1. car $d$ est une fonction  de distance .  Si une opération de poussage ne peut pas appliquer à $u$, alors pour tous les arcs résiduels($u$,$v$),on doit avoir $d$($u$)$<$ $d$($v$)$+$1, ce qui implique que $d$($u$)$\leq$ $d$($v$). Donc une opération de réétiquetage peut être appliqué à $u$.\\                        
-
-$***$ Opération poussage:
-D'après la procédure de poussage dans ce qui précède on peut conclure que
-si $f$ est un préflot avant que la procédure de poussage soit appelée, il reste un préflot après.\\
+Soit ($u$,$v$) un arc résiduel quelconque, donc on a $d(u)\leq d(v)+1$ car $d$ est une fonction  de
+distance . Si une opération de poussage ne peut s'appliquer à $u$, alors pour tous les arcs
+résiduels $(u,v)$, on doit avoir $d(u)< d(v)+1$, ce qui implique que $d(u)\leq d(v)$. Donc une
+opération de réétiquetage peut être appliqué à $u$.\\
 
 \textbf{Retour à $d$ la fonction de distance:}\\
-\begin{lemma} ~\\
-	\label{residual_path}Durant l'exécution de l'algorithme de préflot générique sur $G$ un réseau de transport de source $s$ et puits $t$. la fonction $d$ reste toujours une fonction de distance
+\begin{lemma}
+	\label{residual_path}
+	A n'importe quelle itération de l'algorithme, la fonction $d$ est une fonction de distance valide.
 \end{lemma}  
 \textbf{Preuve} \\
   On raisonne par récurrence sur le nombre d'opérations élémentaires effectuées.
-  Après l'initialisation au départ, il est vrai que $d$ est une fonction de distance.\\
+  Après l'initialisation au départ, $d$ est bien une fonction de distance valide.\\
+
+	Obeservons l'influence des opérations sur cette dernière :\begin{itemize}
   
-  A-en réétiquetage:
+  \item Le réétiquetage:
   Comme nous l'avons déjà vu.
-  On assure que si $d$ est une fonction de distance, alors elle la restera après une opération de réétiquetage de $u$.
-  Prenons un arc résiduel ($u$,$v$)$\in$ $A_f$  sortant du sommet $u$.
-  Alors l'opération réétiqueter($u$) nous garantit la contrainte suivante:
-  $d$($u$)$\leq$ $d$($v$)$+$1 après.
-  Prenons maintenant un autre arc ($w$,$u$) entrant au sommet $u$. alors on a d'après lemme5.0.1(vu en partie Complexité) que $d$($w$)$\leq$ $d$($u$)$+$1 avant le réétiquetage de $u$. entraîne que $d$($w$)$\leq$ $d$($u$)$+$1 après. Donc la fonction $d$ reste toujours une fonction de distance après l'opération réétiquetage\\
+  On assure que si $d$ est une fonction de distance valide, alors elle le restera après une opération de réétiquetage de $u$.
+	Considérons un arc $(u,v) \in A_f, \quad u, v \not = s, t$, par définition, on a $d(u) \leq d(v) + 1$, envisageons deux
+	cas : \begin{enumerate}
+	\item $d(u) \geq d(v)$ : l'opération de réétiquetage appliquée à $u$ augmentera la valeur de
+	$d(u)$ d'au moins 1 et donc après l'opération, on aura toujours $d(u) \geq d(v)$
+	\item $d(v) = d(u) + 1$ : l'opération de réétiquetage appliquée à $u$ augmentera la valeur de
+	$d(u)$ d'au moins 1 et donc après l'opération, on aura toujours $d(u) \geq d(v)$
+	\end{enumerate}
+	L'opération de réétiquetage conserve la validité de la fonction de distance.
   
-  B-en poussage:
-  L'opération poussage($u$,$v$), soit elle ajoutera l'arc ($v$,$u$)$\in$ $A_f$, soit supprimera l'arc ($u$,$v$) de $A_f$. alors dans le cas d'ajout, on a $d$($v$)$=$ $d$($u$)$-$1 $<$ $d$($u$)$+$1 ce qui implique que $d$ reste une fonction de distance. dans le cas de suppression de l'arc ($u$,$v$) dans le réseau résiduel supprime le contraint correspondant et $d$ reste encore une fonction de distance 
+	\item Le poussage :
+	Considérons les sommets $u$ et $v$ tels que $u$ pousse vers $v$. Nous envisagerons deux cas :
+	\begin{enumerate}
+	\item le poussage crée l'arête $(v,u)$ dans $A_f$ : par définition du poussage, $d(u) = d(v) + 1$
+	donc $d$ est toujours valide
+	\item le poussage supprime l'arc $(u,v)$ dans $A_f$ : la contrainte correspondante est supprimée
+	et donc $d$ est toujours un fonction de distance valide
+	\end{enumerate}
+	\end{itemize}
  
- Conclusion:
-  D'après A et B on conclut que $d$ la fonction de distance reste toujours une fonction de distance.
-  \\
-   
-\begin{lemma} ~\\
-	\label{borne_reetiq}Soit $G$ $=$($S$,$A$) un réseau de transport de source $s$ et puits $t$ soit $f$ un préflot de $G$ et $d$ une fonction de distance sur $A$, alors il n'existe aucun chemin allant de la source $s$ au puits $t$ dans le réseau résiduel $G_f$.
+\begin{lemma}
+	\label{borne_reetiq}Il n'existe aucun chemin allant de la source $s$ au puits $t$ dans le réseau résiduel $G_f$.
 \end{lemma} 
 
 \textbf{Preuve} \\
-Supposons le contraire, c'est-à-dire qu'il existe un chemin élémentaire $µ$ $=$\{$v_0$,....,$v_k$\} avec $v_0$ $=$ $s$ et $v_k$ $=$ $t$ de $s$ vers $t$ dans $G_f$.
+Supposons le contraire, c'est-à-dire qu'il existe un chemin élémentaire $µ$ $=$\{$v_0$,....,$v_k$\} avec $v_0$ $=$ $s$ et $v_k$ $=$ $t$ de $s$ vers $t$ dans $A_f$.
 $µ$ élémentaire donc $k$ $<$ $|$ $s$ $|$
 Soit $i$ $=$\{0,1,...,$k$ $-$1\}, l'arc ($v_i$,$v_{i+1}$)$\in$ $A_f$. Comme $d$ est une fonction de distance $d$($v_i$)$\leq$ $d$($v_{i+1}$)$+$1 encore pour $i$ $=$\{0,1,...,$k$ $-$1\}, en appliquant ces inégalités sur tout le chemin $µ$, on aura
 $d$($s$)$\leq$ $d$($t$)$+$ $k$. Mais comme $d$($v_k$)$=$ $d$($t$)$=$0, on obtient 
@@ -155,15 +169,21 @@ Si l'algorithme de préflot se termine, Alors le préflot $f$ calculé est un fl
 \textbf{Preuve} \\
  Regardons la boucle 'Tant que' dans l'algorithme préflot générique A chaque exécution de test de cette boucle, $f$ est un préflot.
  
- \textbf{Initialisation:}Initialiser-préflot fait de $f$ est un préflot.\\ 
+ \textbf{Initialisation:} Initialiser-préflot fait de $f$ est un préflot.\\ 
  
- \textbf{Conservation:}Les seules opérations faites dans la boucle 'tant que' sont soit l'opération de poussage, ou celui de réétiquetage.  
- L'opération de réétiquetage appliquée uniquement sur les distances des sommets, c'est-à-dire pas la valeur du flot, Alors elle ne distingue pas que si $f$ un préflot ou non, après ($***$) on a que si $f$ est un préflot avant poussage, il reste un préflot après.\\
+ \textbf{Conservation:} Les seules opérations faites dans la boucle 'tant que' sont soit l'opération
+ de poussage, soit celle de réétiquetage.  
+ L'opération de réétiquetage modifie uniquement la distance du sommet sur lequel elle est appliquée,
+ donc elle ne modifie pas la valeur du préflot. De plus, si $f$ est un préflot avant poussage il le
+ reste après et donc, les opérations conserve le préflot $f$.
 
  
  \textbf{Terminaison:}A la fin de l'exécution de l'algorithme, chaque sommet de
-$S$-\{$s$,$t$\} doit avoir un excédent vaut 0, en effet d'après le lemme3.2.1 et le lemme3.2.2 et l'invariant selon lequel $f$ est toujours un préflot, Il n'y a pas de sommet débordant, par conséquent $f$ est un préflot. comme $d$ est une fonction de distance le lemme3.2.3 nous dit qu'il n'y a pas de chemin entre la source $s$ et le puits $t$ dans le réseau résiduel $G_f$.
- Alors après le théorème du flot maximum et la coupe minimum le préflot $f$ calculé est un flot maximum.  
+$S$-\{$s$,$t$\} doit avoir un excédent nul, en effet d'après les lemmes \ref{increase_distance} et
+\ref{residual_path} et l'invariant selon lequel $f$ est toujours un préflot, il n'y a pas de sommets
+débordants, or comme $d$ est une fonction de distance valide, le lemme \ref{borne_reetiq} nous dit
+qu'il n'y a pas de chemins entre la source $s$ et le puits $t$ dans le réseau résiduel $A_f$.
+ Alors d'après le théorème du flot maximum et la coupe minimum le préflot $f$ calculé est un flot maximum.  
 
 
 \section{Les algorithmes dérivés}
@@ -178,13 +198,14 @@ L'algorithme FIFO, utilise une file afin de gérer l'ordre des n\oe uds actifs �
 ou un sommet du graphe devient débordant, celui-ci est placé dans une file, dont la politique de
 traitement est du type \emph{First In First Out}. 
 
-A chaque examen, l'algorithme réalise des opérations de poussage tant que celles-ci sont possible et
+A chaque examen, l'algorithme réalise des opérations de poussage tant que celles-ci sont possibles et
 tant que le n\oe ud $i$ examiné est débordant. Si, lorsqu'il n'existe plus d'arêtes acceptables,
 $e(i)$ est toujours supérieur à $0$, l'algorithme réalise donc un réétiquetage et place à nouveau
 $i$ dans la file des sommets à examiner. L'initialisation de l'algorithme est la procédure
 principale restent les mêmes que l'algorithme générique.
 
-Ce choix permet une amélioration de la complexité de l'algorithme générique en $O(n^3)$.
+Ce choix permet une amélioration de la complexité de l'algorithme générique en
+$O(n^3)$~\cite{ahuj93}.
 
 \subsection{L'algorithme High label}
 
@@ -234,4 +255,4 @@ Le principe de l'algorithme High Label est de choisir pour l'examen, le n\oe ud 
 plus grande, de lui appliquer le plus grand nombre de poussage et de le réétiqueter si besoin est.
 L'algorithme effectue, sur le graphe représenté figure \ref{bad_fifo}, seulement $n$ opérations.
 Nous démontrerons que la complexité de cet algorithme s'en voit améliorée pour atteindre du
-$O(n^2\sqrt{m})$.
+$O(n^2\sqrt{m})$~\cite{ahuj93}.

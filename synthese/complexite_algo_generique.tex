@@ -4,27 +4,27 @@ avoir besoin de quelques bornes utiles.
 
 \begin{lemma} ~\\
 	\label{increase_distance}
-	Chaque opération de réétiquetage d'un noeud augmente strictement sa distance $d$ au noeud puits.
+	Chaque opération de réétiquetage d'un n\oe ud augmente strictement sa distance $d$ au n\oe ud puits.
 \end{lemma}
 
 \textbf{Preuve} \\
-Considérons un noeud actif $i$ soumis à une opération de poussage-réétiquetage. Supposons, à présent,
-qu'il existe un noeud $j$ tel que après réétiquetage on ait : $d_{new}(i) \leq d_{old}(i)$. Ceci
+Considérons un n\oe ud actif $i$ soumis à une opération de poussage-réétiquetage. Supposons, à présent,
+qu'il existe un n\oe ud $j$ tel que après réétiquetage on ait : $d_{new}(i) \leq d_{old}(i)$. Ceci
 n'est possible que si $d(j) \leq d(i) - 1$ et si $r_{ij}$\footnote{La capacité résiduelle de l'arc
-$(i,j)$}$\geq 0$, on aurait alors $(i,j) \in A_i$ ce qui signifie alors que l'algorithme aurait
+$(i,j)$}$\geq 0$, on aurait alors $(i,j) \in A_f$ ce qui signifie alors que l'algorithme aurait
 effectué une opération de poussage et non un réétiquetage. Il est donc impossible de trouver un
-noeud $j$ tel que l'opération de réétiquetage diminue sa distance $d$.
+n\oe ud $j$ tel que l'opération de réétiquetage diminue sa distance $d$.
 
 \begin{lemma} ~\\
 	\label{residual_path}
-	A n'importe quelle itération de l'algorithme, tout noeud actif $i$ est relié au noeud source $s$ par un
+	A n'importe quelle itération de l'algorithme, tout n\oe ud actif $i$ est relié au n\oe ud source $s$ par un
 	chemin de $i$ vers $s$ dans le réseau résiduel.
 \end{lemma}
 
 \textbf{Preuve}\\
 D'après le théorème de décomposition des flots\footnote{Un exemple d'application de ce théorème est
 donné à la figure \ref{app_dec_preflot}}, il est possible de décomposer n'importe quel préflot
-en des flots positifs le long de chemins reliant $s$ à $t$ \footnote{Le noeud puits}, $s$ aux noeuds
+en des flots positifs le long de chemins reliant $s$ à $t$ \footnote{Le n\oe ud puits}, $s$ aux n\oe uds
 actifs et le long de cycles. De plus par définition d'un préflot on a : $e(s) \leq 0$ et $e(i) \geq
 0 \ \forall i \in S - \{s\}$.
 
@@ -131,15 +131,15 @@ actifs et le long de cycles. De plus par définition d'un préflot on a : $e(s) 
 	\label{app_dec_preflot}
 \end{figure}
 
-Considérons un noeud actif $i$, l'excès de flots $e(i)$ est strictement supérieur à $0$. Or, lors de la
+Considérons un n\oe ud actif $i$, l'excès de flots $e(i)$ est strictement supérieur à $0$. Or, lors de la
 considération des flots obtenus par le théorème de décomposition des flots, on observe que les flots
 pris le long des cycles et des chemins de $s$ à $t$ n'interviennent pas dans l'excédent de flot de
 $i$, ce qui implique qu'il existe un flot strictement positif coulant le long d'un chemin de $s$ à
 $i$ et donc que l'inverse de ce chemin se trouve dans le réseau résiduel. D'où l'existence d'un chemin
 de $i$ vers $s$ dans le réseau résiduel.\\
 
-On peut directement déduire de ce lemme que, pour un noeud actif $i$, il existe toujours un
-noeud de son voisinage $j$ tel que $d(j) \geq d(i)$ et donc que lors d'un réétiquetage, la
+On peut directement déduire de ce lemme que, pour un n\oe ud actif $i$, il existe toujours un
+n\oe ud de son voisinage $j$ tel que $d(j) \geq d(i)$ et donc que lors d'un réétiquetage, la
 minimisation de la hauteur des voisins ne se fait pas sur un ensemble vide. Autrement dit, pour un
 n\oe ud que l'on réétiquette, il existe toujours un sommet de son voisinage dont la distance au puits
 est supérieure au n\oe ud réétiqueté.
@@ -150,14 +150,14 @@ est supérieure au n\oe ud réétiqueté.
 \end{lemma}
 
 \textbf{Preuve}\\
-Une opération de réétiquetage d'un sommet $i$ n'affecte que la distance de $i$ au noeud puits, par conséquent
-l'excédent de flot sur le noeud $i$ après l'opération est le même qu'avant. D'après le lemme
+Une opération de réétiquetage d'un sommet $i$ n'affecte que la distance de $i$ au n\oe ud puits, par conséquent
+l'excédent de flot sur le n\oe ud $i$ après l'opération est le même qu'avant. D'après le lemme
 \ref{residual_path}, il existe donc un chemin $P$ de $s$ à $i$\footnote{$i \ne t$} dans le réseau
 résiduel dont la longueur est au plus $n-2$ sommets\footnote{Le chemin ne peut inclure $t$, de plus
 $i$ ne peut être un voisin direct de $t$, sinon il n'y aurait pas eu d'opération de réétiquetage.}.
 À la fin de l'initialisation : $d(s) = |S| = n$, et pour chaque arc $(k,l)$ du chemin de $i$ à $s$,
 on a : $d(k) \leq d(l) + 1$. Prenons un exemple concret, soit $G$ un graphe à 8 sommets de sorte
-qu'après un certains nombre d'itérations de l'algorithme, le noeud $6$ est actif\footnote{Il s'agit
+qu'après un certains nombre d'itérations de l'algorithme, le n\oe ud $6$ est actif\footnote{Il s'agit
 bien du pire des cas : une chaîne de $n-2$ sommets}. Le chemin de $6$ vers $s$ est représenté à la
 fig. \ref{chemin_n_2}. 
 
@@ -211,7 +211,7 @@ au minimum d'une unité, on obtient le lemme \ref{borne_n2}.
 
 \begin{lemma}~\\
 	\label{borne_n2}
-	Un noeud $i$ subit au maximum $2n$ opération de réétiquetage, ce qui implique que le nombre total
+	Un n\oe ud $i$ subit au maximum $2n$ opération de réétiquetage, ce qui implique que le nombre total
 	d'opération de réétiquetage est borné par $2n^2$
 \end{lemma}
 
@@ -238,25 +238,25 @@ l'ensemble de l'algorithme ce dernier est bien majoré par $2nm$.
 \end{lemma}
 
 \textbf{Preuve}\\
-Considérons la fonction $\Phi$ qui calcule la somme des distances des noeuds actifs : $$
-\Phi = \sum_{i \in \{i \in S / e(i) > 0\}} d(i)$$. Comme le nombre de noeuds actifs est inférieur à
+Considérons la fonction $\Phi$ qui calcule la somme des distances des n\oe uds actifs : $$
+\Phi = \sum_{i \in \{i \in S / e(i) > 0\}} d(i)$$. Comme le nombre de n\oe uds actifs est inférieur à
 $|S|$ et que la distance de chaque somme est bornée par $2n$, la valeur initiale\footnote{Après
 initialisation.} de $\Phi$ est inférieure à $2n^2$, à la fin de l'algorithme, il n'existe plus de
 sommets actifs, et donc : $\Phi = 0$.
 Lors du déroulement de l'algorithme, trois choses peuvent se produire : \begin{enumerate}
 	\item Poussage non saturant. Il a lieu lorsque l'excédent de préflot du sommet est inférieur à la
-		capacité résiduelle de l'arc emprunté, donc une fois cette étape effectuée le noeud $i$ ayant
+		capacité résiduelle de l'arc emprunté, donc une fois cette étape effectuée le n\oe ud $i$ ayant
 		effectué le poussage n'est plus actif. Dans le cas ou $j$, le sommet cible du poussage
 		n'appartenait pas à l'ensemble des n\oe uds débordants $I$, la fonction $\Phi$ est incrémentée de 
 		$d(j)$ et décrémentée de $d(i)$.  Or $d(i) \geq d(j) + 1$, donc $\Phi$ diminue d'au moins une
 		unité.
-	\item Poussage saturant. Il a lieu lorsque $e(i) \geq r((i,j))$, Dans le pire des cas, $j \not
+	\item Poussage saturant. Il a lieu lorsque $e(i) \geq r(i,j)$, Dans le pire des cas, $j \not
 		\in I$ avant l'opération, on a alors une augmentation maximale de $\Phi$ égale à la hauteur max
 		de $j$, soit $2n$ donc une augmentation de $2n^2m$ pour l'ensemble des poussages saturants.
 	\item Réétiquetage. Cette opération n'a lieu que lorsqu'aucun arc sortant de $i$ n'est valide
 		pour une opération de poussage, il est évident que chaque opération de réétiquetage augmente
-		$\Phi$ de $2n$ unités au maximum par noeud\footnote{Limite donnée par la hauteur maximale d'un
-		noeud.}, soit une augmentation totale de $n^2$ unités sur l'ensemble de l'algorithme.
+		$\Phi$ de $2n$ unités au maximum par n\oe ud\footnote{Limite donnée par la hauteur maximale d'un
+		n\oe ud.}, soit une augmentation totale de $n^2$ unités sur l'ensemble de l'algorithme.
 \end{enumerate}
 
 La seule opération permettant de diminuer la valeur de $\Phi$ est un poussage non saturant, or la

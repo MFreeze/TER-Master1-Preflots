@@ -2,19 +2,19 @@
 
 Le développement a été réalisé sous vim en langage C, afin de profiter de la vitesse d'éxécution
 ainsi que des optimisations de gcc à la compilation. D'un point de vue collaboratif, git a été
-choisi pour sa facilité d'utilisation et l apossibilité d'héberger le code source et les documents
+choisi pour sa facilité d'utilisation et la possibilité d'héberger le code source et les documents
 sur github.
 
 Au niveau des choix d'implémentation, nous avons codé les graphes de manière à ce qu'il soit
 possible d'utiliser une réprésentation en mémoire sous forme de matrice ou de liste
 d'adjacence\footnote{Le choix de la représentation en mémoire est laissée à l'utilisateur et est
 défini par les procédures utilisées pour la création des graphes.}. Chacun des algorithmes utilisés
-requiérant un accès rapide aux voisins d'un noeud, nous avons choisi de représenter les graphes sous
+requiérant un accès rapide aux voisins d'un n\oe ud, nous avons choisi de représenter les graphes sous
 forme de liste.
 
-Nous avons créé un générateur de graphe aléatoire, garantissant la connexité du graphe généré. Le
-générateur requiert pour s'éxécuter un nombre de n\oe uds et un nombre d'arêtes. A partir de ces
-données, il crèe dans un premier temps un arbre contenant l'ensemble des n\oe uds du graphe puis par
+Nous avons créé un générateur de graphe aléatoire, garantissant la connexité du graphe généré. Il
+requiert pour s'éxécuter un nombre de n\oe uds et un nombre d'arêtes, et, à partir de ces
+données, crée dans un premier temps un arbre contenant l'ensemble des n\oe uds du graphe puis par
 une loi de probabilité défini le nombre de voisins de chacun des n\oe uds en s'assurant d'atteindre
 exactement le nombre d'arêtes fixées.
 
@@ -42,7 +42,7 @@ Nous présenterons ici des résultats pour, respectivement, une densité faible,
 \label{d2}
 \end{figure}
 
-Pour ce genre de densité, on a le nombre d'arêtes qui est du même ordre de grandeur que le nombre de
+Pour ce genre de densité, on a le nombre d'arêtes qui est dû même ordre de grandeur que le nombre de
 n\oe uds ce qui nous donne les complexités suivantes :
 \begin{itemize}
 \item Dinic $O(n^3)$
@@ -51,7 +51,7 @@ n\oe uds ce qui nous donne les complexités suivantes :
 \end{itemize}
 
 Malgré une complexité du même ordre de grandeur, l'agorithme FIFO s'exécute plus rapidement que
-l'algorithme de Dinic, ce qui est du au fait que la borne supérieure de l'algorithme FIFO est très
+l'algorithme de Dinic, ce qui est dû au fait que la borne supérieure de l'algorithme FIFO est très
 rarement atteinte et que les cas où ce dernier est dit "lent" sont des cas pathologiques. On peut
 remarquer aussi que l'algorithme High Label n'est un pas plus rapide que l'algorithme FIFO,
 contrairement à ce que l'on pouvait escompter. Il est possible d'expliquer cette "mauvaise"
@@ -95,14 +95,14 @@ préflots.
 Ce sont effectivement les résultats obtenus lorsque $d=200$, les courbes rajoutées correspondent aux
 approximations données par gnuplot. Elles sont de la forme $P_1(x) = ax^4 + bx^3 +cx^2 +dx +e$ pour
 Dinic et $P_2(x) = ax^3 + bx^2 + cx +d$ pour les algorithmes de préflots. Il est important de noter
-que le coefficient $a$ est positif pour les deux plynômes ce qui prouve que la croissance de la
-valeur du polynôme est de l'ordre du degré le plus élevé.
+que le coefficient $a$ est positif pour les deux polynômes ce qui prouve que la croissance de la
+valeur du polynôme est de l'ordre du degré le plus élevé de ce dernier.
 
 On observe, dans la majorité des cas, lorsque la densité est de l'ordre de $\frac{n}{2}$, une
 brisure dans la courbe du temps des algorithmes. Nous n'avons aucune explication pour cette
 dernière.
 
-\subsection{Evolution du temps d'execution en fonction du nombre d'arêtes}
+\subsection{L'évolution du temps d'execution en fonction du nombre d'arêtes}
 
 \begin{figure}
 	\begin{center}
@@ -117,7 +117,7 @@ d'arêtes. On oberve, que l'influence du nombre d'arête sur le temps d'exécuti
 algorithmes de préflots ce qui confirme les résultats attendus.
 
 Le point intéressant de ces résultats est la diminution du temps d'exécution pour des graphes dont
-la densité est élevée \footnote{Proche de $n$.}. Ceci est du au fait que les algorithmes de préflots
+la densité est élevée \footnote{Proche de $n$.}. Ceci est dû au fait que les algorithmes de préflots
 sont très rapides pour ce genre de graphe puisque le préflot circule alors très rapidement vers les
 sommet puits diminuant considérablement le nombe d'évaluation des sommets actifs.
 
@@ -128,4 +128,4 @@ théorique. Il ne reste qu'à observer l'influence du choix de la structure de d
 l'algorithme High Label. 
 
 Ceci mis à part, les complexités théoriques sont confirmées par la pratique ainsi que les réactions
-des algorithmes aux caractéristiques du graphe.
+des algorithmes aux différentes caractéristiques du graphe.

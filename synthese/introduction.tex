@@ -70,7 +70,7 @@ L'algorithme d'Edmonds-Karp, recherchant une chaîne améliorante de plus court 
 effectue $(n-6)$ recherche de chaînes améliorantes et atteint son temps maximal d'exécution. Ce
 problème se résout très vite à l'aide de préflots, ce que nous allons voir.
 
-Au préalable, la notion de préflot sera définie\footnote{ainsi qu'un bref rappel de la notion de
+Au préalable, la notion de préflot sera définie\footnote{Ainsi qu'un bref rappel de la notion de
 flot}, puis le principe de chaque algorithme sera présenté, ainsi que la démonstration de leur
 validité et leur borne de temps d'exécution. La dernière partie portera sur le détail des tests
 effectués et sur le traitement des résultats\footnote{Les structures de données utilisées sont
@@ -127,7 +127,7 @@ respectant les contraintes suivantes :
 		\end{equation}
 		\begin{equation}
 			\label{preflot_3}
-			f = \sum_{j \in A^+(s)} x(s,j) \geq \sum_{k \in A^-(t)} x(k, t)
+			\sum_{j \in A^+(s)} x(s,j) \leq \sum_{k \in A^-(t)} x(k, t)
 		\end{equation}
 On introduit alors la valeur $e(i)$ représentant l'excédent de flot d'un noeud $i \in S$, elle est
 définie comme la différence entre le préflot entrant dans un noeud et le préflot sortant de celui-ci
@@ -136,7 +136,7 @@ définie comme la différence entre le préflot entrant dans un noeud et le pré
 \end{equation}
  On peut alors écrire l'inéquation (\ref{preflot_2}) de cette manière :
 \begin{equation} 
-\forall i \in S - \{s,t\},\quad \sum_{j \in A^+(i)} x(i,j) = \sum_{k \in A^-(i)} x(k,i) + e(i)
+\forall i \in S - \{s,t\},\quad \sum_{j \in A^-(i)} x(i,j) = \sum_{k \in A^+(i)} x(k,i) + e(i)
 \end{equation}
 De la même manière, l'inéquation \ref{preflot_3} sera réécrite de la sorte :
 \begin{equation}
@@ -162,7 +162,7 @@ dans le réseau résiduel de capacité résiduelle $r(j,i) = x(i,j)$.
 
 \subsubsection{Les fonctions de potentiel}
 
-Il est important de réaliser un point précis sur les fonctions de potentiel. Certaines des
+Il est important de réaliser un point précis sur les fonctions de potentiel. Les
 démonstrations réalisées au cours de ce rapport se basent sur l'utilisation de ces fonctions.
 
 Considérons une structure de données appelée $D_0$ sur laquelle sont effectuée des opérations

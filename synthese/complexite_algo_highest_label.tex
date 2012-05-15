@@ -1,6 +1,6 @@
 Comme vu précédemment, l'algorithme High Label analyse les n\oe uds en fonction de la valeur de leur
-fonction de distance. Cette sélection permet d'obtenir une borne maximale en $O(n^2\sqrt{m})$, c'est
-ce que nous allons démontrer.
+fonction de distance. Cette sélection permet d'obtenir une borne maximale en
+$O(n^2\sqrt{m})$~\cite{ahuj93}, c'est ce que nous allons démontrer.
 
 Soit une constante $K = \sqrt{m}$, soit la fonction $d': S \longrightarrow \mathbb{N}$, définie par
 : $$
@@ -14,11 +14,12 @@ Cette fonctions vérifie alors quelques propriétés :
 \underline{\textbf{Preuve :}}\\
 L'ensemble des sommets dont la distance est inférieure à une valeur donnée est un sous-ensemble de
 l'ensemble des sommets du graphe. Son cardinal est donc majoré par ce dernier.
+
 Introduisons la fonction de potentiel $\Phi$ définie comme suit : $$
-\Phi = \sum_{i : e(i) > 0} d'(i) / K $$
+\Phi = \sum_{i : e(i) > 0} \frac{d'(i)}{K}$$
 
 On peut remarquer qu'à n'importe quel moment de l'exécution de l'algorithme, $\Phi \geq 0$ et que
-après l'initialisation : $Phi \leq n^2 / K$. Cette borne est atteinte dans le cas d'un graphe
+après l'initialisation : $\Phi \leq n^2 / K$. Cette borne est atteinte dans le cas d'un graphe
 complet puisque chaque n\oe ud ayant une distance de 1 et étant relié à la source, on obtient alors
 $n$ n\oe uds actifs vérifiant tous $d'(n) = n$, d'où $\Phi = n^2/K$.
 
@@ -29,7 +30,7 @@ Regardons les effets des opérations de poussage et réétiquetage sur la foncti
 \end{lemma}
 
 \underline{\textbf{Preuve :}}\\Dans le pire des cas, le sommet réétiqueté passe de la plus petite
-distance du graphe à la plus grande. Une représentation d'un de ces cas est donnée \ref{pdc}. Il
+distance du graphe à la plus grande. Une représentation d'un de ces cas est donnée à la figure \ref{pdc}. Il
 s'agit là d'une chaîne dont la capacité de chacun des arcs est supérieure à la capacité du dernier
 arc de la chaîne, de façon à ce que l'on observe un phénomène de flux et reflux influant sur la
 distance de tous les sommets. Lors du dernier réétiquetage de l'algorithme on se retrouve dans le
@@ -68,8 +69,8 @@ dans ce cas une augmentation de $k/K$ soit $(n-2)/k$.
 				& & & $\Phi = 1/K$ \\ \hline
 			\end{tabular}}
 	\end{center}
-	\label{pdc}
 	\caption{Exemple de l'influence du réétiquetage sur la fonction $\Phi$}
+	\label{pdc}
 \end{figure}
 
 \begin{lemma}
@@ -91,16 +92,16 @@ vers $j$.  Après cette opération, le sommet $i$ n'est plus actif et le sommet 
 $d(i) = d(j) + 1$ donc $d'(i) > d'(j)$, on observe même une diminution de la valeur de $\Phi$ d'au
 moins $1/K$.
 
-Afin de quantifier le nombre de poussage non saturant, l'algorithme est scindée en phases définie
+Afin de quantifier le nombre de poussage non saturant, l'algorithme est scindée en phases définies
 comme suit : une phase est l'ensemble des opérations de poussage ayant lieu entre deux changements
-consécutifs de la valeur :
+consécutifs de la valeur $d^*$. On définira $d^*$ ainsi :
 \begin{equation}
 	d^* = \max\{d(v) : v \mbox{ est actif }\}
 \end{equation}
 
 Autrement dit il s'agit de l'ensemble des poussages ayant lieu sans qu'il y ait changement de la
 valeur maximale des distances des n\oe uds.
-Une phase présentant un nombre d'opérations de poussage non saturant supérieure à $K$ sera dite
+Une phase présentant un nombre d'opérations de poussage non saturant inférieur à $K$ sera dite
 \emph{faible}, elle sera désignée comme \emph{forte} sinon.
 
 \begin{lemma}
@@ -123,18 +124,18 @@ sont des phases faibles, présentant au plus $K$ poussages non saturants. Il y a
 $4n²K$ poussages non saturants sur l'ensemble de l'algorithme.
 
 \begin{lemma}
-	Une phase forte présentant $Q>K$ poussages non saturant diminue la valeur de $\Phi$ d'au moins
+	Une phase forte présentant $Q>K$ poussages non saturants diminue la valeur de $\Phi$ d'au moins
 	$Q$.
 \end{lemma}
 
 \underline{\textbf{Preuve :}}\\
-Considérons un phase forte au cours de laquelle sont effectuées $Q$ poussages non saturant.
+Considérons une phase forte au cours de laquelle sont effectuées $Q$ poussages non saturant.
 Dans la mesure où chacune de ces opération a lieu dans la même phase, la valeur de $d^*$ est
 constante, ce qui implique que chacune de ces opérations est faite depuis un n\oe ud $i$ tel que
 $d(i) = d^*$.
 
 La phase s'achève lorsque, tous les sommets de distance $d^*$ sont sortis de leur état actif, ou
-lorsque l'un d'entre eux est réétiqueter impliquant une nouvelle valeur de $d^*$. Dans les deux cas,
+lorsque l'un d'entre eux est réétiqueté impliquant une nouvelle valeur de $d^*$. Dans les deux cas,
 puisqu'il s'agit d'une phase forte, il y a au moins $Q$ n\oe uds, qui ont vu leur excédent chuter à
 zéro, réduisant ainsi la valeur de $\Phi$ d'au moins $Q/K$ à chaque poussage non
 saturant\footnote{Ceci est dû au fait qu'il y a au moins $Q$ n\oe ud ayant la même distance que le

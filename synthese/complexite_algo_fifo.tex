@@ -1,14 +1,14 @@
 Les améliorations sur l'algorithme générique se font soit grâce à l'amélioration de la structure de
-donnée, soit à l'aide d'une amélioration sur la manière de sélectionner les noeuds actifs dans le
+donnée, soit à l'aide d'une amélioration sur la manière de sélectionner les n\oe uds actifs dans le
 réseau de départ.
 
-Définissons à présent la notion d'\emph{analyse de noeud}. Au cours de l'algorithme précédent, dans
-le cas d'une opération de poussage saturant, nous avons vu que le noeud réalisant l'opération reste,
-très probablement, un noeud actif, il est donc candidat à la sélection lors de la prochaine boucle
+Définissons à présent la notion d'\emph{analyse de n\oe ud}. Au cours de l'algorithme précédent, dans
+le cas d'une opération de poussage saturant, nous avons vu que le n\oe ud réalisant l'opération reste,
+très probablement, un n\oe ud actif, il est donc candidat à la sélection lors de la prochaine boucle
 de l'algorithme. Seulement rien ne garantit qu'il sera à nouveau choisi, il peut donc être
 intéressant dans ce genre de situation de réaliser plusieurs poussages saturants suivis soit d'un
-poussage non saturant, soit d'une opération de réétiquetage. C'est cette suite d'opérations de que
-nous appellerons dorénavant \emph{analyse de noeud}.
+poussage non saturant, soit d'une opération de réétiquetage. C'est cette suite d'opérations que
+nous appellerons dorénavant \emph{analyse de n\oe ud}.
 
 \begin{thrm}
 	L'algorithme de préflot FIFO s'exécute en un temps $O(n^3)$.
@@ -17,23 +17,23 @@ nous appellerons dorénavant \emph{analyse de noeud}.
 \textbf{Preuve} \\
 Afin de calculer la borne supérieure du temps d'exécution de l'algorithme, nous allons être	amenés à
 introduire de le concept de phase. On appelle première phase, la partie de l'algorithme qui consiste
-à appliquer une analyse de noeud à chacun des sommets devenus actifs suite aux opérations de
-poussage effectuées sur $s$. Durant cette première phase, les noeuds devenus actifs suite aux
-analyse de noeud des sommet de la première phase, sont mis en queue de file et leur analyse
+à appliquer une analyse de n\oe ud à chacun des sommets devenus actifs suite aux opérations de
+poussage effectuées sur $s$. Durant cette première phase, les n\oe uds devenus actifs suite aux
+analyse de n\oe ud des sommets de la première phase, sont mis en queue de file et leur analyse
 constituera les opérations de la seconde phase, et ainsi de suite. L'objectif est donc de borner le
 nombre de phases.
 
-Considérons la fonction $\Phi = max \{d(i) / i \mbox{ actif }\}$. Considérons à présent l'effet
+Considérons la fonction $\Phi = max \{d(i) : i \mbox{ actif }\}$. Considérons à présent l'effet
 d'une phase sur la fonction $\Phi$, on remarque alors plusieurs cas :
 \begin{enumerate}
 	\item Lors de la phase aucune opération de réétiquetage n'a lieu. Dans ce cas, les sommets $i$ de
 		cette phase ont tous effectués une opération de poussage non saturant, ils ne sont donc plus
-		actifs. Les noeuds actifs après la phase $j$ ont tous une distance respectant cette loi : $d(j)
+		actifs. Les n\oe uds actifs après la phase $j$ ont tous une distance respectant cette loi : $d(j)
 		< d(i) \quad \forall i, j$. $\Phi$ diminue alors d'au moins une unité.
-	\item Lors de la phase il y a au moins une opération de ré étiquetage. $\Phi$ voit alors sa sa
-		valeur augmenter de $\delta$ avec $\delta \geq 0$. Si $\delta = 0$, alors il existe un noeud qui
-		voit sa hauteur augmenter au moins d'une unité, si $\delta > 0$ alors il existe un noeud dont la
-		hauteur augment d'au moins $\delta$. De par le lemme \ref{borne_reetiq} le nombre de phases
+	\item Lors de la phase il y a au moins une opération de réétiquetage. $\Phi$ voit alors sa sa
+		valeur augmenter de $\delta$ avec $\delta \geq 0$. Si $\delta = 0$, alors il existe un n\oe ud qui
+		voit sa distance augmenter au moins d'une unité, si $\delta > 0$ alors il existe un n\oe ud dont la
+		distance augmente d'au moins $\delta$. De par le lemme \ref{borne_reetiq} le nombre de phases
 		pendant lesquelles $\Phi$ est inférieure à $2n^2$.
 \end{enumerate}
 Comme la valeur initiale de $\Phi$ est $n$, le nombre de phases pendant lesquelles $\Phi$ diminue
